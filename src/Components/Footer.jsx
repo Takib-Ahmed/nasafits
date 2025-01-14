@@ -55,7 +55,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="w-screen">
+      <div className="">
         <img
           src="/public/Screenshot 2025-01-12 182853.png"
           alt=""
