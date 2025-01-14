@@ -1,0 +1,88 @@
+body{
+  padding: 0 ;
+  margin: 0 ;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color:whitesmoke;
+}
+
+header{
+  max-width: 100% !important;
+gap: 0  !important;
+}
+
+
+.slick-dots {
+  transform: translateY(-35px); /* Adjust the position */
+  display: flex !important; /* Align dots horizontally */
+  justify-content: center;
+  gap: 5px;
+  opacity: 1;
+}
+
+.slick-dots li button:before {
+  font-size: 12px; /* Dot size */
+  color: white; /* Inactive dot color */
+  opacity: 0.4; /* Always visible */
+}
+.slick-dots li button:before:hover {
+  font-size: 13px; /* Dot size */
+  color: white; /* Inactive dot color */
+   /* Always visible */
+   opacity: 0.6;
+}
+
+/* Style the active dot */
+.slick-dots li.slick-active button:before {
+  color: white; /* Active dot color */
+ 
+  opacity: 1; /* Increase size for active dot */
+}
+
+@media only screen and (max-width: 1500px) {
+.Slider{
+
+
+  height: auto;
+  overflow: hidden;
+}
+}
+
+.collections:hover{
+  .hovered{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+.navlinkscontainer{
+  gap: 1.5rem !important;
+}
+  }
+  
+@media only screen and (max-width: 1100px) {
+  .navlinkscontainer{
+    display: none  !important;
+  }
+  .navmenu{
+    display: block  !important;
+  }
+    }
+    @media only screen and (max-width: 1050px) {
+      .navlinkscontainer{
+    display: none !important;
+      }
+        }
+
+
+        .Category:hover{
+          img{
+            scale: 1.1;
+            
+          }
+          .name{
+transform: translateY(0) !important;
+          }
+        }
+
+   

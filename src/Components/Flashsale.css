@@ -1,0 +1,33 @@
+.flashsale .slick-slide div {
+    margin: 0 10px;
+ margin-left: 3px;
+  }
+
+
+  .flashsale .slick-dots {
+    transform: translateY(-30px); /* Adjust the position */
+    display: flex !important; /* Align dots horizontally */
+    justify-content: center;
+    gap: 5px;
+   
+
+  }
+  .flashsale .slick-dots li button:before {
+    font-size: 8px; /* Dot size */
+   /* Always visible */
+   color: black;
+
+   opacity: 0.5;
+
+  }
+  .flashsale .slick-dots li.slick-active button:before {
+   /* Active dot color */
+   
+    opacity: 1; /* Increase size for active dot */
+  }
+  
+  .saleproduct{
+    div{
+      margin:0 !important;
+    }
+  }
