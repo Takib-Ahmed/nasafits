@@ -8,7 +8,7 @@ import Collection from './Components/Homepage/Collections'
 import Banner from './Components/Homepage/Banner'
 import Footer from './Components/Footer'
 import Flashsale from './Components/Homepage/Flashsale'
-import Hoddies from './Components/Hoodies'
+
 import Hoodies from './Components/Homepage/cc'
 
 function App() {
