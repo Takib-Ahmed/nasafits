@@ -95,8 +95,8 @@ export default function Collection({ Collectiontype }) {
     slidesToShow: 4,
     slidesToScroll: 4,
     arrows: true,
-      prevArrow: <CustomPrevArrow  icon={<GrPrevious className=" text-black  text-3xl -translate-x-4 sm:-translate-x-8" />} />,
-        nextArrow: <CustomNextArrow icon={<GrNext className=" text-black   text-3xl translate-x-4 sm:translate-x-8"     />} />,
+      prevArrow: <CustomPrevArrow  icon={<GrPrevious className=" text-black  text-xl md:text-2xl  lg:text-3xl -translate-x-4 sm:-translate-x-8" />} />,
+        nextArrow: <CustomNextArrow icon={<GrNext className=" text-black   text-xl md:text-2xl  lg:text-3xl translate-x-4 sm:translate-x-8"     />} />,
         responsive: [  {
           breakpoint: 1303,
           settings: {

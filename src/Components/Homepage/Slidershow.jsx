@@ -13,15 +13,15 @@ export default function Slidershow(){
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-    //     autoplay: true, // Enable auto-sliding
-    // autoplaySpeed: 3000, // Delay between slides in ms (3 seconds)
-    // pauseOnHover: true, // Pause sliding on hover
+        autoplay: true, // Enable auto-sliding
+    autoplaySpeed: 3000, // Delay between slides in ms (3 seconds)
+    pauseOnHover: true, // Pause sliding on hover
     arrows: true,
-    prevArrow: <CustomPrevArrow icon={<GrPrevious className=" text-white  text-3xl" />} />,
-    nextArrow: <CustomNextArrow icon={<GrNext className=" text-white   text-3xl"     />} />,
+    prevArrow: <CustomPrevArrow icon={<GrPrevious className=" text-white text-xl md:text-2xl  lg:text-3xl" />} />,
+    nextArrow: <CustomNextArrow icon={<GrNext className=" text-white   text-xl md:text-2xl lg:text-3xl"     />} />,
       };
     return (
-        <>
+        <div className=" flex flex-col gap-0">
   
 <Slider {...settings} className="   relative Slider w-full mt-16 md:mt-14 lg:mt-2.5    lg:h-[51rem]  overflow-hidden">
 <div className=" ">
@@ -33,15 +33,7 @@ export default function Slidershow(){
     />
 
 </div>
-<div className="   ">
-<img
-      alt="NextUI hero Image with delay"
-     
-      src="/Slideshow/New Project (24) copy.png"
-  className="   w-full h-full  "
-    />
 
-</div>
 <div className="  ">
 <img
       alt="NextUI hero Image with delay"
@@ -51,8 +43,8 @@ export default function Slidershow(){
     />
 </div>
 </Slider>
-<div className=" w-screen  "><img src="/Slideshow/Screenshot 2025-01-11 214951.png" alt=""  className=" w-full "/></div>   
+<div className=" w-full     -translate-y-2  "><img src="/Slideshow/Screenshot 2025-01-11 214951.png" alt=""  className=" w-full  "/></div>   
         
-        </>
+        </div>
     );
 }

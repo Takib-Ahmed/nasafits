@@ -54,14 +54,7 @@ gap: 0  !important;
   opacity: 1; /* Increase size for active dot */
 }
 
-@media only screen and (max-width: 1500px) {
-.Slider{
 
-
-  height: auto;
-  overflow: hidden;
-}
-}
 
 .collections:hover{
   .hovered{
@@ -69,6 +62,13 @@ gap: 0  !important;
   }
 }
 @media only screen and (max-width: 1500px){
+  .Slider{
+
+
+    height: auto;
+    overflow: hidden;
+  };
+
 .Productcard{
 width: auto ;
 }
