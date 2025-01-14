@@ -102,8 +102,8 @@ export default function Flashsale() {
         <div className="bg-slate-200 w-full sm:mx-2 rounded sm:p-1 pt-2 ">
           <Slider {...settings} className="  flex gap-2 text-center  flashsale ">
             {products.map((product) => (
-              <div key={product.id} className="   sm-pb-1 md:pb-0 grid  sm:w-60 md:w-72 lg:w-80 gap-1 sm:gap-1.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
-                      <div className="cover  p-3">
+              <div key={product.id} className="   pt-0.5 sm:pb-1 md:pb-0 grid  sm:w-60 md:w-72 lg:w-80 gap-1 sm:gap-1.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
+                      <div className="cover p-0.5  sm:p-1  md:p-2 lg:p-2.5">
                         <img src={product.image} alt={product.title} className="w-full   rounded-lg  overflow-hidden " />
                       </div>
                       <div className="title text-sm md:text-medium font-semibold sm:font-bold ">

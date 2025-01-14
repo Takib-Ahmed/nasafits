@@ -75,10 +75,10 @@ export default function Hoodies(){
           <h1 className="  ">{`All Collections`}</h1>
           <p className=" hovered absolute bottom-0.5 translate-y-1  border-black border-b-2 w-72 mx-20  transition-all duration-300" ></p>
         </div>
-        <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-4  py-10 pt-5">
+        <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2 md:gap-4  py-10 pt-5">
           {productDetails.map((product) => (
             <div key={product.id} className="All  pb-1 grid shadow-lg sm:w-60 md:w-auto lg:w-[22rem]  gap-1 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
-                    <div className="cover  p-3">
+                    <div className="cover  p-1.5 sm:2 md:p-2.5 lg:p-3">
                       <img src={product.imgSrc} alt={product.title} className="w-full   rounded-lg  overflow-hidden " />
                     </div>
                     <div className="title font-semibold sm:font-bold ">
