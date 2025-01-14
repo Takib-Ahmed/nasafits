@@ -41,8 +41,9 @@
 
 
     .flashsale .slick-slide div {
-      margin: 0 5px;
-   margin-left: 1px;
+      margin: 0 1px !important;
+   
     }
+
   
   }
