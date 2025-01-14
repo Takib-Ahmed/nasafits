@@ -28,7 +28,7 @@ export default function Slidershow(){
 <img
       alt="NextUI hero Image with delay"
      
-      src="/public/Slideshow/New Project (14) (2).png" 
+      src="/Slideshow/New Project (14) (2).png" 
   className="   w-full   "
     />
 
@@ -37,7 +37,7 @@ export default function Slidershow(){
 <img
       alt="NextUI hero Image with delay"
      
-      src="/public/Slideshow/New Project (24) copy.png"
+      src="/Slideshow/New Project (24) copy.png"
   className="   w-full h-full  "
     />
 
@@ -46,12 +46,12 @@ export default function Slidershow(){
 <img
       alt="NextUI hero Image with delay"
      
-      src="/public/Slideshow/New Project (14) (2).png" 
+      src="/Slideshow/New Project (14) (2).png" 
   className="   w-full   "
     />
 </div>
 </Slider>
-<div className=" w-screen  "><img src="/public/Slideshow/Screenshot 2025-01-11 214951.png" alt=""  className=" w-full "/></div>   
+<div className=" w-screen  "><img src="/Slideshow/Screenshot 2025-01-11 214951.png" alt=""  className=" w-full "/></div>   
         
         </>
     );

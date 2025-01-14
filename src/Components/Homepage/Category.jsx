@@ -2,23 +2,23 @@ export default function Categories() {
     const categories = [
       {
         name: "Hoddie",
-        imgSrc: "/public/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
       },
       {
         name: "Hoddie",
-        imgSrc: "/public/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
       },
       {
         name: "Hoddie",
-        imgSrc: "/public/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
       },
       {
         name: "Hoddie",
-        imgSrc: "/public/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
       },
       {
         name: "Hoddie",
-        imgSrc: "/public/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
       }
     ];
   
