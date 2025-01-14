@@ -57,7 +57,7 @@ const Footer = () => {
     <>
       <div className="">
         <img
-          src="/public/Screenshot 2025-01-12 182853.png"
+          src="/Screenshot 2025-01-12 182853.png"
           alt=""
           className="w-full"
         />

@@ -97,9 +97,9 @@ export default function Flashsale() {
 
   return (
     <>
-      <div className=" text-center  ">
+      <div className=" text-center sm:px-2  ">
         <p className="text-3xl p-3 ">Flash Sale</p>
-        <div className="bg-slate-200 w-full sm:mx-2 rounded sm:p-1 pt-2 ">
+        <div className="bg-slate-200 w-full  rounded sm:p-1 pt-2 ">
           <Slider {...settings} className="  flex gap-2 text-center  flashsale ">
             {products.map((product) => (
               <div key={product.id} className="   pt-0.5 sm:pb-1 md:pb-0 grid  sm:w-60 md:w-72 lg:w-80 gap-1 sm:gap-1.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
