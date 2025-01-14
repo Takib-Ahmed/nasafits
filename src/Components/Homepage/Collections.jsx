@@ -101,7 +101,7 @@ export default function Collection({ Collectiontype }) {
   return (
     <>
       <div className="collections text-center p-5  py-5 md:pt-0   r">
-        <div className=" relative mx-1.5 w-full  title text-2xl md:text-3xl lg:text-4xl font-semibold py-2 text-center border-gray border-b-2 flex items-center flex-col justify-center ">
+        <div className=" relative mx-1.5 w-full  title text-xl md:text-2xl lg:text-3xl font-semibold py-2 text-center border-gray border-b-2 flex items-center flex-col justify-center ">
           <h1 className="  ">{Collectiontype}</h1>
           <p className=" hovered  absolute bottom-0.5 translate-y-1  border-black border-b-2 w-72  transition-all duration-300" ></p>
         </div>
