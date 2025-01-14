@@ -101,6 +101,7 @@ export default function Collection({ Collectiontype }) {
           breakpoint: 1303,
           settings: {
             slidesToShow: 3,
+            slidesToScroll: 3
           },
         },
     
@@ -109,6 +110,7 @@ export default function Collection({ Collectiontype }) {
             breakpoint: 1030,
             settings: {
               slidesToShow: 2,
+              slidesToScroll: 2
             },
           },
 

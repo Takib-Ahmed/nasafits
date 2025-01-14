@@ -82,6 +82,7 @@ export default function Flashsale() {
           breakpoint: 1303,
           settings: {
             slidesToShow: 4,
+            
           },
         },
     

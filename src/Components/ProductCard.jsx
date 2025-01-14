@@ -2,7 +2,7 @@ import { PiShoppingCartSimple } from "react-icons/pi";
 
 export default function ProductCard({key,cover,name,mainPrice,discountPrice,save}){
     return (
-            <div key={key} className="Productcard w-inherit  pt-0.5 sm:pb-1  grid shadow-lg sm:w-52 md:w-60 lg:w-[22rem] gap-0.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
+            <div key={key} className="Productcard   pt-0.5 sm:pb-1  grid shadow-lg lg:w-auto gap-0.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
                       <div className="cover p-1.5 sm:2 md:p-2.5 lg:p-3">
                         <img src={cover} alt={name} className="w-full   rounded-lg  overflow-hidden " />
                       </div>
