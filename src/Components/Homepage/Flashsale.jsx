@@ -111,7 +111,7 @@ export default function Flashsale() {
                       </div> 
                       <div className="  Save flex justify-center   py-0.5
                       ">
-                        <div className="bg-gray-700 text-white w-20 sm:w-24  rounded overflow-hidden   font-sans text-xs text-xs sm:text-sm md:text-medium">{product.saveText}</div>
+                        <div className="bg-gray-700 text-white w-20 sm:w-24  rounded overflow-hidden   font-sans text-xs  sm:text-sm md:text-medium">{product.saveText}</div>
                       </div>
                       <div className="amount flex justify-center gap-2">
                         <div className="mainprice text-red-500 pt-0.5 text-xs sm:text-sm md:text-medium">
