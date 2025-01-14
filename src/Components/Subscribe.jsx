@@ -10,8 +10,8 @@ export default function Dealsubscribe(){
             <i className="fas fa-envelope"></i>
           </div>
           <div>
-            <h3 className="font-bold uppercase text-sm flex gap-1">
-             <MdForwardToInbox className=" text-large text-yellow-600"/> Get special discounts in your inbox
+            <h3 className="font-bold uppercase sm:text-sm flex flex-wrap gap-1">
+             <MdForwardToInbox className="  text-xl sm:text-large text-yellow-600"/> Get special discounts in your inbox
             </h3>
             <p className="text-sm text-gray-400">
               Enter email to get offers, discounts and more.
