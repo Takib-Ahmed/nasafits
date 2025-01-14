@@ -31,3 +31,8 @@
       margin:0 !important;
     }
   }
+
+  .collection .slick-slide div {
+    margin: 0 5px;
+
+  }

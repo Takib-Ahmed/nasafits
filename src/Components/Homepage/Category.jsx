@@ -28,11 +28,11 @@ export default function Categories() {
           Browse Our Category
         </center>
         <br className="hidden lg:block" />
-        <div className="grid grid-cols-2 sm:flex flex-wrap lg:flex-nowrap lg:w-full justify-center gap-5 sm:gap-10 md:gap-5 lg:gap-5 px-5 md:py-5 md:pb-0 md:px-0 pb-0">
+        <div className=" Categorycontainer  pt-2  grid grid-cols-2 sm:flex flex-wrap  w-full justify-center lg:justify-around gap-5 sm:gap-10 md:gap-5 ">
           {categories.map((category, index) => (
             <div
               key={index}
-              className="Category flex flex-col-reverse sm:72 md:w-80 lg:w-96 relative text-center overflow-hidden rounded"
+              className="Category flex flex-col-reverse sm:72 md:w-80 lg:w-60 relative text-center overflow-hidden rounded"
             >
               <img
                 src={category.imgSrc}

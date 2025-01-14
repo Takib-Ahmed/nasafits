@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import { CustomNextArrow, CustomPrevArrow } from "./prevnext";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { PiShoppingCartSimple } from "react-icons/pi";
+import ProductCard from "../ProductCard";
 export default function Collection({ Collectiontype }) {
   const productDetails = [
     {
@@ -96,6 +97,22 @@ export default function Collection({ Collectiontype }) {
     arrows: true,
       prevArrow: <CustomPrevArrow  icon={<GrPrevious className=" text-black  text-3xl -translate-x-8" />} />,
         nextArrow: <CustomNextArrow icon={<GrNext className=" text-black   text-3xl translate-x-8"     />} />,
+        responsive: [  {
+          breakpoint: 1303,
+          settings: {
+            slidesToShow: 3,
+          },
+        },
+    
+     
+          {
+            breakpoint: 1030,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+
+        ],
   };
 
   return (
@@ -105,28 +122,17 @@ export default function Collection({ Collectiontype }) {
           <h1 className="  ">{Collectiontype}</h1>
           <p className=" hovered  absolute bottom-0.5 translate-y-1  border-black border-b-2 w-72  transition-all duration-300" ></p>
         </div>
-        <Slider {...settings} className="   flashsale grid grid-cols-2 sm:flex flex-wrap w-full justify-center gap-5 sm:gap-10 md:gap-12 py-10 pt-5">
+        <Slider {...settings} className="collection   flashsale flex flex-wrap w-full justify-center gap-5 sm:gap-10 md:gap-12 py-10 pt-5">
           {productDetails.map((product) => (
-            <div key={product.id} className="  pb-1 grid shadow-lg sm:w-60 md:w-72 lg:w-80 gap-1.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
-              <div className="cover  p-3">
-                <img src={product.imgSrc} alt={product.title} className="w-full   rounded-lg  overflow-hidden " />
-              </div>
-              <div className="title font-semibold sm:font-bold ">
-                <h3>{product.title}</h3>
-              </div> 
-              <div className="  Save flex justify-center  
-              ">
-                <div className="bg-gray-700 text-white w-24   rounded overflow-hidden">{product.saveText}</div>
-              </div>
-              <div className="amount flex justify-center gap-2">
-                <div className="mainprice text-red-500 pt-0.5">
-                  <s>{product.mainPrice}</s>
-                </div>
-                <div className="discountprice text-lg text-green-400">{product.discountPrice}</div>
-              </div>
-              <div className="buy p-2 flex justify-center"> <p className="bg-black  py-1 cursor-pointer  flex gap-2  justify-center  text-white w-32 rounded-lg"><PiShoppingCartSimple className=" mt-0.5" size={20}  />Buy Now</p>
-              </div>
-            </div>
+          <ProductCard 
+          key={product.id}
+          cover={product.imgSrc}
+          name={product.title}
+          save={product.saveText}
+          mainPrice={product.mainPrice}
+          discountPrice={product.discountPrice}
+        
+      />
           ))}
         </Slider>
       </div>

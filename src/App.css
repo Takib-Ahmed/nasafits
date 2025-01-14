@@ -4,6 +4,13 @@ body{
   box-sizing: border-box;
   overflow-x: hidden;
   background-color:whitesmoke;
+  
+
+
+}
+*{
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important; */
+  font-family: sans-serif;
 }
 
 header{
@@ -53,10 +60,45 @@ gap: 0  !important;
     width: 100%;
   }
 }
+@media only screen and (max-width: 1500px){
+.Productcard{
+width: auto ;
+}
+.All{
+  width: 19rem;
+}
+.collections{
+padding:auto 0 ;
+}
+}
+@media only screen and (max-width: 1320px){
+  .Categorycontainer{
+justify-content: center;
 
+  }
+  .Category{
+    height: 10rem;
+    overflow: hidden;
+    img{
+      transform: translateY(20%);
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px){
+  .All{
+    width: 20rem;
+   padding-left: 1.5px;
+   padding-right: 1.5px;
+  }
+}
 @media only screen and (max-width: 1200px) {
 .navlinkscontainer{
   gap: 1.5rem !important;
+}
+
+.All{
+  padding: auto;
 }
   }
   
@@ -68,11 +110,24 @@ gap: 0  !important;
     display: block  !important;
   }
     }
+    @media only screen and (max-width: 1030px){
+      .Category{
+        height: 10rem;
+        overflow: hidden;
+        img{
+          transform: translateY(40%);
+        }
+      }
+    }
     @media only screen and (max-width: 1050px) {
       .navlinkscontainer{
     display: none !important;
       }
         }
+     
+
+        
+
 
 
         .Category:hover{
@@ -86,3 +141,24 @@ transform: translateY(0) !important;
         }
 
    
+ @media only screen and (max-width: 1030px) {
+.All{
+  width: 25rem;
+}
+ }
+
+ @media only screen and (max-width: 880px) {
+  .All{
+    width: auto;
+  }
+  .Cardcontainer{
+    display: grid;
+    grid-template-columns: 2;
+  }
+   }
+   @media only screen and (max-width: 770px){
+    .Categorycontainer{
+  display: grid;
+      grid-template-columns: 2;
+        }
+   }

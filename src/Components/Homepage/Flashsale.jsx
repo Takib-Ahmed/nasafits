@@ -12,7 +12,7 @@ export default function Flashsale() {
       title: "Mens Premium Hoodie Itachi - Tsukuyomi",
       mainPrice: "৳1000",
       discountPrice: "৳800",
-      savings: "Tk. 220",
+    saveText: "Save Tk. 220",
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ export default function Flashsale() {
       title: "Mens Premium Hoodie Itachi - Tsukuyomi",
       mainPrice: "৳1000",
       discountPrice: "৳800",
-      savings: "Tk. 220",
+      saveText: "Save Tk. 220",
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ export default function Flashsale() {
       title: "Mens Premium Hoodie Itachi - Tsukuyomi",
       mainPrice: "৳1000",
       discountPrice: "৳800",
-      savings: "Tk. 220",
+      saveText: "Save Tk. 220",
     },
     {
       id: 4,
@@ -36,7 +36,7 @@ export default function Flashsale() {
       title: "Mens Premium Hoodie Itachi - Tsukuyomi",
       mainPrice: "৳1000",
       discountPrice: "৳800",
-      savings: "Tk. 220",
+      saveText: "Save Tk. 220",
     },
     {
       id: 5,
@@ -44,7 +44,7 @@ export default function Flashsale() {
       title: "Mens Premium Hoodie Itachi - Tsukuyomi",
       mainPrice: "৳1000",
       discountPrice: "৳800",
-      savings: "Tk. 220",
+      saveText: "Save Tk. 220",
     },
     {
       id: 6,
@@ -52,7 +52,7 @@ export default function Flashsale() {
       title: "Mens Premium Hoodie Itachi - Tsukuyomi",
       mainPrice: "৳1000",
       discountPrice: "৳800",
-      savings: "Tk. 220",
+      saveText: "Save Tk. 220",
     },
     // Add more products as needed
   ];
@@ -78,12 +78,27 @@ export default function Flashsale() {
         icon={<GrNext className="text-black text-3xl translate-x-3" />}
       />
     ),
+      responsive: [  {
+          breakpoint: 1303,
+          settings: {
+            slidesToShow: 4,
+          },
+        },
+    
+   
+          {
+            breakpoint: 1030,
+            settings: {
+              slidesToShow: 3,
+            },
+          }
+        ],
   };
 
   return (
     <>
       <div className=" text-center  ">
-        <p className="text-3xl p-3">Flash Sale</p>
+        <p className="text-3xl p-3 ">Flash Sale</p>
         <div className="bg-slate-200 mx-2 rounded p-1 pt-2 ">
           <Slider {...settings} className="  flex gap-2 text-center  flashsale ">
             {products.map((product) => (
@@ -94,9 +109,9 @@ export default function Flashsale() {
                       <div className="title font-semibold sm:font-bold ">
                         <h3>{product.title}</h3>
                       </div> 
-                      <div className="  Save flex justify-center  
+                      <div className="  Save flex justify-center   py-0.5
                       ">
-                        <div className="bg-gray-700 text-white w-24   rounded overflow-hidden">{product.saveText}</div>
+                        <div className="bg-gray-700 text-white w-24  rounded overflow-hidden   font-sans ">{product.saveText}</div>
                       </div>
                       <div className="amount flex justify-center gap-2">
                         <div className="mainprice text-red-500 pt-0.5">
