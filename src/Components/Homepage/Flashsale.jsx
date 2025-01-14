@@ -111,15 +111,15 @@ export default function Flashsale() {
                       </div> 
                       <div className="  Save flex justify-center   py-0.5
                       ">
-                        <div className="bg-gray-700 text-white w-20 sm:w-24  rounded overflow-hidden   font-sans text-sm md:text-medium ">{product.saveText}</div>
+                        <div className="bg-gray-700 text-white w-20 sm:w-24  rounded overflow-hidden   font-sans text-xs text-xs sm:text-sm md:text-medium">{product.saveText}</div>
                       </div>
                       <div className="amount flex justify-center gap-2">
-                        <div className="mainprice text-red-500 pt-0.5 text-sm md:text-medium">
+                        <div className="mainprice text-red-500 pt-0.5 text-xs sm:text-sm md:text-medium">
                           <s>{product.mainPrice}</s>
                         </div>
-                        <div className="discountprice text-medium sm:text-lg text-green-400">{product.discountPrice}</div>
+                        <div className="discountprice text-sm md:text-lg text-green-400">{product.discountPrice}</div>
                       </div>
-                      <div className="buy py-2 md:p-2 flex justify-center "> <p className="bg-black  py-1 cursor-pointer  flex gap-2  justify-center  text-white w-24 sm:w-32 rounded-lg text-sm md:text-medium"><PiShoppingCartSimple className=" mt-0.5 text-sm sm:text-xl"   />Buy Now</p>
+                      <div className="buy py-0.5 sm:py-1 md:py-2 md:p-2 flex justify-center "> <p className="bg-black  py-1 cursor-pointer  flex gap-2  justify-center  text-white w-24 sm:w-32 rounded-lg text-xs sm:text-sm md:text-medium"><PiShoppingCartSimple className=" mt-0.5 text-sm sm:text-xl"   />Buy Now</p>
                       </div>
                     </div>
             ))}
