@@ -23,8 +23,8 @@ export default function Categories() {
     ];
   
     return (
-      <div className="p-5 ">
-        <center className="text-2xl md:text-3xl lg:text-4xl font-semibold ">
+      <div className=" p-0.5 sm:p-4 md:p-5 ">
+        <center className=" text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold  ">
           Browse Our Category
         </center>
         <br className="hidden lg:block" />

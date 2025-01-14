@@ -18,14 +18,11 @@ function App() {
     <>
    <Header/>
    <Slidershow/>
- 
    <Categories/>
    <Flashsale/>
    <Collection Collectiontype={'Featured Product'}/>
    <Collection Collectiontype={'New Arrivals'}/>
 
-   
-<br />
    <Banner/>
    <Collection Collectiontype={'Hoodies'}/>
   <Hoodies/>
