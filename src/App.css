@@ -86,6 +86,12 @@ padding:auto 0 ;
 justify-content: center;
 
   }
+  .slick-dots{
+    gap: 4.5px;
+  }
+  .slick-dots li button:before {
+    font-size: 11px;
+  }
   .Category{
     height: 10rem;
     overflow: hidden;
@@ -113,6 +119,9 @@ justify-content: center;
   }
   
 @media only screen and (max-width: 1100px) {
+  .slick-dots li button:before {
+    font-size: 10px;
+  }
   .navlinkscontainer{
     display: none  !important;
   }
@@ -152,12 +161,21 @@ transform: translateY(0) !important;
 
    
  @media only screen and (max-width: 1030px) {
+  .slick-dots li button:before {
+    font-size: 8px;
+  }
 .All{
   width: 25rem;
 }
  }
 
  @media only screen and (max-width: 880px) {
+  .slick-dots li button:before {
+    font-size: 6px;
+  }
+  .slick-dots{
+    gap: 4px;
+  }
   .All{
     width: auto;
   }
@@ -173,6 +191,12 @@ transform: translateY(0) !important;
         }
    }
    @media only screen and (max-width: 500px){
+    .slick-dots li button:before {
+      font-size: 5px;
+    }
+    .slick-dots{
+      gap: 0px;
+    }
     .Category{
       height: 5rem;
       overflow: hidden;
