@@ -10,6 +10,7 @@ import Footer from './Components/Footer'
 import Flashsale from './Components/Homepage/Flashsale'
 
 import Hoodies from './Components/Homepage/cc'
+import Dealsubscribe from './Components/Subscribe'
 
 function App() {
 
@@ -26,7 +27,7 @@ function App() {
    <Banner/>
    <Collection Collectiontype={'Hoodies'}/>
   <Hoodies/>
-
+  <Dealsubscribe/>
 <Footer/>    </>
   )
 }

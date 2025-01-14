@@ -55,13 +55,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="">
-        <img
-          src="/Screenshot 2025-01-12 182853.png"
-          alt=""
-          className="w-full"
-        />
-      </div>
+     
       <footer className="bg-black text-white p-20">
         <div className="container mx-auto flex justify-around flex-wrap gap-24 text-sm">
           {footerSections.map((section, index) => (
