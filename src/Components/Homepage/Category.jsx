@@ -28,7 +28,7 @@ export default function Categories() {
           Browse Our Category
         </center>
         <br className="hidden lg:block" />
-        <div className=" Categorycontainer  pt-2  grid grid-cols-2 sm:flex flex-wrap  w-full justify-center lg:justify-around gap-5 sm:gap-10 md:gap-5 ">
+        <div className=" Categorycontainer p-2 lg:p-0  grid grid-cols-2 sm:flex flex-wrap  w-full justify-center lg:justify-around gap-2 sm:gap-5 sm:gap-10 md:gap-5 ">
           {categories.map((category, index) => (
             <div
               key={index}

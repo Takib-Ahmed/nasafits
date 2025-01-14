@@ -162,3 +162,12 @@ transform: translateY(0) !important;
       grid-template-columns: 2;
         }
    }
+   @media only screen and (max-width: 500px){
+    .Category{
+      height: 5rem;
+      overflow: hidden;
+      img{
+        transform: translateY(45%);
+      }
+    }
+   }
