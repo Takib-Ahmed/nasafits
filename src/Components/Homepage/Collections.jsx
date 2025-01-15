@@ -1,91 +1,11 @@
+/* eslint-disable react/prop-types */
 import Slider from "react-slick";
 import { CustomNextArrow, CustomPrevArrow } from "./prevnext";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import ProductCard from "../ProductCard";
-export default function Collection({ Collectiontype }) {
-  const productDetails = [
-    {
-      id: 1,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 2,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 3,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 4,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 5,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 6,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 7,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 8,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 9,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-    {
-      id: 10,
-      imgSrc: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      saveText: "Save Tk. 220",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    },
-  ];
+export default function Collection({ Collectiontype,productDetails }) {
+
   
 
   const settings = {
@@ -128,9 +48,9 @@ export default function Collection({ Collectiontype }) {
           {productDetails.map((product) => (
           <ProductCard 
           key={product.id}
-          cover={product.imgSrc}
-          name={product.title}
-          save={product.saveText}
+          cover={product.coverImage}
+          name={product.name}
+          save={product.save}
           mainPrice={product.mainPrice}
           discountPrice={product.discountPrice}
         

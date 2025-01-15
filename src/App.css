@@ -107,8 +107,12 @@ justify-content: center;
    padding-left: 1.5px;
    padding-right: 1.5px;
   }
+  .description{
+    width: 30rem;
+  }
 }
 @media only screen and (max-width: 1200px) {
+
 .navlinkscontainer{
   gap: 1.5rem !important;
 }
@@ -128,8 +132,25 @@ justify-content: center;
   .navmenu{
     display: block  !important;
   }
-    }
+  
+    } 
+    
+    @media only screen and (max-width: 1065px)
+{
+  .description{
+    width: 24rem;
+  }
+}
+    @media only screen and (max-width: 1050px) {
+      .navlinkscontainer{
+    display: none !important;
+      }
+   
+        }
     @media only screen and (max-width: 1030px){
+ .description{
+  width: 25rem;
+ }
       .Category{
         height: 10rem;
         overflow: hidden;
@@ -137,12 +158,14 @@ justify-content: center;
           transform: translateY(40%);
         }
       }
-    }
-    @media only screen and (max-width: 1050px) {
-      .navlinkscontainer{
-    display: none !important;
+      .slick-dots li button:before {
+        font-size: 8px;
       }
-        }
+    .All{
+      width: 25rem;
+    }
+    }
+ 
      
 
         
@@ -159,17 +182,14 @@ transform: translateY(0) !important;
           }
         }
 
-   
- @media only screen and (max-width: 1030px) {
-  .slick-dots li button:before {
-    font-size: 8px;
-  }
-.All{
-  width: 25rem;
+
+ @media only screen and (max-width: 900px){
+.description{
+  width: auto;
 }
  }
-
  @media only screen and (max-width: 880px) {
+ 
   .slick-dots li button:before {
     font-size: 6px;
   }

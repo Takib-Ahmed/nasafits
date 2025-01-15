@@ -1,62 +1,13 @@
+/* eslint-disable react/prop-types */
 import Slider from "react-slick";
 import "../Flashsale.css";
 import { CustomNextArrow, CustomPrevArrow } from "./prevnext";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { PiShoppingCartSimple } from "react-icons/pi";
 
-export default function Flashsale() {
-  const products = [
-    {
-      id: 1,
-      image: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-    saveText: "Save Tk. 220",
-    },
-    {
-      id: 2,
-      image: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-      saveText: "Save Tk. 220",
-    },
-    {
-      id: 3,
-      image: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-      saveText: "Save Tk. 220",
-    },
-    {
-      id: 4,
-      image: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-      saveText: "Save Tk. 220",
-    },
-    {
-      id: 5,
-      image: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-      saveText: "Save Tk. 220",
-    },
-    {
-      id: 6,
-      image: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      title: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      mainPrice: "৳1000",
-      discountPrice: "৳800",
-      saveText: "Save Tk. 220",
-    },
-    // Add more products as needed
-  ];
-  
+export default function Flashsale({productDetails}) {
+
+
 
   const settings = {
     dots: false,
@@ -102,23 +53,23 @@ export default function Flashsale() {
         <p className="text-3xl p-3 ">Flash Sale</p>
         <div className="bg-slate-200 w-full  rounded sm:p-1 pt-2 ">
           <Slider {...settings} className="  flex gap-2 text-center  flashsale ">
-            {products.map((product) => (
+            {productDetails.map((product) => (
               <div key={product.id} className="   pt-0.5 sm:pb-1 md:pb-0 grid  sm:w-60 md:w-72 lg:w-80 gap-1 sm:gap-1.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
                       <div className="cover p-0.5  sm:p-1  md:p-2 lg:p-2.5">
-                        <img src={product.image} alt={product.title} className="w-full   rounded-lg  overflow-hidden " />
+                        <img src={product.coverImage} alt={product.name} className="w-full   rounded-lg  overflow-hidden " />
                       </div>
                       <div className="title text-sm md:text-medium font-semibold sm:font-bold ">
-                        <h3>{product.title}</h3>
+                        <h3>{product.name}</h3>
                       </div> 
                       <div className="  Save flex justify-center   py-0.5
                       ">
-                        <div className="bg-gray-700 text-white w-20 sm:w-24  rounded overflow-hidden   font-sans text-xs  sm:text-sm md:text-medium">{product.saveText}</div>
+                        <div className="bg-gray-700 text-white w-20 sm:w-24  rounded overflow-hidden   font-sans text-xs  sm:text-sm md:text-medium">Save Tk.{product.save}</div>
                       </div>
                       <div className="amount flex justify-center gap-2">
                         <div className="mainprice text-red-500 pt-0.5 text-xs sm:text-sm md:text-medium">
-                          <s>{product.mainPrice}</s>
+                          <s>৳{product.mainPrice}</s>
                         </div>
-                        <div className="discountprice text-sm md:text-lg text-green-400">{product.discountPrice}</div>
+                        <div className="discountprice text-sm md:text-lg text-green-400">৳{product.discountPrice}</div>
                       </div>
                       <div className="buy py-0.5 sm:py-1 md:py-2 md:p-2 flex justify-center "> <p className="bg-black  py-1 cursor-pointer  flex gap-2  justify-center  text-white w-24 sm:w-32 rounded-lg text-xs sm:text-sm md:text-medium"><PiShoppingCartSimple className=" mt-0.5 text-sm sm:text-xl"   />Buy Now</p>
                       </div>
