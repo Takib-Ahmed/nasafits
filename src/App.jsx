@@ -11,7 +11,9 @@ import Flashsale from './Components/Homepage/Flashsale'
 
 import Hoodies from './Components/Homepage/cc'
 import Dealsubscribe from './Components/Subscribe'
-import Details from './Components/Detailspage/details'
+import Details from './Components/Details/details'
+import Cartpage from './Components/Cart/Cartpage'
+
 
 function App() {
   const productDetails = [
@@ -104,6 +106,7 @@ function App() {
   return (
     <>
    <Header/>
+   <Cartpage/>
   <Details productDetails={productDetails}/>
    <Slidershow/>
    <Categories/>
