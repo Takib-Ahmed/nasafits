@@ -31,8 +31,8 @@ export default function Sidecart(){
     return (
         <>
       
-        <div className={`fixed right-0 top-[0rem] z-50 w-[500px] h-full bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
-        <PiShoppingCartSimple className=" absolute right-[32rem] top-[20rem] z-50 text-4xl text-slate-700 bg-cyan-200 p-2 rounded-full cursor-pointer"  onClick={()=>{
+        <div className={`fixed right-0 top-[0rem] z-50 w-80 lg:w-[500px] h-full bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
+        <PiShoppingCartSimple className=" absolute  right-80 lg:right-[32rem] top-[30rem] z-50 text-4xl text-slate-700 bg-cyan-200 p-2 rounded-full cursor-pointer"  onClick={()=>{
           setshowcart((prev)=>!prev)
           }}/>
 

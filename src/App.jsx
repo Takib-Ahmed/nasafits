@@ -15,6 +15,8 @@ import Details from './Components/Details/details'
 import Cartpage from './Components/Cart/Cartpage'
 import Sidecart from './Components/Cart/Sidecart'
 import AccountForm from './Components/Login_SignUp/AccountForm'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Homepage from './Components/Homepage/Homepage'
 
 
 function App() {
@@ -108,21 +110,26 @@ function App() {
   return (
     <>
    <Header/>
-   <AccountForm/>
-   <Cartpage/>
-  <Sidecart/>
-  <Details productDetails={productDetails}/>
-   <Slidershow/>
-   <Categories/>
-   <Flashsale productDetails={productDetails}/>
-   <Collection Collectiontype={'Featured Product'} productDetails={productDetails}/>
-   <Collection Collectiontype={'New Arrivals'} productDetails={productDetails}/>
-
-   <Banner/>
-   <Collection Collectiontype={'Hoodies'} productDetails={productDetails}/>
-  <Hoodies/>
+   <Sidecart/>
+<BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Homepage productDetails={productDetails}/>} />
+      <Route path="/detalis" element={ <Details />} />
+      <Route path="/signin" element={<AccountForm/>} />
+      <Route path="/cart" element={   <Cartpage/>} />
+    </Routes>
+  </BrowserRouter>
   <Dealsubscribe/>
 <Footer/>
+
+
+
+
+
+  
+ 
+
+
 
 
     </>
