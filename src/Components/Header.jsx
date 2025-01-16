@@ -77,15 +77,15 @@ import { CgProfile } from "react-icons/cg";
     className="navmenu hidden  shadow-sm p-0 m-0 me-2" icon={<IoMenuOutline size={35}/>}
   />
      
-          <NavbarBrand className=" ">
+          <NavbarBrand className=" " >
      
-           <img
+   <Link href="/">        <img
       alt="NextUI hero Image with delay"
      
       src="/Header/output-onlinepngtools (8) (1).png" 
        className=" w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
     "
-    />     
+    />  </Link>   
           </NavbarBrand>
           <NavbarContent className=" navlinkscontainer  hidden lg:flex lg:gap-10 ">
             <NavbarItem>

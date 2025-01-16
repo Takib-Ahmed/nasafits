@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { PiShoppingCartSimple } from "react-icons/pi";
 
 import { useRef, useState } from "react";
@@ -5,21 +6,10 @@ import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import SizeGuide from "./SIzeguide";
 import Slider from "react-slick";
-export default function Details(){
-  const product = {
-    id: 1,
-    coverImage: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-    name: "Mens Premium Hoodie Itachi - Tsukuyomi",
-    save: 200,
-    mainPrice: 1000,
-    discountPrice: 800,
-    images: [
-      "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-      "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png"
-    ],
-    sizes: ["M", "L", "XL", "2XL"]
-  }
+import InfoSection from "./Info";
+import { Link } from "react-router-dom";
+export default function Details({product}){
+
   const [quantity,setquantity] = useState(1);
   const [selectedkey,setSelectedkey] = useState(null)
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
@@ -128,10 +118,10 @@ export default function Details(){
                               </div>
                               
                              <div className="flex gap-2" >
-                             <p className="bg-gray-900  py-1 cursor-pointer  flex gap-2  justify-center z text-white w-24 sm:w-32  text-xs sm:text-sm md:text-medium items-center">
+                           <Link to='/cart'>  <p className="bg-gray-900  py-1 cursor-pointer  flex gap-2  justify-center z text-white w-24 sm:w-32  text-xs sm:text-sm md:text-medium items-center">
                               <FaPlus/> 
                                 
-                                Add To Cart</p><p className="bg-gray-950  py-1 cursor-pointer  flex gap-2  justify-center z text-white w-24 sm:w-32  text-xs sm:text-sm md:text-medium  items-center"><PiShoppingCartSimple className="  items-center text-sm sm:text-xl"   />Buy Now</p>
+                                Add To Cart</p></Link><p className="bg-gray-950  py-1 cursor-pointer  flex gap-2  justify-center z text-white w-24 sm:w-32  text-xs sm:text-sm md:text-medium  items-center"><PiShoppingCartSimple className="  items-center text-sm sm:text-xl"   />Buy Now</p>
                              </div>
                             </div>
                             <div className={` description  py-2 justify-center lg:text-left  md:w-96 lg:w-[40rem]   `}>
@@ -151,6 +141,7 @@ export default function Details(){
                           </div>
                       
                           </div>
+                          <InfoSection/>
                           
         </>
     );

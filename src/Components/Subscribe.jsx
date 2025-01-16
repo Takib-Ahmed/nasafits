@@ -2,7 +2,7 @@ import { MdForwardToInbox } from "react-icons/md";
 export default function Dealsubscribe(){
     return (
         <>
-          <div className="bg-slate-600 text-white py-6">
+          <div className="bg-slate-700 text-white py-6">
       <div className="container  flex flex-row flex-wrap sm:flex-nowrap justify-around  gap-6 md:gap-0 p-2  md:p-4">
         {/* Left Section */}
         <div className="flex items-start sm:items-center w-80 sm:w-auto">
@@ -22,7 +22,7 @@ export default function Dealsubscribe(){
                 placeholder="Enter your email"
                 className="px-3 py-2 text-white  focus:outline-none w-40 md:w-80 bg-transparent border-gray-500 border-b-2"
               />
-              <button className="bg-yellow-500 px-4 py-2  hover:rounded hover:bg-yellow-600">
+              <button className="bg-yellow-600 px-4 py-2  hover:rounded hover:bg-yellow-600">
                 Subscribe
               </button>
             </div>

@@ -4,7 +4,7 @@ import { CustomNextArrow, CustomPrevArrow } from "./prevnext";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import ProductCard from "../ProductCard";
-export default function Collection({ Collectiontype,productDetails }) {
+export default function Collection({ Collectiontype,productDetails,setproduct }) {
 
   
 
@@ -14,6 +14,9 @@ export default function Collection({ Collectiontype,productDetails }) {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
     arrows: true,
       prevArrow: <CustomPrevArrow  icon={<GrPrevious className=" text-black  text-xl md:text-2xl  lg:text-3xl -translate-x-4 sm:-translate-x-8" />} />,
         nextArrow: <CustomNextArrow icon={<GrNext className=" text-black   text-xl md:text-2xl  lg:text-3xl translate-x-4 sm:translate-x-8"     />} />,
@@ -47,11 +50,10 @@ export default function Collection({ Collectiontype,productDetails }) {
         <Slider {...settings} className="collection   flashsale flex flex-wrap w-full justify-center gap-5 sm:gap-10 md:gap-12 py-10 pt-5">
           {productDetails.map((product) => (
           <ProductCard 
+          setproduct={setproduct}
+          product={product}
           key={product.id}
-          cover={product.coverImage}
-          name={product.name}
-          save={product.save}
-          mainPrice={product.mainPrice}
+       
           discountPrice={product.discountPrice}
         
       />

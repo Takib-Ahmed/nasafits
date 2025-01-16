@@ -106,15 +106,28 @@ function App() {
       sizes: ["M", "L", "XL", "2XL"]
     }
   ];
-  
+    const [product,setproduct] = useState(  {
+      id: 1,
+      coverImage: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
+      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      images: [
+        "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
+        "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
+        "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png"
+      ],
+      sizes: ["M", "L", "XL", "2XL"]
+    })
   return (
     <>
    <Header/>
    <Sidecart/>
 <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Homepage productDetails={productDetails}/>} />
-      <Route path="/detalis" element={ <Details />} />
+      <Route path="/" element={<Homepage productDetails={productDetails} setproduct={setproduct}/>} />
+      <Route path="/detalis" element={ <Details product={product} />} />
       <Route path="/signin" element={<AccountForm/>} />
       <Route path="/cart" element={   <Cartpage/>} />
     </Routes>

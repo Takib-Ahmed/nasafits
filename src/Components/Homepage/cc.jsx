@@ -1,6 +1,7 @@
 import { PiShoppingCartSimple } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
-export default function Hoodies(){
+export default function Hoodies({setproduct}){
   const productDetails = [
     {
       id: 1,
@@ -77,7 +78,11 @@ export default function Hoodies(){
         </div>
         <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2 md:gap-4  py-10 pt-5">
           {productDetails.map((product) => (
-            <div key={product.id} className="All  pb-1 grid shadow-lg sm:w-60 md:w-auto lg:w-[22rem]  gap-1 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
+
+<Link key={product.id}  to='/detalis' className="All  pb-1 grid shadow-lg sm:w-60 md:w-auto lg:w-[22rem]  gap-1 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
+<div onClick={()=>{
+  setproduct(product)
+}} >
                     <div className="cover  p-1.5 sm:2 md:p-2.5 lg:p-3">
                       <img src={product.imgSrc} alt={product.title} className="w-full   rounded-lg  overflow-hidden " />
                     </div>
@@ -96,7 +101,8 @@ export default function Hoodies(){
                     </div>
                     <div className="buy pb-2 flex justify-center"> <p className="bg-black  py-1 cursor-pointer  flex gap-2  justify-center  text-white w-32 rounded-lg"><PiShoppingCartSimple className=" mt-0.5" size={20}  />Buy Now</p>
                     </div>
-                  </div>
+                  </div></Link>
+            
           ))}
         </div>
       </div>

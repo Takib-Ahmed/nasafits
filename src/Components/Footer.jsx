@@ -1,5 +1,6 @@
-import React from "react";
 
+import { RiFacebookCircleLine } from "react-icons/ri";
+import { FaInstagram } from "react-icons/fa";
 const Footer = () => {
   const footerSections = [
     {
@@ -7,17 +8,17 @@ const Footer = () => {
       content: (
         <div className="flex flex-wrap gap-4">
           <a href="#" aria-label="Facebook">
-            <img src="facebook-icon.png" alt="Facebook" className="w-6 h-6" />
+            <RiFacebookCircleLine  className=" text-2xl   rounded-full w-fit p-0 m-0 " />
           </a>
           <a href="#" aria-label="YouTube">
-            <img src="youtube-icon.png" alt="YouTube" className="w-6 h-6" />
+            <FaInstagram   className="text-2xl   rounded-full w-fit p-0 m-0 pt-0.5" />
           </a>
         </div>
       ),
     },
     {
       title: "Blog",
-      content: <p>DeshiCommerce</p>,
+      content: <p>Nasa Fits</p>,
     },
     {
       title: "Most Popular Products",
