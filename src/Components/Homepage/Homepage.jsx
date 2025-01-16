@@ -16,6 +16,6 @@ export default function Homepage({productDetails,setproduct}){
 
    <Banner/>
    <Collection Collectiontype={'Hoodies'} productDetails={productDetails} setproduct={setproduct}/>
-  <Hoodies setproduct={setproduct}/></>
+  <Hoodies setproduct={setproduct} productDetails={productDetails}/></>
     );
 }
