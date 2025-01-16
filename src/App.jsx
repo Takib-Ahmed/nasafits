@@ -13,6 +13,7 @@ import Hoodies from './Components/Homepage/cc'
 import Dealsubscribe from './Components/Subscribe'
 import Details from './Components/Details/details'
 import Cartpage from './Components/Cart/Cartpage'
+import Sidecart from './Components/Cart/Sidecart'
 
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
     <>
    <Header/>
    <Cartpage/>
+  <Sidecart/>
   <Details productDetails={productDetails}/>
    <Slidershow/>
    <Categories/>
