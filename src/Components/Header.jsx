@@ -89,7 +89,7 @@ import { CgProfile } from "react-icons/cg";
           </NavbarBrand>
           <NavbarContent className=" navlinkscontainer  hidden lg:flex lg:gap-10 ">
             <NavbarItem>
-              <Link color="foreground" href="#">
+              <Link color="foreground" href="/">
                 Home
               </Link>
             </NavbarItem>
@@ -138,9 +138,9 @@ import { CgProfile } from "react-icons/cg";
             endContent={<IoIosSearch size={25}  className=" bg-black h-full   absolute right-0 w-10 p-2 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> 
-          <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12" /> 
+         <Link href="/cart"> <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
-            <DropdownTrigger>
+           <Link href="/signin"> <DropdownTrigger>
               <Avatar
                 isBordered
                 as="button"
@@ -151,8 +151,8 @@ import { CgProfile } from "react-icons/cg";
          
                 icon={<CgProfile/>}
                />
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
+            </DropdownTrigger></Link>
+            {/* <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">zoey@example.com</p>
@@ -166,7 +166,7 @@ import { CgProfile } from "react-icons/cg";
               <DropdownItem key="logout" color="danger">
                 Log Out
               </DropdownItem>
-            </DropdownMenu>
+            </DropdownMenu> */}
           </Dropdown>
         </NavbarContent>
         <NavbarMenu>
