@@ -89,7 +89,7 @@ import { CgProfile } from "react-icons/cg";
           </NavbarBrand>
           <NavbarContent className=" navlinkscontainer  hidden lg:flex lg:gap-10 ">
             <NavbarItem>
-              <Link color="foreground" href="/">
+              <Link color="foreground" to='/' href="/">
                 Home
               </Link>
             </NavbarItem>
@@ -138,9 +138,9 @@ import { CgProfile } from "react-icons/cg";
             endContent={<IoIosSearch size={25}  className=" bg-black h-full   absolute right-0 w-10 p-2 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> 
-         <Link href="/cart"> <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
+         <Link to='/cart' href="/cart"> <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
-           <Link href="/signin"> <DropdownTrigger>
+           <Link to='/signin' href="/signin"> <DropdownTrigger>
               <Avatar
                 isBordered
                 as="button"
