@@ -14,6 +14,7 @@ import Dealsubscribe from './Components/Subscribe'
 import Details from './Components/Details/details'
 import Cartpage from './Components/Cart/Cartpage'
 import Sidecart from './Components/Cart/Sidecart'
+import AccountForm from './Components/Login_SignUp/AccountForm'
 
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
   return (
     <>
    <Header/>
+   <AccountForm/>
    <Cartpage/>
   <Sidecart/>
   <Details productDetails={productDetails}/>
@@ -120,7 +122,10 @@ function App() {
    <Collection Collectiontype={'Hoodies'} productDetails={productDetails}/>
   <Hoodies/>
   <Dealsubscribe/>
-<Footer/>    </>
+<Footer/>
+
+
+    </>
   )
 }
 

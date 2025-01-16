@@ -31,11 +31,11 @@ export default function Details(){
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true, // Enable auto-sliding
-    autoplaySpeed: 3000, // Delay between slides in ms (3 seconds)
-    pauseOnHover: true, // Pause sliding on hover
+    //     autoplay: true,
+    // autoplaySpeed: 3000, 
+    // pauseOnHover: true, 
     arrows: true,
-    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), // Update currentSlide
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), 
     // customPaging: (i) => (
     //   <div
     //     className={`hover:bg-white transition-all duration-300 h-3 w-3 rounded-full ${

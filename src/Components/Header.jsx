@@ -23,7 +23,7 @@ import CustomDropdown from "./Customdropdown";
 import { IoMenuOutline } from "react-icons/io5";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import HoverDropdown from "./Customdropdown";
-  
+import { CgProfile } from "react-icons/cg";
   export const SearchIcon = ({size = 24, strokeWidth = 1.5, width, height, ...props}) => {
     return (
       <svg
@@ -148,7 +148,8 @@ import HoverDropdown from "./Customdropdown";
                 color="secondary"
                 name="Jason Hughes"
                 size="sm"
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+         
+                icon={<CgProfile/>}
                />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
