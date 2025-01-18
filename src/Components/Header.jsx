@@ -4,7 +4,7 @@ import {
     NavbarBrand,
     NavbarContent,
     NavbarItem,
-    Link,
+    
     Input,
     DropdownItem,
     DropdownTrigger,
@@ -26,7 +26,7 @@ import HoverDropdown from "./Customdropdown";
 import { CgProfile } from "react-icons/cg";
 
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -84,7 +84,7 @@ import { useNavigate } from "react-router-dom";
     className="navmenu hidden  shadow-sm p-0 m-0 me-2" icon={<IoMenuOutline size={35}/>}
   />
   <NavbarBrand className=" " >
- <Link  href="/"
+ <Link  to="/"
   >        <img
         alt="NextUI hero Image with delay"
        
@@ -147,10 +147,10 @@ import { useNavigate } from "react-router-dom";
             endContent={<IoIosSearch size={25}  className=" bg-black h-full   absolute right-0 w-10 p-2 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> 
-         <Link  > <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
+         <Link to='/cart'  > <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
-        <Link  > <DropdownTrigger>
+        <Link to='/signin'  > <DropdownTrigger>
               <Avatar
                 isBordered
                 as="button"
