@@ -22,12 +22,12 @@ export default function Flashsale({productDetails,setproduct}) {
     arrows: true,
     prevArrow: (
       <CustomPrevArrow
-        icon={<GrPrevious className="text-black text-xl md:text-2xl  lg:text-3xl -translate-x-3" />}
+        icon={<GrPrevious className="text-black text-xl md:text-2xl  " />}
       />
     ),
     nextArrow: (
       <CustomNextArrow
-        icon={<GrNext className="text-black text-xl md:text-2xl  lg:text-3xl translate-x-3" />}
+        icon={<GrNext className="text-black text-xl md:text-2xl  " />}
       />
     ),
       responsive: [  {
