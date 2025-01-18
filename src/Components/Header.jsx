@@ -133,15 +133,15 @@ import { Link, useNavigate } from "react-router-dom";
               mainWrapper: "h-full",
               input: "text-small bg-default-400/20",
               inputWrapper:
-                "h-full font-normal text-default-500 bg-default-400/20 focus:bg-default-400/20 rounded-none",
+                "  h-full font-normal text-default-500 bg-default-400/20 focus:bg-default-400/20 rounded-none inputwrapper",
               
             }}
             placeholder="Type to search..."
             size="sm"
-            endContent={<IoIosSearch size={25}  className=" bg-black h-full   absolute right-0 sm:w-10 p-1 sm:p-2 text-white"/>}
+            endContent={<IoIosSearch size={25}  className="Searchicn bg-black h-full   absolute right-0 w-10 p-1 sm:p-2 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> 
-         <Link to='/cart'  > <PiShoppingCartSimple     className=" text-2xl sm:text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
+         <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
 <DropdownTrigger>
@@ -153,7 +153,7 @@ import { Link, useNavigate } from "react-router-dom";
                 
                 size="sm"
          
-                icon={<CgProfile className="  text-2xl sm:text-3xl"/>}
+                icon={<CgProfile className=" w-full  text-3xl"/>}
                />
                </Link>
             </DropdownTrigger>

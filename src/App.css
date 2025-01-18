@@ -229,9 +229,7 @@ transform: translateY(0) !important;
          }
    }
    @media only screen and (max-width: 400px){
-    .navright{
-      gap: 10px !important;
-    }
+
     .searchbar{
  width: 8rem;
     }
@@ -239,18 +237,16 @@ transform: translateY(0) !important;
 
    @media only screen and (max-width: 360px){
     .searchbar{
- width: 7rem;
+ width: 1rem;
+ background-color: transparent;
+ .Searchicn{
+  background-color: transparent;
+  color: black;
+ }.inputwrapper{
+  background-color:transparent;
+  box-shadow: none;
+ }
     }
    }
 
-   @media only screen and (max-width: 330px){
-    .searchbar{
- width: 6rem;
-    }
-   }
   
-   @media only screen and (max-width: 310px){
-    .searchbar{
- width: 5rem;
-    }
-   }
