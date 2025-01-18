@@ -118,7 +118,7 @@ export default function Details({product}){
                               </div>
                               
                              <div className="flex gap-2" >
-                           <Link to='/cart'>  <p className="bg-gray-900  py-1 cursor-pointer  flex gap-2  justify-center z text-white w-24 sm:w-32  text-xs sm:text-sm md:text-medium items-center">
+                           <Link to='/cart'>  <p className="bg-gray-900  p-2 cursor-pointer  flex gap-2  justify-center z text-white w-28  sm:w-32  text-xs sm:text-sm md:text-medium items-center">
                               <FaPlus/> 
                                 
                                 Add To Cart</p></Link><p className="bg-gray-950  py-1 cursor-pointer  flex gap-2  justify-center z text-white w-24 sm:w-32  text-xs sm:text-sm md:text-medium  items-center"><PiShoppingCartSimple className="  items-center text-sm sm:text-xl"   />Buy Now</p>
