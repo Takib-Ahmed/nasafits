@@ -24,6 +24,11 @@ import { IoMenuOutline } from "react-icons/io5";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import HoverDropdown from "./Customdropdown";
 import { CgProfile } from "react-icons/cg";
+
+import Links from "../LINK.JSX";
+
+
+
   export const SearchIcon = ({size = 24, strokeWidth = 1.5, width, height, ...props}) => {
     return (
       <svg
@@ -76,17 +81,19 @@ import { CgProfile } from "react-icons/cg";
     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
     className="navmenu hidden  shadow-sm p-0 m-0 me-2" icon={<IoMenuOutline size={35}/>}
   />
-     
-          <NavbarBrand className=" " >
-     
-   <Link href="/">        <img
-      alt="NextUI hero Image with delay"
-     
-      src="/Header/output-onlinepngtools (8) (1).png" 
-       className=" w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
-    "
-    />  </Link>   
-          </NavbarBrand>
+  <NavbarBrand className=" " >
+ <Link  href="/"
+  >        <img
+        alt="NextUI hero Image with delay"
+       
+        src="/Header/output-onlinepngtools (8) (1).png" 
+         className=" w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
+      "
+      />  </Link>   
+  
+            </NavbarBrand>
+  
+          
           <NavbarContent className=" navlinkscontainer  hidden lg:flex lg:gap-10 ">
             <NavbarItem>
               <Link color="foreground" to='/' href="/">
@@ -131,16 +138,17 @@ import { CgProfile } from "react-icons/cg";
               input: "text-small bg-default-400/20",
               inputWrapper:
                 "h-full font-normal text-default-500 bg-default-400/20 focus:bg-default-400/20 rounded-none",
-                
+              
             }}
             placeholder="Type to search..."
             size="sm"
             endContent={<IoIosSearch size={25}  className=" bg-black h-full   absolute right-0 w-10 p-2 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> 
-         <Link to='/cart' href="/cart"> <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
+         <Link  href="/cart"> <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
-           <Link to='/signin' href="/signin"> <DropdownTrigger>
+     
+        <Link href="/signin" > <DropdownTrigger>
               <Avatar
                 isBordered
                 as="button"
