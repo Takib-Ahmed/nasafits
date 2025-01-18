@@ -4,7 +4,7 @@ import {
     NavbarBrand,
     NavbarContent,
     NavbarItem,
-    Link,
+    
     Input,
     DropdownItem,
     DropdownTrigger,
@@ -25,7 +25,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import HoverDropdown from "./Customdropdown";
 import { CgProfile } from "react-icons/cg";
 
-
+import {Link} from "@heroui/react";
 
 
 
