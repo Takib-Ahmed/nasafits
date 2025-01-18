@@ -71,7 +71,7 @@ import { Link, useNavigate } from "react-router-dom";
       
       ];
     return (
-      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5 fixed lg:px-5 ps-0  border-none flex gap-0 " isBordered  onMenuOpenChange={(isOpen) => setIsMenuOpen(isOpen)}>
+      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0 " isBordered  onMenuOpenChange={(isOpen) => setIsMenuOpen(isOpen)}>
         <NavbarContent justify="start">
         <NavbarMenuToggle
     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
