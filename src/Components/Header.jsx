@@ -75,7 +75,7 @@ import { Link, useNavigate } from "react-router-dom";
         <NavbarContent justify="start">
         <NavbarMenuToggle
     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-    className="navmenu hidden  shadow-sm p-0 m-0  text-3xl sm:text-4xl w-5 sm:w-10" icon={<IoMenuOutline />}
+    className="navmenu hidden  shadow-sm p-0 m-0 text-4xl  w-8 sm:w-10" icon={<IoMenuOutline />}
   />
   <NavbarBrand className=" " >
  <Link  to="/"
@@ -83,7 +83,7 @@ import { Link, useNavigate } from "react-router-dom";
         alt="NextUI hero Image with delay"
        
         src="/Header/output-onlinepngtools (8) (1).png" 
-         className=" w-12 sm:w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
+         className=" w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
       "
       />  </Link>   
   
@@ -138,7 +138,7 @@ import { Link, useNavigate } from "react-router-dom";
             }}
             placeholder="Type to search..."
             size="sm"
-            endContent={<IoIosSearch size={25}  className="Searchicn bg-black h-full   absolute right-0 w-10 p-1 sm:p-2 text-white"/>}
+            endContent={<IoIosSearch size={25}  className="Searchicn bg-black h-full   absolute right-0 w-10 p-2 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> 
          <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>

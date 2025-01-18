@@ -240,8 +240,10 @@ transform: translateY(0) !important;
  width: 1rem;
  background-color: transparent;
  .Searchicn{
+  font-size: large;
   background-color: transparent;
   color: black;
+  padding: 5%;
  }.inputwrapper{
   background-color:transparent;
   box-shadow: none;
