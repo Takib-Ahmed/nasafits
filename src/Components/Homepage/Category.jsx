@@ -2,23 +2,23 @@ export default function Categories() {
     const categories = [
       {
         name: "Hoddie",
-        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        imgSrc: "/Categories/hoodie.png",
       },
       {
-        name: "Hoddie",
-        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        name: "Jacket",
+        imgSrc: "/Categories/jacket.png",
       },
       {
-        name: "Hoddie",
-        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        name: "Polo Shirt",
+        imgSrc: "/Categories/polo-shirt (1).png",
       },
       {
-        name: "Hoddie",
-        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        name: "T-Shirt",
+        imgSrc: "/Categories/t-shirt (2).png",
       },
       {
-        name: "Hoddie",
-        imgSrc: "/Categories/Untitled design (3)-fotor-20250106185420 copy (9).png",
+        name: "Panjabi",
+        imgSrc: "/Categories/panjabi (1).png",
       }
     ];
   
