@@ -18,10 +18,10 @@ import AccountForm from './Components/Login_SignUp/AccountForm'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Homepage from './Components/Homepage/Homepage'
 import { HeroUIProvider } from "@heroui/react";
-import { useNavigate, useHref } from "react-router-dom";
+
 
 function App() {
-  const navigate = useNavigate();
+
   const productDetails = [
     {
       id: 1,
@@ -124,23 +124,27 @@ function App() {
     })
   return (
     <>
+    <BrowserRouter>
+    <HeroUIProvider >
    <Header/>
    <Sidecart/>
-<BrowserRouter>
+
     <Routes>
       <Route path="/" element={<Homepage productDetails={productDetails} setproduct={setproduct}/>} />
       <Route path="/detalis" element={ <Details product={product} />} />
 
-    </Routes>
-    <HeroUIProvider navigate={navigate} useHref={useHref}>
-      <Routes>
+
+   
+  
       <Route path="/signin" element={<AccountForm/>} />
       <Route path="/cart" element={   <Cartpage/>} />
       </Routes>
-    </HeroUIProvider>
-  </BrowserRouter>
+   
+ 
   <Dealsubscribe/>
 <Footer/>
+</HeroUIProvider>
+</BrowserRouter>
 
 
 
