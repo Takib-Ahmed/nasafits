@@ -6,7 +6,7 @@ import Cartcard from "./Cartcard";
 export default function Cartpage(){
     const product = {
         id: 1,
-        coverImage: "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
+        coverImage: "/collections/itachi.png",
         name: "Mens Premium Hoodie Itachi - Tsukuyomi",
         save: 200,
         mainPrice: 1000,

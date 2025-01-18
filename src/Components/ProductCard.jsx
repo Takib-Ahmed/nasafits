@@ -10,7 +10,7 @@ export default function ProductCard({className,product,setproduct}){
               setproduct(product)
             }} >
             <div className="cover p-1.5 sm:2 md:p-2.5 lg:p-3">
-              <img src={product.coverImage} alt={product.name} className="w-full   rounded-lg  overflow-hidden " />
+              <img src={product.coverImage} alt={product.name} className="w-full  h-full   rounded-lg  overflow-hidden " />
             </div>
             <div className="title font-semibold sm:font-bold ">
               <h3>{product.name}</h3>
