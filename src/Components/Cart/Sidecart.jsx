@@ -33,7 +33,7 @@ export default function Sidecart(){
     return (
         <>
       
-        <div className={`fixed right-0 top-[0rem] z-50 w-80 lg:w-[500px] h-full bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
+        <div className={` fixed  right-0 top-[0rem] z-50 w-80 lg:w-[500px] h-[100%]   bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
         <PiShoppingCartSimple className=" absolute  right-80 lg:right-[32rem] top-[30rem] z-50 text-4xl text-slate-700 bg-cyan-200 p-2 rounded-full cursor-pointer"  onClick={()=>{
           setshowcart((prev)=>!prev)
           }}/>
@@ -42,13 +42,13 @@ export default function Sidecart(){
 
 
   {/* Cart Content */}
-  <div className=" flex w-full text-center bg-gray-600 text-white py-2 text-xl justify-between px-2 items-center"><IoCloseOutline className="text-2xl cursor-pointer" onClick={()=>{ setshowcart(false)}}/><p>Cart</p>
+  <div className=" flex w-full   text-center bg-gray-600 text-white py-2 text-xl justify-between px-2 items-center"><IoCloseOutline className="text-2xl cursor-pointer" onClick={()=>{ setshowcart(false)}}/><p>Cart</p>
   <Link to='/cart' onClick={()=>{
     setshowcart(false)
   }}>  <MdOpenInFull/></Link>
   
 </div>
-<div className="flex flex-col justify-start gap-2 py-2">
+<div className="flex flex-col justify-start gap-2 py-2 h-[100%] overflow-scroll">
 <div
     key={product.id}
     className="flex flex-wrap  w-full gap-1 justify-between items-center    px-4  border-b bg-white"
@@ -205,7 +205,7 @@ export default function Sidecart(){
 </div>
   
   <div className="grid  text-center absolute bottom-0 w-full text-lg ">
-  <div  className=" border-t-1 border-gray-400 py-1">Total 2500tk</div>
+  <div  className=" border-t-1 border-gray-400 py-1 bg-white">Total 2500tk</div>
   <div className=" bg-green-600 text-white flex justify-center gap-2 items-center py-2 "><BsFillCartCheckFill className=""/>Checkout</div>
 </div>
 </div>
