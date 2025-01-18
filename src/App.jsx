@@ -31,9 +31,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/itachi.png",
-        "/collections/itachi.png",
-        "/collections/itachi.png"
+        "/collections/itachi2.png",
+        "/collections/itachi2.png",
+        "/collections/itachi2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     },
@@ -45,9 +45,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/ai.png",
-        "/collections/ai.png",
-        "/collections/ai.png"
+        "/collections/ai2.png",
+        "/collections/ai2.png",
+        "/collections/ai2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     },
@@ -59,9 +59,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/brown.png",
-        "/collections/brown.png",
-        "/collections/brown.png"
+        "/collections/brown2.png",
+        "/collections/brown2.png",
+        "/collections/brown2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     },
@@ -73,9 +73,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/green.png",
-        "/collections/green.png",
-        "/collections/green.png"
+        "/collections/green2.png",
+        "/collections/green2.png",
+        "/collections/green2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     },
@@ -87,9 +87,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/red.png",
-        "/collections/red.png",
-        "/collections/red.png"
+        "/collections/red2.png",
+        "/collections/red2.png",
+        "/collections/red2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     },
@@ -101,9 +101,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/itachi.png",
-        "/collections/itachi.png",
-        "/collections/itachi.png"
+        "/collections/itachi2.png",
+        "/collections/itachi2.png",
+        "/collections/itachi2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     }
@@ -117,9 +117,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-        "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-        "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png"
+        "/collections/ai2.png",
+        "/collections/ai2.png",
+        "/collections/ai2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     })
