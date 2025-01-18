@@ -224,4 +224,33 @@ transform: translateY(0) !important;
         transform: translateY(45%);
       }
     }
+    .searchbar{
+      width: 10rem;
+         }
+   }
+   @media only screen and (max-width: 400px){
+    .navright{
+      gap: 10px !important;
+    }
+    .searchbar{
+ width: 8rem;
+    }
+   }
+
+   @media only screen and (max-width: 360px){
+    .searchbar{
+ width: 7rem;
+    }
+   }
+
+   @media only screen and (max-width: 330px){
+    .searchbar{
+ width: 6rem;
+    }
+   }
+  
+   @media only screen and (max-width: 310px){
+    .searchbar{
+ width: 5rem;
+    }
    }

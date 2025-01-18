@@ -65,23 +65,17 @@ import { Link, useNavigate } from "react-router-dom";
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [ishovered, setIshovered] = useState(false);
     const menuItems = [
-        "Profile",
-        "Dashboard",
-        "Activity",
-        "Analytics",
-        "System",
-        "Deployments",
-        "My Settings",
-        "Team Settings",
-        "Help & Feedback",
-        "Log Out",
+        "Home",
+        "Winter Collection",
+        "Flash Sale",
+      
       ];
     return (
-      <Navbar className=" bg-[#F5F5F5] lg:py-1.5 fixed lg:px-5 ps-0  border-none flex gap-0" isBordered  onMenuOpenChange={(isOpen) => setIsMenuOpen(isOpen)}>
+      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5 fixed lg:px-5 ps-0  border-none flex gap-0 " isBordered  onMenuOpenChange={(isOpen) => setIsMenuOpen(isOpen)}>
         <NavbarContent justify="start">
         <NavbarMenuToggle
     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-    className="navmenu hidden  shadow-sm p-0 m-0 me-2" icon={<IoMenuOutline size={35}/>}
+    className="navmenu hidden  shadow-sm p-0 m-0  text-3xl sm:text-4xl w-5 sm:w-10" icon={<IoMenuOutline />}
   />
   <NavbarBrand className=" " >
  <Link  to="/"
@@ -89,7 +83,7 @@ import { Link, useNavigate } from "react-router-dom";
         alt="NextUI hero Image with delay"
        
         src="/Header/output-onlinepngtools (8) (1).png" 
-         className=" w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
+         className=" w-12 sm:w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
       "
       />  </Link>   
   
@@ -132,10 +126,10 @@ import { Link, useNavigate } from "react-router-dom";
           </NavbarContent>
         </NavbarContent>
   
-        <NavbarContent as="div" className="items-center gap-4 lg:gap-5  flex m-0" justify="end">
+        <NavbarContent as="div" className=" navright items-center sm:gap-4 lg:gap-5  flex " justify="end">
           <Input
             classNames={{
-              base: "max-w-96 md:h-8 lg:h-10 ",
+              base: "   searchbar   w-60 sm:w-80 md:w-96  md:h-8 lg:h-10   ",
               mainWrapper: "h-full",
               input: "text-small bg-default-400/20",
               inputWrapper:
@@ -144,22 +138,22 @@ import { Link, useNavigate } from "react-router-dom";
             }}
             placeholder="Type to search..."
             size="sm"
-            endContent={<IoIosSearch size={25}  className=" bg-black h-full   absolute right-0 w-10 p-2 text-white"/>}
+            endContent={<IoIosSearch size={25}  className=" bg-black h-full   absolute right-0 sm:w-10 p-1 sm:p-2 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> 
-         <Link to='/cart'  > <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
+         <Link to='/cart'  > <PiShoppingCartSimple     className=" text-2xl sm:text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
 <DropdownTrigger>
 <Link to='/signin'  >    <Avatar
-                isBordered
+                
                 as="button"
-                className="transition-transform   rounded-full"
-                color="secondary"
-                name="Jason Hughes"
+                className="transition-transform    rounded-full  text-white"
+                color="white"
+                
                 size="sm"
          
-                icon={<CgProfile/>}
+                icon={<CgProfile className="  text-2xl sm:text-3xl"/>}
                />
                </Link>
             </DropdownTrigger>
