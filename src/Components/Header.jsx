@@ -75,7 +75,7 @@ import { Link, useNavigate } from "react-router-dom";
         <NavbarContent justify="start">
         <NavbarMenuToggle
     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-    className="navmenu hidden  shadow-sm p-0 m-0 text-4xl  w-8 sm:w-10" icon={<IoMenuOutline />}
+    className="navmenu hidden   p-0 m-0 text-4xl  w-8 sm:w-10" icon={<IoMenuOutline />}
   />
   <NavbarBrand className=" " >
  <Link  to="/"
