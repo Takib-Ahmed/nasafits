@@ -31,7 +31,7 @@ import { useNavigate } from "react-router-dom";
 
 
   export const SearchIcon = ({size = 24, strokeWidth = 1.5, width, height, ...props}) => {
-   
+    const navigate = useNavigate();
     return (
       <svg
         aria-hidden="true"
@@ -76,7 +76,6 @@ import { useNavigate } from "react-router-dom";
         "Help & Feedback",
         "Log Out",
       ];
-      const navigate = useNavigate();
     return (
       <Navbar className=" bg-[#F5F5F5] lg:py-1.5 fixed lg:px-5 ps-0  border-none flex gap-0" isBordered  onMenuOpenChange={(isOpen) => setIsMenuOpen(isOpen)}>
         <NavbarContent justify="start">
@@ -148,9 +147,7 @@ import { useNavigate } from "react-router-dom";
             endContent={<IoIosSearch size={25}  className=" bg-black h-full   absolute right-0 w-10 p-2 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> 
-         <Link  className=" cursor-pointer"  > <PiShoppingCartSimple onClick={()=>{
-          navigate('/cart')
-         }}  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
+         <Link  > <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
         <Link  > <DropdownTrigger>

@@ -9,7 +9,7 @@ const InfoSection = () => {
       title: "All secure payment methods",
       description: "Pay With",
      
-      footerImage: { src: "/public/Payment & Delivery info/sslcommerz.png", alt: "SSL Commerz" },
+      footerImage: { src: "/Payment & Delivery info/sslcommerz.png", alt: "SSL Commerz" },
     },
     {
       icon:<HiOutlineFaceSmile/>,
@@ -22,7 +22,7 @@ const InfoSection = () => {
       icon: <FaTruck/>,
       title: "Worldwide delivery",
       description: null,
-      footerImage: { src: "/public/Payment & Delivery info/delivery.png", alt: "SSL Commerz" },
+      footerImage: { src: "/Payment & Delivery info/delivery.png", alt: "SSL Commerz" },
     },
   ];
 
