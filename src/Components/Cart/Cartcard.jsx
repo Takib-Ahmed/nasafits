@@ -56,7 +56,7 @@ export default function Cartcard({product}){
    
        {/* Quantity Column */}
        <div className="w-full md:w-[15%] flex justify-between md:justify-center">
-         <div className=" w-full flex gap-2 md:gap-0 md:w-28 justify-start items-center">
+         <div className=" w-full flex gap-2 md:w-28 justify-start items-center">
            <FaMinus
              className="border border-black cursor-pointer w-6 h-6 p-1"
              onClick={() => {
