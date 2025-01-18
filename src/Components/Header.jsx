@@ -150,8 +150,8 @@ import { Link, useNavigate } from "react-router-dom";
          <Link to='/cart'  > <PiShoppingCartSimple  size={30}   className=" w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
-        <Link to='/signin'  > <DropdownTrigger>
-              <Avatar
+<DropdownTrigger>
+<Link to='/signin'  >    <Avatar
                 isBordered
                 as="button"
                 className="transition-transform   rounded-full"
@@ -161,7 +161,8 @@ import { Link, useNavigate } from "react-router-dom";
          
                 icon={<CgProfile/>}
                />
-            </DropdownTrigger></Link>
+               </Link>
+            </DropdownTrigger>
             {/* <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
                 <p className="font-semibold">Signed in as</p>
