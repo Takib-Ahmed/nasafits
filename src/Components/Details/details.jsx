@@ -58,7 +58,7 @@ export default function Details({product}){
               <img
                 src={image}
                 alt={image}
-                className={` ${
+                className={`  ${
                   currentSlide === i
                     ? "border-2  border-sky-500"
                     : "border border-gray-300"
@@ -71,8 +71,8 @@ export default function Details({product}){
 
     return (
         <>
-                <div  className="   pt-0.5 sm:pb-1 md:pb-0  flex flex-wrap md:flex-nowrap  justify-center  mt-20  gap-1  saleproduct bg-white       rounded-lg  overflow-hidden">
-                            <div className="cover p-0.5  sm:p-1  md:p-2 lg:p-2.5 w-[100%] md:w-[30rem] lg:w-[35rem]  ">
+                <div  className="   pt-0.5 sm:pb-1 md:pb-0  flex flex-wrap md:flex-nowrap  justify-center  mt-20  gap-1  saleproduct bg-white       rounded-lg  overflow-hidden   lg:p-5">
+                            <div className="cover p-0.5  sm:p-1  md:p-2  lg:p-0 w-[100%] md:w-[30rem] lg:w-[30rem]  ">
                      
    <Slider {...settings} className=" " ref={sliderRef}>
    {product.images.map((image, key) => (
@@ -80,7 +80,7 @@ export default function Details({product}){
          <img
            src={image}
           
-           className="  "
+           className="   "
          />
        </div>
      ))}
@@ -88,7 +88,7 @@ export default function Details({product}){
    {renderAdditionalDots()}
 
                             </div>
-                          <div className="grid gap-3  pt-3 p-3 sm:p-5  ">
+                          <div className="grid gap-3  pt-3 p-3 sm:p-5 h-[30rem] ">
                           <div className="title text-2xl font-semibold sm:font-bold  ">
                               <h3>{product.name}</h3>
                             </div> 
@@ -124,7 +124,7 @@ export default function Details({product}){
                                 Add To Cart</p></Link><p className="bg-gray-950  py-1 cursor-pointer  flex gap-2  justify-center z text-white w-24 sm:w-32  text-xs sm:text-sm md:text-medium  items-center"><PiShoppingCartSimple className="  items-center text-sm sm:text-xl"   />Buy Now</p>
                              </div>
                             </div>
-                            <div className={` description  py-2 justify-center lg:text-left  md:w-96 lg:w-[40rem]   `}>
+                            <div className={` description  py-2 justify-center lg:text-left  md:w-96 lg:w-[35rem]   `}>
                   <h1 className=" font-bold text-lg">PREMIUM HOODIE </h1>
                   <ul className=" grid gap-2  py-2">
                     <li><font className=' font-semibold'>Fabric:</font> Made from 100% fleece cotton with one-sided brush, ensuring lasting comfort and durability. Original 2x2 rubber rib cuff & bottom for a premium fit.  </li>
