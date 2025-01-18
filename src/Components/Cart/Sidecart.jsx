@@ -6,6 +6,7 @@ import { IoTrash } from "react-icons/io5";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdOpenInFull } from "react-icons/md";
+import { Link } from "react-router-dom";
 export default function Sidecart(){
        const product = {
             id: 1,
@@ -28,6 +29,7 @@ export default function Sidecart(){
            const handleSizeChange = (event) => {
              setSelectedSize(event.target.value); // Update the selected size
            };
+           
     return (
         <>
       
@@ -40,7 +42,12 @@ export default function Sidecart(){
 
 
   {/* Cart Content */}
-  <div className=" flex w-full text-center bg-gray-600 text-white py-2 text-xl justify-between px-2 items-center"><IoCloseOutline className="text-2xl cursor-pointer" onClick={()=>{ setshowcart(false)}}/><p>Cart</p><MdOpenInFull/></div>
+  <div className=" flex w-full text-center bg-gray-600 text-white py-2 text-xl justify-between px-2 items-center"><IoCloseOutline className="text-2xl cursor-pointer" onClick={()=>{ setshowcart(false)}}/><p>Cart</p>
+  <Link to='/cart' onClick={()=>{
+    setshowcart(false)
+  }}>  <MdOpenInFull/></Link>
+  
+</div>
 <div className="flex flex-col justify-start gap-2 py-2">
 <div
     key={product.id}
@@ -114,7 +121,7 @@ export default function Sidecart(){
         <FaPlus />
         Add another Size
       </p>
-      <p className="bg-red-600 cursor-pointer flex justify-center text-white w-full  overflow-hidden">
+      <p className="bg-red-600 cursor-pointer flex justify-center text-white w-full  overflow-hidden items-center">
         <IoTrash className="mt-0.5" size={20} />
       </p>
     </div>
@@ -190,7 +197,7 @@ export default function Sidecart(){
         <FaPlus />
         Add another Size
       </p>
-      <p className="bg-red-600 cursor-pointer flex justify-center text-white w-full  overflow-hidden">
+      <p className="bg-red-600 cursor-pointer flex justify-center text-white w-full  overflow-hidden items-center">
         <IoTrash className="mt-0.5" size={20} />
       </p>
     </div>

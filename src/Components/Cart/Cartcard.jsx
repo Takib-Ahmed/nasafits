@@ -84,7 +84,7 @@ export default function Cartcard({product}){
            <FaPlus />
            Add another Size
          </p>
-         <p className="bg-red-600 cursor-pointer flex justify-center text-white w-full md:w-fit overflow-hidden">
+         <p className="bg-red-600 cursor-pointer flex justify-center text-white w-full md:w-fit overflow-hidden items-center">
            <IoTrash className="mt-0.5" size={20} />
          </p>
        </div>
