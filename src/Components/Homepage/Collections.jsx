@@ -55,7 +55,7 @@ export default function Collection({ Collectiontype,productDetails,setproduct })
           key={product.id}
        
           discountPrice={product.discountPrice}
-        
+        type='collection'
       />
           ))}
         </Slider>

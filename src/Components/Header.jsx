@@ -92,7 +92,7 @@ import { Link, useNavigate } from "react-router-dom";
           
           <NavbarContent className=" navlinkscontainer  hidden lg:flex lg:gap-10 ">
             <NavbarItem>
-              <Link color="foreground" >
+              <Link color="foreground" to='/'>
                 Home
               </Link>
             </NavbarItem>
