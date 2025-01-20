@@ -25,7 +25,7 @@ function App() {
   const productDetails = [
     {
       id: 1,
-      coverImage: "/collections/itachi.png",
+      coverImage: "/collections/edited/itachi.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
       save: 200,
       mainPrice: 1000,
@@ -39,7 +39,7 @@ function App() {
     },
     {
       id: 2,
-      coverImage: "/collections/ai.png",
+      coverImage: "/collections/edited/ai.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
       save: 200,
       mainPrice: 1000,
@@ -53,7 +53,7 @@ function App() {
     },
     {
       id: 3,
-      coverImage: "/collections/brown.png",
+      coverImage: "/collections/edited/brown.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
       save: 200,
       mainPrice: 1000,
@@ -67,7 +67,7 @@ function App() {
     },
     {
       id: 4,
-      coverImage: "/collections/green.png",
+      coverImage: "/collections/edited/green.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
       save: 200,
       mainPrice: 1000,
@@ -81,7 +81,7 @@ function App() {
     },
     {
       id: 5,
-      coverImage: "/collections/red.png",
+      coverImage: "/collections/edited/red.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
       save: 200,
       mainPrice: 1000,
@@ -95,7 +95,7 @@ function App() {
     },
     {
       id: 6,
-      coverImage: "/collections/itachi.png",
+      coverImage: "/collections/edited/itachi.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
       save: 200,
       mainPrice: 1000,
@@ -111,7 +111,7 @@ function App() {
   
     const [product,setproduct] = useState(  {
       id: 1,
-      coverImage: "/collections/ai.png",
+      coverImage: "/collections/edited/ai.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
       save: 200,
       mainPrice: 1000,
