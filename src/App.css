@@ -252,19 +252,29 @@ transform: translateY(0) !important;
 }
          .mbsearchbar{
           display: block !important;
-          width: 84vw !important;
+          width: 83.5vw !important;
          }
        
    }
-
-  @media only screen and (max-width: 400px){
+   @media only screen and (max-width: 450px){
     .mbsearchbar{
       width: 82vw !important;
+     }
+   }
+  @media only screen and (max-width: 400px){
+    
+    .mbsearchbar{
+      width: 79.5vw !important;
      }
  }
  @media only screen and (max-width: 350px){
   .mbsearchbar{
-    width: 80vw !important;
+    width: 78vw !important;
+   }
+}
+@media only screen and (max-width: 325px){
+  .mbsearchbar{
+    width: 76vw !important;
    }
 }
 @media only screen and (max-width: 300px){
