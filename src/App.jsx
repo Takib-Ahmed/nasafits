@@ -106,6 +106,33 @@ function App() {
         "/collections/itachi2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
+    },
+    {
+      id: 7,
+      coverImage: "/collections/edited/black.png",
+      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      images: [
+        "/collections/itachi2.png",
+        "/collections/itachi2.png",
+        "/collections/itachi2.png"
+      ],
+      sizes: ["M", "L", "XL", "2XL"]
+    }, {
+      id: 8,
+      coverImage: "/collections/edited/gray.png",
+      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      images: [
+        "/collections/itachi2.png",
+        "/collections/itachi2.png",
+        "/collections/itachi2.png"
+      ],
+      sizes: ["M", "L", "XL", "2XL"]
     }
   ];
   
@@ -123,15 +150,17 @@ function App() {
       ],
       sizes: ["M", "L", "XL", "2XL"]
     })
+
+    const [showmbsearhbar,setshowsearchbar] = useState(false)
   return (
     <>
     <BrowserRouter>
     <HeroUIProvider >
-   <Header/>
+   <Header showmbsearhbar={showmbsearhbar} setshowsearchbar={setshowsearchbar}/>
    <Sidecart/>
 
     <Routes>
-      <Route path="/" element={<Homepage productDetails={productDetails} setproduct={setproduct}/>} />
+      <Route path="/" element={<Homepage  productDetails={productDetails} setproduct={setproduct}/>} />
       <Route path="/detalis" element={ <Details product={product} />} />
 
 

@@ -50,7 +50,7 @@ export default function Collection({ Collectiontype,productDetails,setproduct })
         <Slider {...settings} className="collection   flashsale flex flex-wrap w-full justify-center gap-5 sm:gap-10 md:gap-12 py-10 pt-5">
           {productDetails.map((product) => (
           <ProductCard 
-          setproduct={setproduct}
+        setproduct={setproduct}
           product={product}
           key={product.id}
        

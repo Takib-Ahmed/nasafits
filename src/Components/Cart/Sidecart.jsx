@@ -50,7 +50,7 @@ export default function Sidecart(){
 </div>
 <div className="flex flex-col justify-start gap-2 py-2 h-[100%] overflow-scroll">
 <div
-    key={product.id}
+   
     className="flex flex-wrap  w-full gap-1 justify-between items-center    px-4  border-b bg-white"
   >
     {/* Product Column */}

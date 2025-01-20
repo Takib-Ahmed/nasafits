@@ -7,6 +7,9 @@ body{
 
 
 }
+.mobilesearch{
+  background-color:whitesmoke;
+}
 
 html{
   background-color:whitesmoke;
@@ -67,7 +70,9 @@ background: inherit !important;
   }
 }
 
-
+.mobilesearch{
+ display: none !important;
+ }
 @media only screen and (max-width: 1500px){
   .Slider{
 
@@ -230,24 +235,40 @@ transform: translateY(0) !important;
       }
     }
     .searchbar{
-      width: 10rem;
+      width: 0.5rem;
+      background-color: transparent;
+      .Searchicn{
+       font-size: large;
+       background-color: transparent;
+       color: black;
+       padding: 5%;
+      }.inputwrapper{
+       background-color:transparent;
+       box-shadow: none;
+      }
          }
+.mobilesearch{
+  display: flex !important;
+}
+         .mbsearchbar{
+          display: block !important;
+          width: 84vw !important;
+         }
+       
    }
 
-   @media only screen and (max-width: 410px){
-    .searchbar{
- width: 0.5rem;
- background-color: transparent;
- .Searchicn{
-  font-size: large;
-  background-color: transparent;
-  color: black;
-  padding: 5%;
- }.inputwrapper{
-  background-color:transparent;
-  box-shadow: none;
+  @media only screen and (max-width: 400px){
+    .mbsearchbar{
+      width: 82vw !important;
+     }
  }
-    }
+ @media only screen and (max-width: 350px){
+  .mbsearchbar{
+    width: 80vw !important;
    }
-
-  
+}
+@media only screen and (max-width: 300px){
+  .mbsearchbar{
+    width: 100% !important;
+   }
+}

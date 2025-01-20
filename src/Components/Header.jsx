@@ -27,6 +27,7 @@ import { CgProfile } from "react-icons/cg";
 
 
 import { Link, useNavigate } from "react-router-dom";
+import Mobilesearch from "./Mobilesearchbar";
 
 
 
@@ -61,7 +62,7 @@ import { Link, useNavigate } from "react-router-dom";
     );
   };
   
-  export default function Header() {
+  export default function Header({showmbsearhbar,setshowsearchbar}) {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [ishovered, setIshovered] = useState(false);
     const menuItems = [
@@ -126,10 +127,10 @@ import { Link, useNavigate } from "react-router-dom";
           </NavbarContent>
         </NavbarContent>
   
-        <NavbarContent as="div" className=" navright items-center sm:gap-4 lg:gap-5  flex " justify="end">
+        <NavbarContent as="div" className=" navright items-center sm:gap-4 lg:gap-5  flex  relative" justify="end">
           <Input
             classNames={{
-              base: "   searchbar   w-60 sm:w-80 md:w-96  md:h-8 lg:h-10   ",
+              base: "     searchbar    w-60 sm:w-80 md:w-96  md:h-8 lg:h-10   ",
               mainWrapper: "h-full",
               input: "text-small bg-default-400/20",
               inputWrapper:
@@ -138,9 +139,11 @@ import { Link, useNavigate } from "react-router-dom";
             }}
             placeholder="Type to search..."
             size="sm"
-            endContent={<IoIosSearch size={25}  className="Searchicn bg-black h-full   absolute right-0 w-10 p-2 text-white"/>}
+            endContent={<IoIosSearch size={25}  className="Searchicn bg-black h-full   absolute right-0 w-10 p-2 text-white" onClick={()=>{
+              setshowsearchbar((prev)=>!prev)
+            }}/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
-          /> 
+          /> {showmbsearhbar && <Mobilesearch className=' fixed top-[3.5rem] w-[100%]  left-0'/>}
          <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
@@ -190,6 +193,9 @@ import { Link, useNavigate } from "react-router-dom";
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
+
+
+
       </Navbar>
     );
   }
