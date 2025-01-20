@@ -10,8 +10,13 @@ export default function ProductCard({className,product,setproduct,showSave,type}
       key={product.id}
       to="/detalis"
       className={type==='collection'?`Productcard pt-0.5 sm:pb-1 grid  lg:w-auto gap-0.5 saleproduct bg-white border-1 rounded-lg overflow-hidden ${className}  `:` ${className} ` }
+
+   
     >
-      <div>
+      <div    onClick={()=>{
+    setproduct(product)
+
+   }}>
         <div className="cover p-1.5 sm:2 md:p-2.5 lg:p-3">
           <img
             src={product.coverImage}

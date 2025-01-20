@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Banner from "./Banner";
 import Categories from "./Category";
 import Hoodies from "./cc";

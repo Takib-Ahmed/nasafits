@@ -52,7 +52,8 @@ export default function Details({product}){
               className="cursor-pointer"
               onClick={() => {
                 sliderRef.current.slickGoTo(i); // Programmatically navigate to the clicked slide
-                setCurrentSlide(i); // Update currentSlide to reflect the navigation
+                setCurrentSlide(i);
+                console.log(product) // Update currentSlide to reflect the navigation
               }}
             >
               <img

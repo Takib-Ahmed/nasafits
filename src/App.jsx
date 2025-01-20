@@ -109,7 +109,7 @@ function App() {
     }
   ];
   
-    const [product,setproduct] = useState(  {
+    const [product,setproduct] = useState({
       id: 1,
       coverImage: "/collections/edited/ai.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
