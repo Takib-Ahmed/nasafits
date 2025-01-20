@@ -26,7 +26,8 @@ function App() {
     {
       id: 1,
       coverImage: "/collections/edited/black.png",
-      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      name: "Mens Premium Polo Black",
+      category:'polo shirt',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
@@ -39,7 +40,8 @@ function App() {
     }, {
       id: 2,
       coverImage: "/collections/edited/gray.png",
-      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      name: "Mens Premium T-Shirt - Gray",
+      category:'t shirt',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
@@ -54,6 +56,7 @@ function App() {
       id: 3,
       coverImage: "/collections/edited/itachi.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      category:'hoddie',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
@@ -67,7 +70,8 @@ function App() {
     {
       id: 4,
       coverImage: "/collections/edited/ai.png",
-      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      name: "Mens Premium Hoodie AI ",
+      category:'hoddie',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
@@ -81,7 +85,8 @@ function App() {
     {
       id: 5,
       coverImage: "/collections/edited/brown.png",
-      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      name: "Mens Premium Hoodie Browny",
+      category:'hoddie',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
@@ -94,8 +99,9 @@ function App() {
     },
     {
       id: 6,
-      coverImage: "/collections/edited/green.png",
-      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      coverImage: "/collections/edited/red jacket.png",
+      name: "Mens Premium Jacket - Red",
+      category:'hoddie',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
@@ -110,6 +116,7 @@ function App() {
       id: 7,
       coverImage: "/collections/edited/red.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      category:'hoddie',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
@@ -124,6 +131,7 @@ function App() {
       id: 8,
       coverImage: "/collections/edited/itachi.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      category:'hoddie',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
@@ -134,13 +142,28 @@ function App() {
       ],
       sizes: ["M", "L", "XL", "2XL"]
     }
-
+,{
+  id: 9,
+  coverImage: "/collections/edited/green.png",
+  name: "Mens Premium Hoodie Green",
+  category:'hoddie',
+  save: 200,
+  mainPrice: 1000,
+  discountPrice: 800,
+  images: [
+    "/collections/green2.png",
+    "/collections/green2.png",
+    "/collections/green2.png"
+  ],
+  sizes: ["M", "L", "XL", "2XL"]
+}
   ];
   
     const [product,setproduct] = useState({
       id: 1,
       coverImage: "/collections/edited/ai.png",
       name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+      category:'hoddie',
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
