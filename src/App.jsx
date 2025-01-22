@@ -187,7 +187,7 @@ function App() {
 setproduct(detailedproduct)}, [detailedproduct,id])
   return (
     <>
-    <BrowserRouter>
+    <BrowserRouter >
     <HeroUIProvider >
    <Header showmbsearhbar={showmbsearhbar} setshowsearchbar={setshowsearchbar}/>
    <Sidecart cartedProduct={cartedProduct} setcartedproduct={setcartedproduct}/>
