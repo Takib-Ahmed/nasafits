@@ -55,7 +55,7 @@ export default function Flashsale({productDetails,setproduct}) {
         <div className="bg-slate-200 w-full  rounded sm:p-1 pt-2 ">
           <Slider {...settings} className="  flex gap-2 text-center  flashsale ">
             {productDetails.map((product) => (
-              <Link key={product.id}   to='/detalis' className="   pt-0.5 sm:pb-1 md:pb-0 grid  sm:w-60 md:w-72 lg:w-80 gap-1 sm:gap-1.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
+              <Link key={product.id}   to={`/details/${product.id}`} className="   pt-0.5 sm:pb-1 md:pb-0 grid  sm:w-60 md:w-72 lg:w-80 gap-1 sm:gap-1.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
                       <div  onClick={()=>{
                 setproduct(product)
               }}>

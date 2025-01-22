@@ -1,17 +1,20 @@
 /* eslint-disable react/prop-types */
 import { PiShoppingCartSimple } from "react-icons/pi";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import SizeGuide from "./SIzeguide";
 import Slider from "react-slick";
 import InfoSection from "./Info";
-import { Link } from "react-router-dom";
-export default function Details({product}){
+import { Link, useParams } from "react-router-dom";
+import { GrCheckboxSelected } from "react-icons/gr";
+import { FaHandPointUp } from "react-icons/fa";
+export default function Details({product,setcartedproduct,setproduct,cartedProduct}){
 
   const [quantity,setquantity] = useState(1);
-  const [selectedkey,setSelectedkey] = useState(null)
+  const [selectedsize,setselectedsize] = useState('')
+  
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
   const sliderRef = useRef(null);
    var settings = {
@@ -69,6 +72,13 @@ export default function Details({product}){
           ))}
         </div>
       );
+      useEffect(() => {
+        setproduct((prev)=>({...prev,quantity: quantity,
+          selectedsize:selectedsize
+        }))
+
+      }, [quantity,setproduct,selectedsize]);
+      
 
     return (
         <>
@@ -106,12 +116,21 @@ export default function Details({product}){
                             <div className="grid gap-2.5 py-2 pt-0    ">
                               <p>Select Size</p>
                               <div className="flex gap-5">
-                              {product.sizes.map((sizes,key)=>( <p onClick={()=>{
-                                setSelectedkey(key)
-                              }} className={ `border border-black p-1 cursor-pointer  w-12 text-center ${selectedkey==key && 'bg-black text-white'}`} key={key}>{sizes}</p>)
+                              {product.sizes.map((size,key)=>( <p onClick={()=>{
+                                setselectedsize(size)
+                          
+
+                              }} className={ `border border-black p-1 cursor-pointer  w-12 text-center ${selectedsize== size && 'bg-black text-white'}`} key={key}>{size}</p>)
                                
                               )}
+                         
                               </div>
+                             {
+                              selectedsize ==='not selected' &&   <div  className=" text-small text-red-500 w-60 h-2 text-center flex justify-center gap-2  ">
+                                
+                              Please select a size <GrCheckboxSelected className="  mt-0.5  "/> <FaHandPointUp className=" w-fit"/></div>
+                             }
+                           
                             </div>
                             <div className="buy  flex flex-wrap justify-start  gap-2   select-none "> 
                               <div className="flex  border border-black w-28 justify-around items-center">
@@ -119,7 +138,32 @@ export default function Details({product}){
                               </div>
                               
                              <div className="flex gap-2" >
-                           <Link to='/cart'>  <p className="bg-gray-900  p-2 cursor-pointer  flex gap-2  justify-center z text-white w-28  sm:w-32  text-xs sm:text-sm md:text-medium items-center">
+                           <Link to={selectedsize !='' && selectedsize !='not selected' && '/cart'} onClick={()=>{
+                   if (selectedsize !== '') {
+                    if (
+                      
+                     cartedProduct.some(
+                        (carted) => carted.id === product.id && carted.selectedsize === selectedsize
+                      )
+                    ) {
+                      setcartedproduct((prev) =>
+                        prev.map((carted) =>
+                          carted.id === product.id && carted.selectedsize === selectedsize
+                            ? { ...carted, quantity: carted.quantity + quantity }
+                            : carted
+                        ))
+                    } else {
+                      setcartedproduct((prev) => [...prev, product]);
+                   
+                    }
+                  }
+                  else{
+                    setselectedsize('not selected');
+                  }
+                  
+                            
+                           }}> <p className="bg-gray-900  p-2 cursor-pointer  flex gap-2  justify-center z text-white w-28  sm:w-32  text-xs sm:text-sm md:text-medium items-center">
+
                               <FaPlus/> 
                                 
                                 Add To Cart</p></Link><p className="bg-gray-950  py-1 cursor-pointer  flex gap-2  justify-center z text-white w-24 sm:w-32  text-xs sm:text-sm md:text-medium  items-center"><PiShoppingCartSimple className="  items-center text-sm sm:text-xl"   />Buy Now</p>

@@ -8,12 +8,12 @@ export default function ProductCard({className,product,showSave,type,setproduct}
 
       <Link
       key={product.id}
-      to="/detalis"
+      to={`/details/${product.id}`}
       className={type==='collection'?`Productcard pt-0.5 sm:pb-1 grid  lg:w-auto gap-0.5 saleproduct bg-white border-1 rounded-lg overflow-hidden ${className}  `:` ${className} ` }
     
     >
       <div    onClick={()=>{
-        setproduct(product)
+       console.log(`/details/${product.id}`)
       }}>
         <div className="cover p-1.5 sm:2 md:p-2.5 lg:p-3">
           <img

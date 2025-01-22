@@ -1,23 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { IoTrash } from "react-icons/io5";
 import Cartcard from "./Cartcard";
-export default function Cartpage(){
-    const product = {
-        id: 1,
-        coverImage: "/collections/itachi.png",
-        name: "Mens Premium Hoodie Itachi - Tsukuyomi",
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        images: [
-          "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-          "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png",
-          "/collections/96043cb7-63b4-4f9f-8e91-34087e0f2585 (2).png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-      }
+export default function Cartpage({cartedProduct,setcartedproduct}){
+
    
 
     
@@ -41,9 +29,11 @@ export default function Cartpage(){
         {/* Table Content */}
         
 <div className=" flex flex-col gap-5">
-<Cartcard product={product}  />
-<Cartcard product={product}  />                      
-<Cartcard product={product}  />
+  {cartedProduct.map((product,key)=>(
+    <Cartcard product={product} type='maincart'  key={key}  position={key} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />
+  ))}
+
+
 </div>
       </div>
 

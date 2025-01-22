@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import './App.css'
 import Header from './Components/Header'
@@ -15,7 +15,7 @@ import Details from './Components/Details/details'
 import Cartpage from './Components/Cart/Cartpage'
 import Sidecart from './Components/Cart/Sidecart'
 import AccountForm from './Components/Login_SignUp/AccountForm'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
 import Homepage from './Components/Homepage/Homepage'
 import { HeroUIProvider } from "@heroui/react";
 
@@ -32,9 +32,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/itachi2.png",
-        "/collections/itachi2.png",
-        "/collections/itachi2.png"
+        "/collections/black.png",
+        "/collections/black.png",
+        "/collections/black.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     }, {
@@ -46,9 +46,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/itachi2.png",
-        "/collections/itachi2.png",
-        "/collections/itachi2.png"
+        "/collections/gray.png",
+        "/collections/gray.png",
+        "/collections/gray.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     },
@@ -106,9 +106,9 @@ function App() {
       mainPrice: 1000,
       discountPrice: 800,
       images: [
-        "/collections/green2.png",
-        "/collections/green2.png",
-        "/collections/green2.png"
+        "/collections/red jacket.png",
+        "/collections/red jacket.png",
+        "/collections/red jacket.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
     },
@@ -173,25 +173,37 @@ function App() {
         "/collections/ai2.png"
       ],
       sizes: ["M", "L", "XL", "2XL"]
-    })
+    },)
 
     const [showmbsearhbar,setshowsearchbar] = useState(false)
+    
+    const [cartedProduct,setcartedproduct] = useState([
+    
+      
+    ])
+    const {id} = useParams()
+    const detailedproduct =  productDetails.find((iteam)=>iteam.id == parseInt(id))
+          useEffect(() => {
+setproduct(detailedproduct)}, [detailedproduct,id])
   return (
     <>
     <BrowserRouter>
     <HeroUIProvider >
    <Header showmbsearhbar={showmbsearhbar} setshowsearchbar={setshowsearchbar}/>
-   <Sidecart/>
+   <Sidecart cartedProduct={cartedProduct} setcartedproduct={setcartedproduct}/>
 
     <Routes>
       <Route path="/" element={<Homepage  productDetails={productDetails} setproduct={setproduct}/>} />
-      <Route path="/detalis" element={ <Details product={product} />} />
+
 
 
    
-  
+  {productDetails.map((product,key)=>(
+    <Route key={key} path={`/details/${product.id}`} element={ <Details product={product} setcartedproduct={setcartedproduct} setproduct={setproduct} cartedProduct={cartedProduct}/>}></Route>
+  ))}
       <Route path="/signin" element={<AccountForm/>} />
-      <Route path="/cart" element={   <Cartpage/>} />
+      <Route path="/cart" element={   <Cartpage cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />} />
+
       </Routes>
    
  
