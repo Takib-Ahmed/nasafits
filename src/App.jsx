@@ -18,6 +18,7 @@ import AccountForm from './Components/Login_SignUp/AccountForm'
 import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
 import Homepage from './Components/Homepage/Homepage'
 import { HeroUIProvider } from "@heroui/react";
+import Shop from './Components/Search_shop/Shoppage'
 
 
 function App() {
@@ -197,7 +198,7 @@ setproduct(detailedproduct)}, [detailedproduct,id])
 
 
 
-   
+   <Route path='/shop' element={<Shop productDetails={productDetails} />} />
   {productDetails.map((product,key)=>(
     <Route key={key} path={`/details/${product.id}`} element={ <Details product={product} setcartedproduct={setcartedproduct} setproduct={setproduct} cartedProduct={cartedProduct}/>}></Route>
   ))}

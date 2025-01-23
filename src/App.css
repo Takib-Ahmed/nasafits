@@ -257,28 +257,36 @@ transform: translateY(0) !important;
        
    }
    @media only screen and (max-width: 450px){
-    .mbsearchbar{
+    .mbsearchbar, .shopsearchbar{
       width: 82vw !important;
      }
+   
    }
   @media only screen and (max-width: 400px){
     
     .mbsearchbar{
       width: 79.5vw !important;
      }
+     .shopsearchbar{
+      width: 78vw !important;
+     }
  }
  @media only screen and (max-width: 350px){
   .mbsearchbar{
     width: 78vw !important;
    }
-}
-@media only screen and (max-width: 325px){
-  .mbsearchbar{
-    width: 76vw !important;
+   .shopsearchbar{
+    width: 77vw !important;
    }
 }
+@media only screen and (max-width: 325px){
+  .mbsearchbar, .shopsearchbar{
+    width: 76vw !important;
+   }
+   
+}
 @media only screen and (max-width: 300px){
-  .mbsearchbar{
+  .mbsearchbar,.shopsearchbar{
     width: 100% !important;
    }
 }

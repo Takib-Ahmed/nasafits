@@ -102,7 +102,7 @@ import Mobilesearch from "./Mobilesearchbar";
             }} onMouseLeave={()=>{
               setIshovered(false)
             }} >
-              <Link aria-current="page" className="   font-normal hover:text-secondary flex" color="foreground" href="#" >
+              <Link aria-current="page" className="   font-normal hover:text-secondary flex" color="foreground"  to='/shop' >
           Shop  <MdKeyboardArrowDown  size={20} className={"  transition-all duration-300 mt-1 " + `${ishovered && 'rotate-180'}`}/>
 
 
@@ -143,7 +143,7 @@ import Mobilesearch from "./Mobilesearchbar";
               setshowsearchbar((prev)=>!prev)
             }}/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
-          /> {showmbsearhbar && <Mobilesearch className=' fixed top-[3.5rem] w-[100%]  left-0'/>}
+          /> {showmbsearhbar && <Mobilesearch className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' />}
          <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      

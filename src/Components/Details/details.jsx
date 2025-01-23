@@ -7,14 +7,14 @@ import { FaMinus } from "react-icons/fa6";
 import SizeGuide from "./SIzeguide";
 import Slider from "react-slick";
 import InfoSection from "./Info";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GrCheckboxSelected } from "react-icons/gr";
 import { FaHandPointUp } from "react-icons/fa";
 export default function Details({product,setcartedproduct,setproduct,cartedProduct}){
 
   const [quantity,setquantity] = useState(1);
   const [selectedsize,setselectedsize] = useState('')
-  
+  const[cartproduct,setcartprouct] = useState(product)
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
   const sliderRef = useRef(null);
    var settings = {
@@ -73,10 +73,11 @@ export default function Details({product,setcartedproduct,setproduct,cartedProdu
         </div>
       );
       useEffect(() => {
-        setproduct((prev)=>({...prev,quantity: quantity,
+        setcartprouct((prev)=>({...prev,quantity:quantity,
           selectedsize:selectedsize
         }))
 
+       
       }, [quantity,setproduct,selectedsize]);
       
 
@@ -149,11 +150,11 @@ export default function Details({product,setcartedproduct,setproduct,cartedProdu
                       setcartedproduct((prev) =>
                         prev.map((carted) =>
                           carted.id === product.id && carted.selectedsize === selectedsize
-                            ? { ...carted, quantity: carted.quantity + quantity }
-                            : carted
+                            && { ...carted, quantity: carted.quantity + quantity }
+                            
                         ))
                     } else {
-                      setcartedproduct((prev) => [...prev, product]);
+                      setcartedproduct((prev) => [...prev, cartproduct]);
                    
                     }
                   }

@@ -28,9 +28,9 @@ export default function Cartpage({cartedProduct,setcartedproduct}){
       
         {/* Table Content */}
         
-<div className=" flex flex-col gap-5">
+<div className=" flex  flex-col-reverse gap-5">
   {cartedProduct.map((product,key)=>(
-    <Cartcard product={product} type='maincart'  key={key}  position={key} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />
+    <Cartcard  product={product} type='maincart'  key={key}  position={key} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />
   ))}
 
 

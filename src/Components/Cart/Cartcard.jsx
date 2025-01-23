@@ -5,12 +5,7 @@ import { IoTrash } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 export default function Cartcard({product,type,position,cartedProduct,setcartedproduct}){
-    const [selectedkey,setSelectedkey] = useState(null)
-    const [quantity,setquantity] = useState(product.quantity ? product.quantity:1);
-    const [selectedSize, setSelectedSize] = useState("");
-    const handleSizeChange = (event) => {
-        setSelectedSize(event.target.value); // Update the selected size
-      };
+
     return (
     
       <div
@@ -43,12 +38,19 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
       <div className={`flex justify-between ${type === 'maincart' ? 'w-full md:w-[15%] md:justify-center my-2' : 'w-full'}`}>
         <select
           id="size-selector"
-         
-          onChange={handleSizeChange}
+         onChange={(e)=>{
+          setcartedproduct((prev) =>
+            prev.map((carted) =>
+              carted.id === product.id && carted.selectedsize === product.selectedsize
+                ? { ...carted, selectedsize: e.target.value}:carted
+                
+            ))
+         }}
+      
           className="border border-gray-300 rounded-md p-1 lg:px-3 w-full md:w-auto"
        
        value={product.selectedsize}>
-          {product.sizes.map((size, index) => (
+          { product.sizes && product.sizes.map((size, index) => (
             <option key={index} value={size}>
               {size}
             </option>
@@ -62,16 +64,25 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
           <FaMinus
             className="border border-black cursor-pointer w-6 h-6 p-1"
             onClick={() => {
-              quantity > 1 && setquantity((prev) => prev - 1)
-            
+   
+              setcartedproduct((prev) =>
+                prev.map((carted) =>
+                  carted.id === product.id && carted.selectedsize === product.selectedsize
+                    ? { ...carted, quantity: carted.quantity>1 ? carted.quantity- 1 :carted.quantity}:carted
+                    
+                ))
             }}
           />
           <p>{product.quantity}</p>
           <FaPlus
             className="border border-black cursor-pointer w-6 h-6 p-1"
             onClick={() => {
-              setquantity((prev) => prev + 1);
-             console.log(product)
+              setcartedproduct((prev) =>
+                prev.map((carted) =>
+                  carted.id === product.id && carted.selectedsize === product.selectedsize
+                    ? { ...carted, quantity: carted.quantity + 1 }:carted
+                    
+                ))
             }}
           />
         </div>

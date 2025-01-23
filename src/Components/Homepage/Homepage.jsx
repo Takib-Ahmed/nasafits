@@ -2,7 +2,7 @@
 
 import Banner from "./Banner";
 import Categories from "./Category";
-import Hoodies from "./cc";
+import All from "./cc";
 import Collection from "./Collections";
 import Flashsale from "./Flashsale";
 import Slidershow from "./Slidershow";
@@ -21,6 +21,6 @@ export default function Homepage({productDetails,setproduct}){
 
    <Banner/>
    <Collection Collectiontype={'Hoodies'} productDetails={productDetails} setproduct={setproduct}/>
-  <Hoodies setproduct={setproduct} productDetails={productDetails}/></>
+  <All setproduct={setproduct} productDetails={productDetails} slice={8}/></>
     );
 }
