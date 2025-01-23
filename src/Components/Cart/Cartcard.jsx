@@ -51,19 +51,13 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
         <select
           id="size-selector"
          onChange={(e)=>{
-          const newsize = e.target.value
-          const dublicate = cartedProduct.some(carted=> carted.name == product.name && carted.selectedsize === newsize)
-          if(dublicate){
-            alert('Same size already exists')
-          }
-       else{
-        setcartedproduct((prev) =>
-          prev.map((carted) =>
-            carted.id === product.id && carted.selectedsize === product.selectedsize
-              ? { ...carted, selectedsize: newsize}:carted
-              
-          ))
-       }
+          
+          setcartedproduct((prev) =>
+            prev.map((carted) =>
+              carted.id === product.id && carted.selectedsize === product.selectedsize
+                ? { ...carted, selectedsize: e.target.value}:carted
+                
+            ))
          }}
       
           className="border border-gray-300 rounded-md p-1 lg:px-3 w-full md:w-auto select-none"
