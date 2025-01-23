@@ -5,10 +5,11 @@ import { PiShoppingCartSimple } from "react-icons/pi";
 import { IoTrash } from "react-icons/io5";
 import Cartcard from "./Cartcard";
 import { Link } from "react-router-dom";
+import { BsBagCheckFill } from "react-icons/bs";
 export default function Cartpage({cartedProduct,setcartedproduct}){
 
    
-
+const [SelectedCarts,setselectedcarts] = useState([])
     
     return (
         <>
@@ -16,7 +17,7 @@ export default function Cartpage({cartedProduct,setcartedproduct}){
 
   
 
-   <div className={`grid items-start gap-0 ${cartedProduct.length<2 ? 'h-96':'h-full'} `}>
+   <div className={`grid items-start gap-0 `}>
         {/* Table Header */}
         <div className="hidden md:flex justify-between items-center px-1 md:px-4 lg:mx-14 py-2 border-b bg-white font-semibold text-sm ">
           <div className="w-[20%] text-left break-words">Product</div>
@@ -33,7 +34,7 @@ export default function Cartpage({cartedProduct,setcartedproduct}){
   { cartedProduct.length > 0? 
   
   cartedProduct.map((product,key)=>(
-    <Cartcard  product={product} type='maincart'  key={key}  position={key} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />))
+    <Cartcard setselectedcarts={setselectedcarts}  product={product} type='maincart'  key={key}  position={key} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />))
 : <div className=" h-96 flex flex-col gap-2 justify-center items-center text-center">
 <p>Your cart it empty</p>
 <Link to='/shop' className=" bg-red-500 text-white p-3 rounded-lg">Start Shopping Now</Link>
@@ -44,6 +45,80 @@ export default function Cartpage({cartedProduct,setcartedproduct}){
 </div>
       </div>
 
+      <div className={`grid items-start gap-0    h-full `}>
+        {/* Table Header */}
+        <div className="hidden md:flex justify-between items-center px-1 md:px-4 lg:mx-14 py-2 border-b bg-white font-semibold text-sm ">
+          <div className="w-[16%] text-left break-words">Product Count</div>
+          <div className="w-[15%] text-center break-words">Unit Total Price</div>
+          <div className="w-[20%] text-center break-words">Total Quantity</div>
+          <div className="w-[15%] text-end break-words">Subtotal Price</div>
+          <div className="w-[20%] text-center break-words">Action</div>
+        </div>
+      
+        {/* Table Content */}
+        
+<div className=" flex  flex-col-reverse gap-5  ">
+{
+   <div
+   
+   className={`flex flex-wrap justify-between items-center px-1 border-b bg-white md:flex-nowrap gap-1 md:gap-0 md:px-4 lg:mx-14 py-2 `}
+ >
+   {/* Product Column */}
+
+   <div className={`hidden md:flex items-center gap-2 lg:gap-2.5 flex-row-reverse md:flex-row w-full md:w-[20%] md:flex-nowrap`}>
+  
+<div className={`flex items-center gap-2 lg:gap-4 w-full  md:flex-nowrap ps-10 `}> 
+<div className="cover  text-center">
+      
+ 
+     {SelectedCarts.length}
+    </div>
+   
+
+  </div>
+
+</div>
+ 
+   {/* Unit Price Column */}
+   <div className={` hidden md:flex justify-start gap-2 w-full md:w-[20%] md:flex-col md:items-start  md:ps-4   lg:ps-12`}>
+     <div className="mainprice text-red-500  ">
+       <s>5000৳</s>
+     </div>
+     <div className="discountprice text-lg text-green-400">2000৳</div>
+   </div>
+ 
+ 
+ 
+   {/* Quantity Column */}
+   <div className={`hidden md:flex justify-between w-full md:w-[20%] md:justify-start  md:-translate-x-4 lg:translate-x-0`}>
+     <div className="flex gap-2  md:w-28    md:justify-center ">
+   
+       <p className="  select-none ">10</p>
+  
+     </div>
+   </div>
+ 
+   {/* Subtotal Column */}
+   <div className={`flex  w-full md:w-[15%] justify-center  bg-red-500 text-white p-2 rounded-lg   `}>
+     <div className="discountprice text-lg ">Total 5000৳</div>
+   </div>
+ 
+   {/* Action Column */}
+   <div className={`flex gap-2 justify-center  w-full     md:flex-col md:items-center  md:w-[18%] `}>
+  
+<p  className={`bg-green-600 w-full p-2  rounded-lg cursor-pointer flex gap-2 justify-center text-white items-center  text-nowrap  text-lg `}>
+
+  
+     Checkout   <BsBagCheckFill className="  pt-0 text-medium mb-0.5"/>
+  </p>
+    
+   </div>
+ </div>
+}
+
+
+</div>
+      </div>
         </>
     );
 }
