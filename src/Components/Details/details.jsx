@@ -74,7 +74,8 @@ export default function Details({product,setcartedproduct,setproduct,cartedProdu
       );
       useEffect(() => {
         setcartprouct((prev)=>({...prev,quantity:quantity,
-          selectedsize:selectedsize
+          selectedsize:selectedsize,
+      
         }))
 
        
@@ -150,7 +151,9 @@ export default function Details({product,setcartedproduct,setproduct,cartedProdu
                       setcartedproduct((prev) =>
                         prev.map((carted) =>
                           carted.id === product.id && carted.selectedsize === selectedsize
-                            && { ...carted, quantity: carted.quantity + quantity }
+                            && { ...carted, quantity: carted.quantity + quantity,
+                              
+                             }
                             
                         ))
                     } else {

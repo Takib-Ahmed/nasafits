@@ -9,7 +9,7 @@ export default function Mobilesearch({className,type,inputclass}){
        <>
        <div className={`flex    text-xl    p-1 px-2  ${className} ${type==='mbsearchbar' && 'justify-between gap-1 '}`}>
 
-     <div className={` bg-default-200   items-center flex justify-center p-2`}>   <div className=" bg-black text-white  p-2 w-10 h-8 flex justify-center items-center  cursor-pointer "><FaFilter/></div></div>
+     <div className={` bg-default-200   items-center flex justify-center p-2`}>   <div className=" bg-black text-white  p-3 w-10 h-8 flex justify-center items-center  cursor-pointer "><FaFilter/></div></div>
         <div>   <Input
             classNames={{
               base: `   bg-white    ${type==='mbsearchbar' ?  `md:h-8 lg:h-10  p-2 mbsearchbar`: inputclass }`,
@@ -21,7 +21,7 @@ export default function Mobilesearch({className,type,inputclass}){
             }}
             placeholder="Type to search..."
             size="sm"
-            endContent={<IoIosSearch size={25}  className=" bg-black h-full   cursor-pointer absolute right-0 w-10 p-2 text-white"/>}
+            endContent={<IoIosSearch  className=" bg-black h-full   cursor-pointer absolute right-0 w-10 p-1 text-white"/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> </div>
        </div>

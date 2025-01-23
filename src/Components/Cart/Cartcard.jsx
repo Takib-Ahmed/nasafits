@@ -1,11 +1,23 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { IoTrash } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 export default function Cartcard({product,type,position,cartedProduct,setcartedproduct}){
 
+       useEffect(() => {
+        setcartedproduct((prev) =>
+          prev.map((carted) =>
+            carted.id === product.id && carted.selectedsize === product.selectedsize
+              ? { ...carted, subtotal:carted.quantity*carted.discountPrice , }:{
+                ...carted,subtotal:carted.quantity*carted.discountPrice
+              }
+              
+          ))
+      
+         
+        }, [product.quantity,product.id,product.selectedsize,setcartedproduct])
     return (
     
       <div
@@ -39,6 +51,7 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
         <select
           id="size-selector"
          onChange={(e)=>{
+          
           setcartedproduct((prev) =>
             prev.map((carted) =>
               carted.id === product.id && carted.selectedsize === product.selectedsize
@@ -47,7 +60,7 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
             ))
          }}
       
-          className="border border-gray-300 rounded-md p-1 lg:px-3 w-full md:w-auto"
+          className="border border-gray-300 rounded-md p-1 lg:px-3 w-full md:w-auto select-none"
        
        value={product.selectedsize}>
           { product.sizes && product.sizes.map((size, index) => (
@@ -68,19 +81,19 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
               setcartedproduct((prev) =>
                 prev.map((carted) =>
                   carted.id === product.id && carted.selectedsize === product.selectedsize
-                    ? { ...carted, quantity: carted.quantity>1 ? carted.quantity- 1 :carted.quantity}:carted
+                    ? { ...carted, quantity: carted.quantity>1 ? carted.quantity- 1 :carted.quantity , }:carted
                     
                 ))
             }}
           />
-          <p>{product.quantity}</p>
+          <p className="  select-none">{product.quantity}</p>
           <FaPlus
             className="border border-black cursor-pointer w-6 h-6 p-1"
             onClick={() => {
               setcartedproduct((prev) =>
                 prev.map((carted) =>
                   carted.id === product.id && carted.selectedsize === product.selectedsize
-                    ? { ...carted, quantity: carted.quantity + 1 }:carted
+                    ? { ...carted, quantity: carted.quantity + 1  }:carted
                     
                 ))
             }}
@@ -90,7 +103,7 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
     
       {/* Subtotal Column */}
       <div className={`flex justify-end ${type === 'maincart' ? 'w-full md:w-[15%] md:justify-center' : 'w-full'}`}>
-        <div className="discountprice text-lg">৳{product.discountPrice}</div>
+        <div className="discountprice text-lg">৳{product.subtotal}</div>
       </div>
     
       {/* Action Column */}

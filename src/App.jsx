@@ -32,6 +32,7 @@ function App() {
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
+      
       images: [
         "/collections/black.png",
         "/collections/black.png",
