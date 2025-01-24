@@ -10,7 +10,12 @@ export default function Cartpage({cartedProduct,setcartedproduct}){
 
    
 const [SelectedCarts,setselectedcarts] = useState([])
-    
+
+const totalMainPrice = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.mainPrice, 0);
+const totalDiscountprice = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.discountPrice, 0);
+const totalQuantity = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.quantity, 0);
+const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
+
     return (
         <>
    <center className=" text-3xl  mt-20  ">Your Cart</center>  
@@ -35,7 +40,8 @@ const [SelectedCarts,setselectedcarts] = useState([])
   
   cartedProduct.map((product,key)=>(
     <Cartcard setselectedcarts={setselectedcarts}  product={product} type='maincart'  key={key}  position={key} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />))
-: <div className=" h-96 flex flex-col gap-2 justify-center items-center text-center">
+: <div className="h-96 flex flex-col gap-2 justify-center items-center text-center">
+
 <p>Your cart it empty</p>
 <Link to='/shop' className=" bg-red-500 text-white p-3 rounded-lg">Start Shopping Now</Link>
 </div>
@@ -82,9 +88,9 @@ const [SelectedCarts,setselectedcarts] = useState([])
    {/* Unit Price Column */}
    <div className={` hidden md:flex justify-start gap-2 w-full md:w-[20%] md:flex-col md:items-start  md:ps-4   lg:ps-12`}>
      <div className="mainprice text-red-500  ">
-       <s>5000৳</s>
+       <s>{totalMainPrice}৳</s>
      </div>
-     <div className="discountprice text-lg text-green-400">2000৳</div>
+     <div className="discountprice text-lg text-green-400">{totalDiscountprice}৳</div>
    </div>
  
  
@@ -93,14 +99,14 @@ const [SelectedCarts,setselectedcarts] = useState([])
    <div className={`hidden md:flex justify-between w-full md:w-[20%] md:justify-start  md:-translate-x-4 lg:translate-x-0`}>
      <div className="flex gap-2  md:w-28    md:justify-center ">
    
-       <p className="  select-none ">10</p>
+       <p className="  select-none ">{totalQuantity}</p>
   
      </div>
    </div>
  
    {/* Subtotal Column */}
    <div className={`flex  w-full md:w-[15%] justify-center  bg-red-500 text-white p-2 rounded-lg   `}>
-     <div className="discountprice text-lg ">Total 5000৳</div>
+     <div className="discountprice text-lg ">Total {totalSubtotal}৳</div>
    </div>
  
    {/* Action Column */}

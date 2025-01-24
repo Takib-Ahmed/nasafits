@@ -18,6 +18,24 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
           
          
         }, [product.quantity,product.id,product.selectedsize,setcartedproduct])
+        const handleCheckboxChange = (e) => {
+          setcartedproduct((prev) =>
+            prev.map((carted) =>
+              carted.id === product.id && carted.selectedsize === product.selectedsize
+                ? { ...carted, Ischecked: e.target.checked }
+                : carted
+            )
+          );
+      
+         
+        };
+        useEffect(() => {
+          const checkedProducts = cartedProduct.filter(
+            (carted) => carted.Ischecked === true
+          );
+          setselectedcarts && setselectedcarts(checkedProducts);
+        }, [cartedProduct, setselectedcarts]);
+  
     return (
     
       <div
@@ -27,43 +45,22 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
       {/* Product Column */}
 
       <div className={`flex items-center gap-2 lg:gap-2.5 flex-row-reverse md:flex-row ${type === 'maincart' ? 'w-full md:w-[20%] md:flex-nowrap' : ''}`}>
-      <input type="checkbox" name="" id=""  className="  scale-150 md:scale-125"  onChange={(e)=>{
-        if(e.target.checked ){
-          setcartedproduct((prev) =>
-            prev.map((carted) =>
-              carted.id === product.id && carted.selectedsize === product.selectedsize
-                ? { ...carted, Ischecked:true , }:{
-                  ...carted,Ischecked:true 
-                }
-                
-            ))
-            setselectedcarts((prev)=>cartedProduct.map((products)=>products.Ischecked && [...prev,products]))
-        }else{
-          setcartedproduct((prev) =>
-            prev.map((carted) =>
-              carted.id === product.id && carted.selectedsize === product.selectedsize
-                ? { ...carted, Ischecked:false , }:{
-                  ...carted,Ischecked:false 
-                }
-                
-            ))
-            setselectedcarts([])
-        }
-        console.log(product)
-      
+      <input type="checkbox" name="" id=""  className="  scale-150 md:scale-125"  checked={product.Ischecked || false}
+      onChange={(e)=>{
+        handleCheckboxChange(e)
       }}/>
   <div className={`flex items-center gap-2 lg:gap-4 ${type === 'maincart' ? 'w-full  md:flex-nowrap' : ''}`}> 
-  <div className="cover ">
+  <Link to={`/details/${product.id}`} className="cover ">
          
          <img
            src={product.coverImage}
            alt={product.title}
            className="w-32 object-cover"
          />
-       </div>
-       <div className="title font-semibold break-words w-full">
+       </Link>
+       <Link to={`/details/${product.id}`} className="title font-semibold break-words w-full hover:text-blue-500 cursor-pointer">
          <h3>{product.name}</h3>
-       </div>
+       </Link>
 
      </div>
   
