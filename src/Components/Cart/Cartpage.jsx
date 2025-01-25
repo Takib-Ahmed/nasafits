@@ -7,6 +7,8 @@ import Cartcard from "./Cartcard";
 import { Link } from "react-router-dom";
 import { BsBagCheckFill } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage as useSelectedCartsStorage } from "../hooks/useLocalStorage";
+
 export default function Cartpage({cartedProduct,setcartedproduct}){
 
    
@@ -19,19 +21,20 @@ const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + sel
 const {setItem} = useLocalStorage('cartedProduct')
         
 
-
+const { setItem: setSelectedCartsItem } = useSelectedCartsStorage('selectedcarts')
 useEffect(() => {
   if(cartedProduct.length > 0){
     setItem(cartedProduct);
   }
-
-}, [cartedProduct, setItem]);
+  setSelectedCartsItem(SelectedCarts)
+}, [cartedProduct, setItem,setSelectedCartsItem,SelectedCarts]);
 
 useEffect(() => {
   const SavedcartedProduct = JSON.parse(localStorage.getItem('cartedProduct') || '[]');
   if(SavedcartedProduct.length > 0){
     setcartedproduct(SavedcartedProduct);
   }
+
 }, [setcartedproduct]);
 
 
