@@ -148,7 +148,7 @@ import Mobilesearch from "./Mobilesearchbar";
           <Dropdown placement="bottom-end">
      
 <DropdownTrigger>
-<Link to='/signin'  >    <Avatar
+<Link to='/account'  >    <Avatar
                 
                 as="button"
                 className="transition-transform    rounded-full  text-white"

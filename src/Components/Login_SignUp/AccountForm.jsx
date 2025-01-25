@@ -21,8 +21,8 @@ const AccountForm = () => {
   const fieldsToRender = isRegister ? [...registrationFields, ...commonFields] : commonFields;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen overflow-hidden">
+      <div className="w-full max-w-md  p-6 rounded-lg shadow-md bg-gray-100 ">
         {/* Title */}
 <center className=" hidden">        <img src="/public/Header/a-minimalist-logo-for-a-clothing-fashion-company-c-OXy9GXuRTQ-7WpsIPVJmVA-qZyLngqpR-K1xV0Fkj8INQ.png" alt="" className=" w-32" /></center>
         <h2 className="text-2xl font-bold text-center mb-6">

@@ -203,7 +203,7 @@ setproduct(detailedproduct)}, [detailedproduct,id])
   {productDetails.map((product,key)=>(
     <Route key={key} path={`/details/${product.id}`} element={ <Details product={product} setcartedproduct={setcartedproduct} setproduct={setproduct} cartedProduct={cartedProduct}/>}></Route>
   ))}
-      <Route path="/signin" element={<AccountForm/>} />
+      <Route path="/account" element={<AccountForm/>} />
       <Route path="/cart" element={   <Cartpage cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />} />
 
       </Routes>

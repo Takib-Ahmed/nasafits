@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { IoTrash } from "react-icons/io5";
 import Cartcard from "./Cartcard";
 import { Link } from "react-router-dom";
 import { BsBagCheckFill } from "react-icons/bs";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 export default function Cartpage({cartedProduct,setcartedproduct}){
 
    
@@ -15,6 +16,26 @@ const totalMainPrice = SelectedCarts.reduce((total, selectedcarts) => total + se
 const totalDiscountprice = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.discountPrice, 0);
 const totalQuantity = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.quantity, 0);
 const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
+const {setItem} = useLocalStorage('cartedProduct')
+        
+
+
+useEffect(() => {
+  if(cartedProduct.length > 0){
+    setItem(cartedProduct);
+  }
+
+}, [cartedProduct, setItem]);
+
+useEffect(() => {
+  const SavedcartedProduct = JSON.parse(localStorage.getItem('cartedProduct') || '[]');
+  if(SavedcartedProduct.length > 0){
+    setcartedproduct(SavedcartedProduct);
+  }
+}, [setcartedproduct]);
+
+
+
 
     return (
         <>
@@ -28,7 +49,7 @@ const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + sel
           <div className="w-[20%] text-left break-words">Product</div>
           <div className="w-[15%] text-center break-words">Unit Price</div>
           <div className="w-[15%] text-center break-words">Size</div>
-          <div className="w-[15%] text-center break-words">Quantity</div>
+          <div className="w-[15%] text-center break-words pe-9 ">Quantity</div>
           <div className="w-[15%] text-center break-words">Subtotal</div>
           <div className="w-[20%] text-right break-words">Action</div>
         </div>
@@ -112,11 +133,11 @@ const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + sel
    {/* Action Column */}
    <div className={`flex gap-2 justify-center  w-full     md:flex-col md:items-center  md:w-[18%] `}>
   
-<p  className={`bg-green-600 w-full p-2  rounded-lg cursor-pointer flex gap-2 justify-center text-white items-center  text-nowrap  text-lg `}>
+<Link to={SelectedCarts.length > 0 && '/account'} className={`bg-green-600 w-full p-2  rounded-lg flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
 
   
      Checkout   <BsBagCheckFill className="  pt-0 text-medium mb-0.5"/>
-  </p>
+  </Link>
     
    </div>
  </div>
