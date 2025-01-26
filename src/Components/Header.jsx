@@ -63,6 +63,8 @@ import Mobilesearch from "./Mobilesearchbar";
   };
   
   export default function Header({showmbsearhbar,setshowsearchbar}) {
+    const storedUser = JSON.parse(localStorage.getItem('userdata'));
+  
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [ishovered, setIshovered] = useState(false);
     const menuItems = [
@@ -147,19 +149,19 @@ import Mobilesearch from "./Mobilesearchbar";
          <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
-<DropdownTrigger>
+
 <Link to='/account'  >    <Avatar
-                
+                isBordered
                 as="button"
                 className="transition-transform    rounded-full  text-white"
                 color="white"
-                
+                name ={storedUser && storedUser.name}
                 size="sm"
          
                 icon={<CgProfile className=" w-full  text-3xl"/>}
                />
                </Link>
-            </DropdownTrigger>
+ 
             {/* <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
                 <p className="font-semibold">Signed in as</p>

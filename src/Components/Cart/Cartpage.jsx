@@ -31,7 +31,12 @@ useEffect(() => {
 
 useEffect(() => {
   const SavedcartedProduct = JSON.parse(localStorage.getItem('cartedProduct') || '[]');
-  if(SavedcartedProduct.length > 0){
+  const storedUser = JSON.parse(localStorage.getItem('userdata'));
+  if(storedUser && storedUser.cart.ischecked){
+    setcartedproduct(storedUser.cart);
+    console.log(storedUser.cart.ischecked)
+  }
+  else if(SavedcartedProduct.length > 0){
     setcartedproduct(SavedcartedProduct);
   }
 
