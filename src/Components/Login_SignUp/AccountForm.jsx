@@ -89,10 +89,10 @@ const AccountForm = () => {
       if (loginUser.email == storedUser.email && loginUser.password == storedUser.password) {
         console.log("User Logged In:", loginUser);
       } else {
-        console.log("Invalid email or password");
+       alert("Invalid email or password");
       }
     } else {
-      console.log("No registered user found");
+      alert("No registered user found");
     }
   };
 
@@ -150,7 +150,7 @@ e.target.checked ? setmemberme(true):setmemberme(false)    }} />
             type="submit"
             className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
             onClick={()=>{
-              !isRegister && window.history.back()
+              !isRegister && loginUser.email == storedUser.email && loginUser.password == storedUser.password && window.history.back()
               
               }}>
          <Link >   {isRegister ? "Register" : "Login"}</Link>

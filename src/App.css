@@ -74,6 +74,12 @@ background: inherit !important;
  display: none !important;
  }
 @media only screen and (max-width: 1500px){
+  .shoplist{
+    gap: 0 !important;
+  }
+  .shopcard{
+    width: 15rem;
+  }
   .Slider{
 
 
@@ -92,6 +98,9 @@ padding:auto 0 ;
 }
 }
 @media only screen and (max-width: 1320px){
+ .shopcard{
+    width: 14.5rem;
+  }
   .Categorycontainer{
 justify-content: center;
 
@@ -112,6 +121,9 @@ justify-content: center;
 }
 
 @media only screen and (max-width: 1300px){
+  .shopcard{
+    width: 13.5rem;
+  }
   .All{
     width: 20rem;
    padding-left: 1.5px;
@@ -122,7 +134,9 @@ justify-content: center;
   }
 }
 @media only screen and (max-width: 1200px) {
-
+  .shopcard{
+    width: 12rem;
+  }
 .navlinkscontainer{
   gap: 1.5rem !important;
 }
@@ -133,6 +147,9 @@ justify-content: center;
   }
   
 @media only screen and (max-width: 1100px) {
+  .shopcard{
+    width: 11.5rem;
+  }
   .slick-dots li button:before {
     font-size: 10px;
   }
@@ -150,14 +167,23 @@ justify-content: center;
   .description{
     width: 24rem;
   }
+  .shopcard{
+    width: 11rem;
+  }
 }
     @media only screen and (max-width: 1050px) {
+      .shopcard{
+        width: 10.5rem;
+      }
       .navlinkscontainer{
     display: none !important;
       }
    
         }
     @media only screen and (max-width: 1030px){
+      .shopcard{
+        width: 12rem;
+      }
  .description{
   width: 25rem;
  }
@@ -194,11 +220,15 @@ transform: translateY(0) !important;
 
 
  @media only screen and (max-width: 900px){
+
 .description{
   width: auto;
 }
  }
  @media only screen and (max-width: 880px) {
+  .shopcard{
+    width:auto !important;
+  }
  
   .slick-dots li button:before {
     font-size: 6px;

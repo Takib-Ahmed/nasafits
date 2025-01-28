@@ -21,15 +21,15 @@ export default function All({setproduct,productDetails,page,className,slice,show
      }
      {
       showFilterlist ? 
-    <div className=" flex  gap-2 lg:gap-4  lg:px-5">
-<Filterlist className={' py-5 sticky top-0 w-80 mt-1'}/>  <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2   py-10 pt-5">
+    <div className=" shoplist flex  gap-2 lg:gap-5  ps-2.5 ">
+<Filterlist className={'  py-5 sticky top-0 w-80 mt-1  z-20 invert bg-white p-5 rounded'}/>  <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2   py-10 pt-5">
           {Showproducts.map((product) => (
 
 <ProductCard key={product.id}
   product={product}
   showSave={false} 
 
-className={`All  pb-1 grid shadow-lg sm:w-60 md:w-[10rem] lg:w-[17rem]  gap-1 saleproduct bg-white     border-1  rounded-lg  overflow-hidden`}
+className={` shopcard  pb-1 grid shadow-lg sm:w-60 md:w-[10rem] lg:w-[18rem]  gap-1 saleproduct bg-white     border-1  rounded-lg  overflow-hidden`}
     type='ALL' 
 />
 

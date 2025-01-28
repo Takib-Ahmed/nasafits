@@ -21,7 +21,7 @@ export default function Filterlist({className}) {
           subCategories: [
             { name: "Blank", count: 51 },
             { name: "Cut & Stitch", count: 24 },
-            { name: "Cut & Stitch", count: 28 },
+            { name: "Cut & Stitchs", count: 28 },
             { name: "Drop Shoulder T-Shirt", count: 7 },
           ],
         },
@@ -83,7 +83,7 @@ export default function Filterlist({className}) {
                         checked={!!selectedFilters[child.name]}
                         onChange={() => toggleFilter(child.name)}
                       />
-                      <span className="flex justify-between w-full">
+                      <span className="flex justify-between w-full  mt-0.5 pt-0.5">
                         <span>{child.name} ⚡</span>
                         <span className="bg-gray-200 text-sm rounded-xl p-0.5">
                           ({child.count})
