@@ -3,8 +3,9 @@ import { PiShoppingCartSimple } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import ProductCard from "../ProductCard";
 import Mobilesearch from "../Mobilesearchbar";
+import Filterlist from "../Search_shop/Filterlist";
 
-export default function All({setproduct,productDetails,page,className,slice}){
+export default function All({setproduct,productDetails,page,className,slice,showFilterlist}){
   let Showproducts = productDetails.slice(0,slice)
 
     return (
@@ -16,8 +17,26 @@ export default function All({setproduct,productDetails,page,className,slice}){
       <h1 className="  ">{`All Collections`}</h1>
       <p className=" hovered absolute bottom-0.5 translate-y-1  border-black border-b-2 w-72 mx-20  transition-all duration-300" ></p>
     </div>
+    
      }
-        <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2 md:gap-4  py-10 pt-5">
+     {
+      showFilterlist ? 
+    <div className=" flex  gap-2 lg:gap-4  lg:px-5">
+<Filterlist className={' py-5 sticky top-0 w-80 mt-1'}/>  <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2   py-10 pt-5">
+          {Showproducts.map((product) => (
+
+<ProductCard key={product.id}
+  product={product}
+  showSave={false} 
+
+className={`All  pb-1 grid shadow-lg sm:w-60 md:w-[10rem] lg:w-[17rem]  gap-1 saleproduct bg-white     border-1  rounded-lg  overflow-hidden`}
+    type='ALL' 
+/>
+
+            
+          ))}
+        </div>
+    </div>:     <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2 md:gap-4  py-10 pt-5">
           {Showproducts.map((product) => (
 
 <ProductCard key={product.id}
@@ -31,6 +50,8 @@ className={`All  pb-1 grid shadow-lg sm:w-60 md:w-auto lg:w-[22rem]  gap-1 salep
             
           ))}
         </div>
+     }
+   
       </div>
         </>
     );

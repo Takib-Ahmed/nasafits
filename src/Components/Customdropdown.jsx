@@ -5,7 +5,7 @@ export default function HoverDropdown() {
       <br />
       <br />
       <div
-        className="absolute top-full left-0 w-max bg-white opacity-100 z-[100] shadow-lg rounded-md p-4 grid grid-cols-2 gap-4"
+        className="absolute  top-12 left-1/4 w-max bg-white opacity-100 z-[100] shadow-lg rounded-md p-4 grid grid-cols-2 gap-4"
       >
         {/* Left Column */}
         <div className="flex flex-col space-y-2 text-black">

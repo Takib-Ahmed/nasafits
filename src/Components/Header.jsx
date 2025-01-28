@@ -32,7 +32,7 @@ import Mobilesearch from "./Mobilesearchbar";
 
 
   export const SearchIcon = ({size = 24, strokeWidth = 1.5, width, height, ...props}) => {
-    const navigate = useNavigate();
+  
     return (
       <svg
         aria-hidden="true"
@@ -99,12 +99,12 @@ import Mobilesearch from "./Mobilesearchbar";
                 Home
               </Link>
             </NavbarItem>
-            <NavbarItem   onMouseOver={()=>{
+            <NavbarItem  className={ishovered && 'hover:translate-y-6 h-fit'}  onMouseOver={()=>{
               setIshovered(true)
             }} onMouseLeave={()=>{
               setIshovered(false)
             }} >
-              <Link aria-current="page" className="   font-normal hover:text-secondary flex" color="foreground"  to='/shop' >
+              <Link aria-current="page" className="   font-normal hover:text-secondary flex  " color="foreground"  to='/shop' >
           Shop  <MdKeyboardArrowDown  size={20} className={"  transition-all duration-300 mt-1 " + `${ishovered && 'rotate-180'}`}/>
 
 
@@ -117,12 +117,12 @@ import Mobilesearch from "./Mobilesearchbar";
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link color="foreground" href="#">
+              <Link  to='/shop' color="foreground" href="#">
               Winter Collection
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link color="foreground" href="#">
+              <Link color="foreground" href="#" to='/shop'>
                 Flash Sale
               </Link>
             </NavbarItem>

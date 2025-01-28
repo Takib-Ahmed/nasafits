@@ -4,13 +4,13 @@ import Cartpage from "./Cartpage";
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { IoTrash } from "react-icons/io5";
-import { BsFillCartCheckFill } from "react-icons/bs";
+import { BsBagCheckFill, BsFillCartCheckFill } from "react-icons/bs";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdOpenInFull } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Cartcard from "./Cartcard";
-export default function Sidecart({cartedProduct,setcartedproduct}){
- 
+export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts}){
+  const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
 
     const [showcart,setshowcart] = useState(false)
  
@@ -32,7 +32,7 @@ export default function Sidecart({cartedProduct,setcartedproduct}){
   }}>  <MdOpenInFull/></Link>
   
 </div>
-<div className="flex flex-col justify-start gap-2 py-2 h-[86%]  overflow-y-scroll">
+<div className="flex flex-col-reverse justify-start gap-2 py-2 h-[86%]  overflow-y-scroll">
 
  
  {
@@ -44,8 +44,14 @@ export default function Sidecart({cartedProduct,setcartedproduct}){
 </div>
   
   <div className="grid  text-center absolute bottom-0 w-full text-lg ">
-  <div  className=" border-t-1 border-gray-400 py-1 bg-white">Total 2500tk</div>
-  <div className=" bg-green-600 text-white flex justify-center gap-2 items-center py-2 "><BsFillCartCheckFill className=""/>Checkout</div>
+
+  <div  className=" border-t-1 border-gray-400 py-1 bg-white">Total {totalSubtotal}</div>
+  <Link to={SelectedCarts.length > 0 && '/account'} className={`bg-green-600 w-full p-2   flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
+  
+    
+  <BsFillCartCheckFill className=" text-xl  mb-1"/>Checkout
+    </Link>
+
 </div>
 </div>
 

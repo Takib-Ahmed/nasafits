@@ -282,6 +282,7 @@ function App() {
     
       
     ])
+    const [SelectedCarts,setselectedcarts] = useState([])
     const {id} = useParams()
     const detailedproduct =  productDetails.find((iteam)=>iteam.id == parseInt(id))
           useEffect(() => {
@@ -291,7 +292,7 @@ setproduct(detailedproduct)}, [detailedproduct,id])
     <BrowserRouter >
     <HeroUIProvider >
    <Header showmbsearhbar={showmbsearhbar} setshowsearchbar={setshowsearchbar}/>
-   <Sidecart cartedProduct={cartedProduct} setcartedproduct={setcartedproduct}/>
+   <Sidecart cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} SelectedCarts={SelectedCarts}/>
 
     <Routes>
       <Route path="/" element={<Homepage  productDetails={productDetails} setproduct={setproduct}/>} />
@@ -303,7 +304,7 @@ setproduct(detailedproduct)}, [detailedproduct,id])
     <Route key={key} path={`/details/${product.id}`} element={ <Details product={product} setcartedproduct={setcartedproduct} setproduct={setproduct} cartedProduct={cartedProduct}/>}></Route>
   ))}
       <Route path="/account" element={<AccountForm/>} />
-      <Route path="/cart" element={   <Cartpage cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />} />
+      <Route path="/cart" element={   <Cartpage SelectedCarts={SelectedCarts} setselectedcarts={setselectedcarts} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />} />
 
       </Routes>
    

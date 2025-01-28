@@ -86,7 +86,7 @@ const AccountForm = () => {
    
 
     if (storedUser) {
-      if (loginUser.email === storedUser.email && loginUser.password === storedUser.password) {
+      if (loginUser.email == storedUser.email && loginUser.password == storedUser.password) {
         console.log("User Logged In:", loginUser);
       } else {
         console.log("Invalid email or password");
@@ -149,8 +149,11 @@ e.target.checked ? setmemberme(true):setmemberme(false)    }} />
           <button
             type="submit"
             className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
-          >
-         <Link to={!isRegister && '/'}>   {isRegister ? "Register" : "Login"}</Link>
+            onClick={()=>{
+              !isRegister && window.history.back()
+              
+              }}>
+         <Link >   {isRegister ? "Register" : "Login"}</Link>
           </button>
         </form>
 

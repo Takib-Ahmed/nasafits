@@ -9,10 +9,10 @@ import { BsBagCheckFill } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useLocalStorage as useSelectedCartsStorage } from "../hooks/useLocalStorage";
 
-export default function Cartpage({cartedProduct,setcartedproduct}){
+export default function Cartpage({cartedProduct,setcartedproduct,setselectedcarts,SelectedCarts}){
 
    
-const [SelectedCarts,setselectedcarts] = useState([])
+
 
 const totalMainPrice = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.mainPrice, 0);
 const totalDiscountprice = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.discountPrice, 0);
