@@ -62,15 +62,10 @@ const AccountForm = () => {
   };
 
   const handleLoginChange = (e) => {
-    if (Rememberme && storedUser) {
-      setLoginUser({
-        email: storedUser.email,
-        password: storedUser.password,
-      });
-    }else{
+
       const { name, value } = e.target;
     setLoginUser((prevUser) => ({ ...prevUser, [name]: value }));
-    }
+    
 
   };
 
@@ -124,7 +119,12 @@ const AccountForm = () => {
                 className="w-full mt-2 p-2 border border-gray-300 rounded-md"
                 name={field.key}
          
-                value={!isRegister && Rememberme  ? storedUser[field.key]  : registerUser[field.key] }
+                value={!isRegister ? Rememberme  ? storedUser[field.key]|| loginUser[field.key] : registerUser[field.key]|| loginUser[field.key] : registerUser[field.key]
+
+
+
+                  
+                }
                 onChange={isRegister ? handleRegisterChange : handleLoginChange}
               />
             </div>
