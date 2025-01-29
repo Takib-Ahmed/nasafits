@@ -10,19 +10,20 @@ export default function All({setproduct,productDetails,page,className,slice,show
 
     return (
         <>
-            <div className={`collections text-center  p-0 sm:p-2 md:p-3 lg:p-5  py-5 md:pt-0  ${className}  `}>
+            <div className={`collections text-center  p-0 sm:p-2 md:p-3 lg:p-5  py-5 md:pt-0  ${className}   `}>
      {
-      page =='Shop' ?  <Mobilesearch className=' w-fit lg:w-full  gap-2  ' inputclass='  w-[85vw] sm:w-[86vw] md:w-[88vw]  lg:w-[91vw]    p-2 shopsearchbar  '/>:
-      <div className=" relative w-full  title text-2xl md:text-3xl lg:text-4xl font-semibold py-2 text-center border-gray border-b-2 flex items-center flex-col justify-center ">
+     showFilterlist ? <Filterlist className={'  sidefilterlist sticky top-0 w-1/2 mt-1  z-20  bg-white  rounded text-small  lg:text-medium   '}/>  :
+     !page && <div className=" relative w-full  title text-2xl md:text-3xl lg:text-4xl font-semibold py-2 text-center border-gray border-b-2 flex items-center flex-col justify-center ">
       <h1 className="  ">{`All Collections`}</h1>
       <p className=" hovered absolute bottom-0.5 translate-y-1  border-black border-b-2 w-72 mx-20  transition-all duration-300" ></p>
     </div>
     
      }
      {
-      showFilterlist ? 
-    <div className=" shoplist flex  gap-2 lg:gap-5  md:ps-2.5 ">
-<Filterlist className={'    py-5 sticky top-0 w-1/3 lg:w-80 mt-1  z-20  bg-white  rounded text-small  lg:text-medium   '}/>  <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2   py-10 pt-5">
+        page =='Shop' ? 
+    <div className=" shoplist flex flex-col  gap-2  justify-end">
+      <Mobilesearch className=' w-fit lg:w-full  flex   justify-center  ' filtermenuclass='hidden'  inputclass=' w-[60vw] sm:w-[65vw] md:w-[70vw]   lg:w-[76.5vw]  shopsearchbar        p-2    '/>
+ <div  className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2  px-2 sm:px-0 ">
           {Showproducts.map((product) => (
 
 <ProductCard key={product.id}

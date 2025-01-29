@@ -28,6 +28,7 @@ import { CgProfile } from "react-icons/cg";
 
 import { Link, useNavigate } from "react-router-dom";
 import Mobilesearch from "./Mobilesearchbar";
+import Sidedrawer from "./drawer";
 
 
 
@@ -65,21 +66,21 @@ import Mobilesearch from "./Mobilesearchbar";
   export default function Header({showmbsearhbar,setshowsearchbar}) {
     const storedUser = JSON.parse(localStorage.getItem('userdata'));
   
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const [ishovered, setIshovered] = useState(false);
     const menuItems = [
-        "Home",
-        "Winter Collection",
-        "Flash Sale",
-      
-      ];
+      "Home",
+      "Winter Collection",
+      "Flash Sale",
+    
+    ];
+    const [ishovered, setIshovered] = useState(false);
+
     return (
       <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0 " isBordered  onMenuOpenChange={(isOpen) => setIsMenuOpen(isOpen)}>
         <NavbarContent justify="start">
-        <NavbarMenuToggle
-    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-    className="navmenu hidden   p-0 m-0 text-4xl  w-8 sm:w-10" icon={<IoMenuOutline />}
-  />
+        <div
+
+    className="navmenu  hidden     p-0 m-0 text-4xl  w-8 sm:w-10" 
+  ><IoMenuOutline className="  absolute "/><Sidedrawer menuItems={menuItems}/></div>
   <NavbarBrand className=" " >
  <Link  to="/"
   >        <img
@@ -179,22 +180,7 @@ import Mobilesearch from "./Mobilesearchbar";
             </DropdownMenu> */}
           </Dropdown>
         </NavbarContent>
-        <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={
-                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
+ 
 
 
 

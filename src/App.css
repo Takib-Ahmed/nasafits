@@ -76,7 +76,10 @@ background: inherit !important;
 @media only screen and (max-width: 1500px){
 
   .shopcard{
-    width: 17rem;
+    width: 16rem;
+  }
+  .shopsearchbar{
+    width: 74vw !important;
   }
   .Slider{
 
@@ -98,6 +101,9 @@ padding:auto 0 ;
 @media only screen and (max-width: 1400px){
   .shopcard{
     width: 15rem;
+  }
+  .shopsearchbar{
+    width: 73vw !important;
   }
 }
 @media only screen and (max-width: 1320px){
@@ -127,6 +133,9 @@ justify-content: center;
   .shopcard{
     width: 13.5rem;
   }
+  .shopsearchbar{
+    width: 71.5vw !important;
+  }
   .All{
     width: 20rem;
    padding-left: 1.5px;
@@ -139,6 +148,9 @@ justify-content: center;
 @media only screen and (max-width: 1200px) {
   .shopcard{
     width: 12.5rem;
+  }
+  .shopsearchbar{
+    width: 70vw !important;
   }
 .navlinkscontainer{
   gap: 1.5rem !important;
@@ -180,17 +192,19 @@ justify-content: center;
 }
     @media only screen and (max-width: 1050px) {
       .shopcard{
-        width: 10.5rem;
+        width: 11rem;
       }
+  
       .navlinkscontainer{
     display: none !important;
       }
    
         }
     @media only screen and (max-width: 1030px){
-      .shopcard{
-        width: 12rem;
+      .shopsearchbar{
+        width: 73vw !important;
       }
+
  .description{
   width: 25rem;
  }
@@ -225,18 +239,44 @@ transform: translateY(0) !important;
           }
         }
 
-
+        @media only screen and (max-width: 980px){
+          .shopcard{
+            width: 10.5rem ;
+          }
+          .shopsearchbar{
+            width: 72.5vw !important;
+          }
+        }
+        @media only screen and (max-width: 950px){
+          .shopcard{
+            width: 10rem ;
+          }
+          .shopsearchbar{
+            width: 73vw !important;
+          }
+        }
  @media only screen and (max-width: 900px){
+  .shopcard{
+    width: 9.5rem ;
+  }
+  .shopsearchbar{
+    width: 72vw !important;
+  }
 
 .description{
   width: auto;
 }
  }
  @media only screen and (max-width: 880px) {
+  .sidefilterlist{
+    display: none !important;
+  }
   .shopcard{
     width:auto !important;
   }
- 
+  .shopsearchbar{
+    width: 96vw !important;
+  }
   .slick-dots li button:before {
     font-size: 6px;
   }
@@ -257,11 +297,7 @@ transform: translateY(0) !important;
       grid-template-columns: 2;
         }
    }
-   @media only screen and (max-width: 530px){
-    .shopsearchbar{
-      width: 84vw !important;
-     }
-   }
+
    @media only screen and (max-width: 500px){
     .slick-dots li button:before {
       font-size: 5px;
@@ -292,9 +328,7 @@ transform: translateY(0) !important;
 .mobilesearch{
   display: flex !important;
 }
-.shopsearchbar{
-  width: 82vw !important;
- }
+
          .mbsearchbar{
           display: block !important;
           width: 83.5vw !important;
@@ -305,40 +339,35 @@ transform: translateY(0) !important;
     .mbsearchbar{
       width: 82vw !important;
      }
-     .shopsearchbar{
-      width: 81vw !important;
-     }
+
    }
-   @media only screen and (max-width: 420px){
-    .shopsearchbar{
-      width: 80vw !important;
-     }
-   }
+
   @media only screen and (max-width: 400px){
     
     .mbsearchbar{
       width: 79.5vw !important;
      }
      .shopsearchbar{
-      width: 77.5vw !important;
+      width: 95vw !important;
      }
  }
  @media only screen and (max-width: 350px){
   .mbsearchbar{
     width: 78vw !important;
    }
-   .shopsearchbar{
-    width: 75.5vw !important;
-   }
+
 }
 @media only screen and (max-width: 325px){
-  .mbsearchbar, .shopsearchbar{
+  .mbsearchbar{
     width: 75vw !important;
    }
    
 }
 @media only screen and (max-width: 300px){
-  .mbsearchbar,.shopsearchbar{
+  .mbsearchbar{
     width: 100% !important;
+   }
+   .shopsearchbar{
+    width: 94vw !important;
    }
 }

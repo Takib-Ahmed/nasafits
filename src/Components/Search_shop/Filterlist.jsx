@@ -45,9 +45,9 @@ export default function Filterlist({className}) {
             checked={!!selectedFilters[category.name]}
             onChange={() => toggleFilter(category.name)}
           />
-          <span className="flex justify-between w-full mt-[0.3rem] lg:mt-0">
-            <span>{category.name}<font className='lg:ms-2'>⚡</font></span>
-            <span className="bg-gray-200 text-sm rounded-xl p-0.5">
+          <span className="flex justify-between w-full mt-0.5 lg:mt-0">
+            <span>{category.name}<font className='lg:ms-1'>⚡</font></span>
+            <span className="bg-gray-200 text-xs lg:text-sm rounded-xl p-0.5 ">
               ({category.count})
             </span>
           </span>
@@ -67,9 +67,9 @@ export default function Filterlist({className}) {
                   checked={!!selectedFilters[sub.name]}
                   onChange={() => toggleFilter(sub.name)}
                 />
-                <span className="flex justify-between w-full mt-[0.3rem] lg:mt-0">
-                  <span>{sub.name}<font className='lg:ms-2'>⚡</font></span>
-                  <span className="bg-gray-200 text-sm rounded-xl p-0.5">
+                <span className="flex justify-between w-full mt-0.5 lg:mt-0">
+                  <span>{sub.name}<font className='lg:ms-1'>⚡</font></span>
+                  <span className="bg-gray-200 text-xs lg:text-sm rounded-xl p-0.5">
                     ({sub.count})
                   </span>
                 </span>
@@ -83,9 +83,9 @@ export default function Filterlist({className}) {
                         checked={!!selectedFilters[child.name]}
                         onChange={() => toggleFilter(child.name)}
                       />
-                      <span className="flex justify-between w-full  mt-0.5 pt-0.5">
-                        <span>{child.name}<font className='lg:ms-2'>⚡</font></span>
-                        <span className="bg-gray-200 text-sm rounded-xl p-0.5">
+                      <span className="flex justify-between w-full  mt-0.5 pt-0.5 h-fit">
+                        <span>{child.name}<font className='lg:ms-1'>⚡</font></span>
+                        <span className="bg-gray-200 text-xs lg:text-sm rounded-xl h-fit p-0.5 ">
                           ({child.count})
                         </span>
                       </span>
