@@ -39,14 +39,14 @@ export default function Filterlist({className}) {
   return (
     <div className={`flex flex-col gap-5 ${className}`}>
       {categories.map((category, idx) => (
-        <label key={idx} className="flex items-center space-x-2">
+        <label key={idx} className="flex items-center space-x-1 lg:space-x-2">
           <input
             type="checkbox"
             checked={!!selectedFilters[category.name]}
             onChange={() => toggleFilter(category.name)}
           />
-          <span className="flex justify-between w-full">
-            <span>{category.name} ⚡</span>
+          <span className="flex justify-between w-full mt-[0.3rem] lg:mt-0">
+            <span>{category.name}<font className='lg:ms-2'>⚡</font></span>
             <span className="bg-gray-200 text-sm rounded-xl p-0.5">
               ({category.count})
             </span>
@@ -61,14 +61,14 @@ export default function Filterlist({className}) {
           </p>
           {product.subCategories.map((sub, subIdx) => (
             <div key={subIdx} className=" flex flex-col gap-3 py-2 ">
-              <label className="flex items-center space-x-2">
+              <label className="flex items-center space-x-1 lg:space-x-2  ">
                 <input
                   type="checkbox"
                   checked={!!selectedFilters[sub.name]}
                   onChange={() => toggleFilter(sub.name)}
                 />
-                <span className="flex justify-between w-full">
-                  <span>{sub.name} ⚡</span>
+                <span className="flex justify-between w-full mt-[0.3rem] lg:mt-0">
+                  <span>{sub.name}<font className='lg:ms-2'>⚡</font></span>
                   <span className="bg-gray-200 text-sm rounded-xl p-0.5">
                     ({sub.count})
                   </span>
@@ -77,14 +77,14 @@ export default function Filterlist({className}) {
               {sub.subCategories && (
                 <div className="pl-4 flex flex-col gap-2.5 text-sm">
                   {sub.subCategories.map((child, childIdx) => (
-                    <label key={childIdx} className="flex items-center space-x-2">
+                    <label key={childIdx} className="flex items-center space-x-1 lg:space-x-2">
                       <input
                         type="checkbox"
                         checked={!!selectedFilters[child.name]}
                         onChange={() => toggleFilter(child.name)}
                       />
                       <span className="flex justify-between w-full  mt-0.5 pt-0.5">
-                        <span>{child.name} ⚡</span>
+                        <span>{child.name}<font className='lg:ms-2'>⚡</font></span>
                         <span className="bg-gray-200 text-sm rounded-xl p-0.5">
                           ({child.count})
                         </span>

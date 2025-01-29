@@ -74,11 +74,9 @@ background: inherit !important;
  display: none !important;
  }
 @media only screen and (max-width: 1500px){
-  .shoplist{
-    gap: 0 !important;
-  }
+
   .shopcard{
-    width: 15rem;
+    width: 17rem;
   }
   .Slider{
 
@@ -96,6 +94,11 @@ width: auto ;
 .collections{
 padding:auto 0 ;
 }
+}
+@media only screen and (max-width: 1400px){
+  .shopcard{
+    width: 15rem;
+  }
 }
 @media only screen and (max-width: 1320px){
  .shopcard{
@@ -135,7 +138,7 @@ justify-content: center;
 }
 @media only screen and (max-width: 1200px) {
   .shopcard{
-    width: 12rem;
+    width: 12.5rem;
   }
 .navlinkscontainer{
   gap: 1.5rem !important;
@@ -145,7 +148,11 @@ justify-content: center;
   padding: auto;
 }
   }
-  
+  @media only screen and (max-width: 1140px) {
+    .shopcard{
+      width: 12rem;
+    }
+  } 
 @media only screen and (max-width: 1100px) {
   .shopcard{
     width: 11.5rem;
@@ -250,6 +257,11 @@ transform: translateY(0) !important;
       grid-template-columns: 2;
         }
    }
+   @media only screen and (max-width: 530px){
+    .shopsearchbar{
+      width: 84vw !important;
+     }
+   }
    @media only screen and (max-width: 500px){
     .slick-dots li button:before {
       font-size: 5px;
@@ -280,6 +292,9 @@ transform: translateY(0) !important;
 .mobilesearch{
   display: flex !important;
 }
+.shopsearchbar{
+  width: 82vw !important;
+ }
          .mbsearchbar{
           display: block !important;
           width: 83.5vw !important;
@@ -287,10 +302,17 @@ transform: translateY(0) !important;
        
    }
    @media only screen and (max-width: 450px){
-    .mbsearchbar, .shopsearchbar{
+    .mbsearchbar{
       width: 82vw !important;
      }
-   
+     .shopsearchbar{
+      width: 81vw !important;
+     }
+   }
+   @media only screen and (max-width: 420px){
+    .shopsearchbar{
+      width: 80vw !important;
+     }
    }
   @media only screen and (max-width: 400px){
     
@@ -298,7 +320,7 @@ transform: translateY(0) !important;
       width: 79.5vw !important;
      }
      .shopsearchbar{
-      width: 78vw !important;
+      width: 77.5vw !important;
      }
  }
  @media only screen and (max-width: 350px){
@@ -306,12 +328,12 @@ transform: translateY(0) !important;
     width: 78vw !important;
    }
    .shopsearchbar{
-    width: 77vw !important;
+    width: 75.5vw !important;
    }
 }
 @media only screen and (max-width: 325px){
   .mbsearchbar, .shopsearchbar{
-    width: 76vw !important;
+    width: 75vw !important;
    }
    
 }
