@@ -9,12 +9,12 @@ import {
 
 import Filterlist from "./Search_shop/Filterlist";
 import { Button } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidedrawer({menuItems}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [size, setSize] = useState("md");
-
+  const location = useLocation();
   // Function to update drawer size based on screen width
   useEffect(() => {
     const updateSize = () => {
@@ -39,9 +39,9 @@ export default function Sidedrawer({menuItems}) {
   return (
     <>
       <Button
-        className="bg-transparent hover:text-black text-white p-0 w-min"
+        className="bg-transparent hover:text-black text-white p-0   absolute  left-0 w-min"
         onPress={onOpen}
-      >
+       >
        
       </Button>
 
@@ -53,11 +53,11 @@ export default function Sidedrawer({menuItems}) {
         size={size} // Dynamic width
       >
         <DrawerContent>
-         {!menuItems &&  <div className="text-center text-2xl py-5">Filter Options</div>}
+         {location.pathname.includes("/shop")  &&  <div className="text-center text-2xl py-5">Filter Options</div>}
           <DrawerBody>
 
 
-          {menuItems ?<div className="  w-full py-5 flex flex-col gap-2 ">{menuItems.map((item, index) => (
+          {menuItems && !location.pathname.includes("/shop")  ?<div className="  w-full py-5 flex flex-col gap-2 ">{menuItems.map((item, index) => (
           <div key={`${item}-${index}`} className="">
             <Link
               className="w-full"

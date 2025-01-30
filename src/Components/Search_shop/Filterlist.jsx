@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Filterlist({className}) {
-  const [selectedFilters, setSelectedFilters] = useState({});
+
 
   const categories = [
     { name: "New Arrival", count: 24 },
@@ -35,6 +35,10 @@ export default function Filterlist({className}) {
       [category]: !prev[category],
     }));
   };
+  const [selectedFilters, setSelectedFilters] = useState({});
+  const selectedFilterArray = Object.keys(selectedFilters).filter(
+    (key) => selectedFilters[key] === true
+  );
 
   return (
     <div className={`flex flex-col gap-5 ${className}`}>

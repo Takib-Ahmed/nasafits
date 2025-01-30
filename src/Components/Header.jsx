@@ -26,7 +26,7 @@ import HoverDropdown from "./Customdropdown";
 import { CgProfile } from "react-icons/cg";
 
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Mobilesearch from "./Mobilesearchbar";
 import Sidedrawer from "./drawer";
 
@@ -65,9 +65,10 @@ import Sidedrawer from "./drawer";
   
   export default function Header({showmbsearhbar,setshowsearchbar}) {
     const storedUser = JSON.parse(localStorage.getItem('userdata'));
-  
+    const location = useLocation();
     const menuItems = [
       "Home",
+      'Shop',
       "Winter Collection",
       "Flash Sale",
     
@@ -79,15 +80,15 @@ import Sidedrawer from "./drawer";
         <NavbarContent justify="start">
         <div
 
-    className="navmenu  hidden     p-0 m-0 text-4xl  w-8 sm:w-10" 
-  ><IoMenuOutline className="  absolute "/><Sidedrawer menuItems={menuItems}/></div>
-  <NavbarBrand className=" " >
+    className="navmenu  hidden     p-0 m-0 text-3xl sm:text-4xl  w-8 sm:w-10  h-full" 
+  ><IoMenuOutline className="  absolute top-4  sm:top-3"/><Sidedrawer menuItems={menuItems}/></div>
+  <NavbarBrand className=" left-shadow h-full ps-2 " >
  <Link  to="/"
   >        <img
         alt="NextUI hero Image with delay"
        
         src="/Header/output-onlinepngtools (8) (1).png" 
-         className=" w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
+         className=" w-[3.5rem] sm:w-14 mt-1 lg:w-20 lg:p-1 lg:mt-0.5  m-0
       "
       />  </Link>   
   
@@ -143,7 +144,12 @@ import Sidedrawer from "./drawer";
             placeholder="Type to search..."
             size="sm"
             endContent={<IoIosSearch size={25}  className="Searchicn bg-black h-full   absolute right-0 w-10 p-2 text-white" onClick={()=>{
+              if (location.pathname.includes("/shop")) {
+                setshowsearchbar(false);
+            }
+            else{
               setshowsearchbar((prev)=>!prev)
+            } 
             }}/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /> {showmbsearhbar && <Mobilesearch className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' />}

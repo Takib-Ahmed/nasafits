@@ -10,7 +10,7 @@ import InfoSection from "./Info";
 import { Link } from "react-router-dom";
 import { GrCheckboxSelected } from "react-icons/gr";
 import { FaHandPointUp } from "react-icons/fa";
-export default function Details({product,setcartedproduct,setproduct,cartedProduct}){
+export default function Details({product,setcartedproduct,cartedProduct}){
 
   const [quantity,setquantity] = useState(1);
   const [selectedsize,setselectedsize] = useState('')
@@ -79,7 +79,7 @@ export default function Details({product,setcartedproduct,setproduct,cartedProdu
         }))
 
        
-      }, [quantity,setproduct,selectedsize]);
+      }, [quantity,selectedsize]);
       
 
     return (

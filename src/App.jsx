@@ -22,8 +22,7 @@ import Shop from './Components/Search_shop/Shoppage'
 
 
 function App() {
-
-  const productDetails = [
+const productDetails = [
     {
         id: 1,
         coverImage: "/collections/edited/black.png",
@@ -33,16 +32,7 @@ function App() {
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: true,
-            featured: false,
-            bestSelling: true,
-            seasonal: {
-                winter: false,
-                summer: true
-            },
-            flashSale: false
-        },
+        showcases: ["new arrival", "best selling", "summer"],
         images: [
             "/collections/black.png",
             "/collections/black.png",
@@ -59,16 +49,7 @@ function App() {
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: false,
-            featured: true,
-            bestSelling: true,
-            seasonal: {
-                winter: false,
-                summer: true
-            },
-            flashSale: false
-        },
+        showcases: ["featured", "best selling", "summer"],
         images: [
             "/collections/gray.png",
             "/collections/gray.png",
@@ -80,21 +61,12 @@ function App() {
         id: 3,
         coverImage: "/collections/edited/itachi.png",
         name: "Mens Premium Hoodie Itachi",
-        category: 'hoddie',
+        category: 'hoodie',
         for: 'Men',
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: false,
-            featured: false,
-            bestSelling: true,
-            seasonal: {
-                winter: true,
-                summer: false
-            },
-            flashSale: false
-        },
+        showcases: ["best selling", "winter"],
         images: [
             "/collections/itachi2.png",
             "/collections/itachi2.png",
@@ -106,21 +78,12 @@ function App() {
         id: 4,
         coverImage: "/collections/edited/ai.png",
         name: "Mens Premium Hoodie AI",
-        category: 'hoddie',
+        category: 'hoodie',
         for: 'Men',
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: false,
-            featured: false,
-            bestSelling: false,
-            seasonal: {
-                winter: true,
-                summer: false
-            },
-            flashSale: true
-        },
+        showcases: ["winter", "flash sale"],
         images: [
             "/collections/ai2.png",
             "/collections/ai2.png",
@@ -132,21 +95,12 @@ function App() {
         id: 5,
         coverImage: "/collections/edited/brown.png",
         name: "Mens Premium Hoodie Browny",
-        category: 'hoddie',
+        category: 'hoodie',
         for: 'Men',
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: false,
-            featured: false,
-            bestSelling: false,
-            seasonal: {
-                winter: true,
-                summer: false
-            },
-            flashSale: false
-        },
+        showcases: ["winter"],
         images: [
             "/collections/brown2.png",
             "/collections/brown2.png",
@@ -158,21 +112,12 @@ function App() {
         id: 6,
         coverImage: "/collections/edited/red jacket.png",
         name: "Mens Premium Jacket - Red",
-        category: 'hoddie',
+        category: 'hoodie',
         for: 'Men',
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: true,
-            featured: false,
-            bestSelling: false,
-            seasonal: {
-                winter: true,
-                summer: false
-            },
-            flashSale: false
-        },
+        showcases: ["new arrival", "winter"],
         images: [
             "/collections/red jacket.png",
             "/collections/red jacket.png",
@@ -184,21 +129,12 @@ function App() {
         id: 7,
         coverImage: "/collections/edited/red.png",
         name: "Mens Premium Hoodie - Red",
-        category: 'hoddie',
+        category: 'hoodie',
         for: 'Men',
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: false,
-            featured: false,
-            bestSelling: true,
-            seasonal: {
-                winter: true,
-                summer: false
-            },
-            flashSale: true
-        },
+        showcases: ["best selling", "winter", "flash sale"],
         images: [
             "/collections/red2.png",
             "/collections/red2.png",
@@ -210,21 +146,12 @@ function App() {
         id: 8,
         coverImage: "/collections/edited/itachi.png",
         name: "Mens Premium Hoodie Itachi",
-        category: 'hoddie',
+        category: 'hoodie',
         for: 'Men',
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: false,
-            featured: false,
-            bestSelling: true,
-            seasonal: {
-                winter: true,
-                summer: false
-            },
-            flashSale: true
-        },
+        showcases: ["best selling", "winter", "flash sale"],
         images: [
             "/collections/itachi2.png",
             "/collections/itachi2.png",
@@ -236,21 +163,12 @@ function App() {
         id: 9,
         coverImage: "/collections/edited/green.png",
         name: "Mens Premium Hoodie Green",
-        category: 'hoddie',
+        category: 'hoodie',
         for: 'Men',
         save: 200,
         mainPrice: 1000,
         discountPrice: 800,
-        showcases: {
-            newArrival: true,
-            featured: false,
-            bestSelling: false,
-            seasonal: {
-                winter: true,
-                summer: false
-            },
-            flashSale: false
-        },
+        showcases: ["new arrival", "winter"],
         images: [
             "/collections/green2.png",
             "/collections/green2.png",
@@ -259,6 +177,8 @@ function App() {
         sizes: ["M", "L", "XL", "2XL"]
     }
 ];
+
+    
 
     const [product,setproduct] = useState({
       id: 1,
@@ -278,30 +198,31 @@ function App() {
 
     const [showmbsearhbar,setshowsearchbar] = useState(false)
     
-    const [cartedProduct,setcartedproduct] = useState([
-    
-      
-    ])
+    const [cartedProduct,setcartedproduct] = useState([ ])
     const [SelectedCarts,setselectedcarts] = useState([])
     const {id} = useParams()
     const detailedproduct =  productDetails.find((iteam)=>iteam.id == parseInt(id))
           useEffect(() => {
 setproduct(detailedproduct)}, [detailedproduct,id])
+const [selectedFilters, setSelectedFilters] = useState({});
+const selectedFilterArray = Object.keys(selectedFilters).filter(
+  (key) => selectedFilters[key] === true
+);
   return (
     <>
     <BrowserRouter >
     <HeroUIProvider >
-   <Header showmbsearhbar={showmbsearhbar} setshowsearchbar={setshowsearchbar}/>
+   <Header  showmbsearhbar={showmbsearhbar} setshowsearchbar={setshowsearchbar}/>
    <Sidecart cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} SelectedCarts={SelectedCarts}/>
 
     <Routes>
-      <Route path="/" element={<Homepage  productDetails={productDetails} setproduct={setproduct}/>} />
+      <Route path="/" element={<Homepage  productDetails={productDetails} />} />
 
 
 
    <Route path='/shop' element={<Shop productDetails={productDetails} />} />
   {productDetails.map((product,key)=>(
-    <Route key={key} path={`/details/${product.id}`} element={ <Details product={product} setcartedproduct={setcartedproduct} setproduct={setproduct} cartedProduct={cartedProduct}/>}></Route>
+    <Route key={key} path={`/details/${product.id}`} element={ <Details product={product} setcartedproduct={setcartedproduct}  cartedProduct={cartedProduct}/>}></Route>
   ))}
       <Route path="/account" element={<AccountForm/>} />
       <Route path="/cart" element={   <Cartpage SelectedCarts={SelectedCarts} setselectedcarts={setselectedcarts} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />} />

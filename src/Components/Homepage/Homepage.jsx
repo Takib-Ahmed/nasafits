@@ -7,7 +7,7 @@ import Collection from "./Collections";
 import Flashsale from "./Flashsale";
 import Slidershow from "./Slidershow";
 
-export default function Homepage({productDetails,setproduct}){
+export default function Homepage({productDetails,}){
     
     return (
         <>
@@ -15,12 +15,12 @@ export default function Homepage({productDetails,setproduct}){
            <Slidershow/>
         
    <Categories/>
-   <Flashsale productDetails={productDetails} setproduct={setproduct}/>
-   <Collection Collectiontype={'Featured Product'} productDetails={productDetails} setproduct={setproduct}/>
-   <Collection Collectiontype={'New Arrivals'} productDetails={productDetails} setproduct={setproduct}/>
+   <Flashsale productDetails={productDetails} />
+   <Collection Collectiontype={'Featured Product'} productDetails={productDetails} />
+   <Collection Collectiontype={'New Arrivals'} productDetails={productDetails}/>
 
    <Banner/>
-   <Collection Collectiontype={'Hoodies'} productDetails={productDetails} setproduct={setproduct}/>
-  <All setproduct={setproduct} productDetails={productDetails} slice={8}/></>
+   <Collection Collectiontype={'Hoodies'} productDetails={productDetails} />
+  <All  productDetails={productDetails} slice={8}/></>
     );
 }
