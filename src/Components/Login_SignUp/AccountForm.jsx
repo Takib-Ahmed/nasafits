@@ -9,7 +9,7 @@ const AccountForm = () => {
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
   
   const [isRegister, setIsRegister] = useState(false);
-  const [isremember, setmemberme] = useState(Rememberme ? Rememberme : false);
+  const [isremember, setmemberme] = useState(Rememberme ? !!Rememberme : false);
   const { setItem } = useLocalStorage("userdata");
 
   const SavedcartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");

@@ -24,7 +24,7 @@ const Footer = () => {
       title: "Most Popular Products",
       content: (
         <ul className="space-y-1">
-          {["Product 5", "Product 7"].map((product, index) => (
+          {["Mens Premium Hoddie", "Full Sleve T-Shirt"].map((product, index) => (
             <li key={index}>{product}</li>
           ))}
         </ul>
@@ -34,7 +34,7 @@ const Footer = () => {
       title: "Shop Now",
       content: (
         <ul className="space-y-1">
-          {["Category 4", "Category 3", "Category 2", "Hoodie"].map(
+          {["Hoodie", "Jacket", "Polo Shirt", "T-Shirt"].map(
             (category, index) => (
               <li key={index}>{category}</li>
             )
@@ -46,9 +46,9 @@ const Footer = () => {
       title: "Contact Us",
       content: (
         <address className="not-italic space-y-1">
-          <p>Shamoly House: 32/1, Road: 03</p>
-          <p>01766681318</p>
-          <p>hello@deshicommerce.com</p>
+          <p>Miabazar Road, Cumilla</p>
+          <p>01615081141</p>
+          <p>satakib300@gmail.com</p>
         </address>
       ),
     },

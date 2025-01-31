@@ -23,7 +23,7 @@ const {setItem} = useLocalStorage('cartedProduct')
 
 const { setItem: setSelectedCartsItem } = useSelectedCartsStorage('selectedcarts')
 useEffect(() => {
-  if(cartedProduct.length > 0){
+  if(cartedProduct){
     setItem(cartedProduct);
   }
   setSelectedCartsItem(SelectedCarts)

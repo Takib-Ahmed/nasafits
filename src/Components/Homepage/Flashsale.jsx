@@ -6,7 +6,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
-export default function Flashsale({productDetails,setproduct}) {
+export default function Flashsale({productDetails}) {
 
 
 
@@ -57,7 +57,7 @@ export default function Flashsale({productDetails,setproduct}) {
             {productDetails.map((product) => (
               <Link key={product.id}   to={`/details/${product.id}`} className="   pt-0.5 sm:pb-1 md:pb-0 grid  sm:w-60 md:w-72 lg:w-80 gap-1 sm:gap-1.5 saleproduct bg-white     border-1  rounded-lg  overflow-hidden">
                       <div  onClick={()=>{
-                setproduct(product)
+              (product)
               }}>
                       <div className="cover p-0.5  sm:p-1  md:p-2 lg:p-2.5">
                         <img src={product.coverImage} alt={product.name} className="w-full   rounded-lg  overflow-hidden " />

@@ -225,7 +225,7 @@ const selectedFilterArray = Object.keys(selectedFilters).filter(
     <Route key={key} path={`/details/${product.id}`} element={ <Details product={product} setcartedproduct={setcartedproduct}  cartedProduct={cartedProduct}/>}></Route>
   ))}
       <Route path="/account" element={<AccountForm/>} />
-      <Route path="/cart" element={   <Cartpage SelectedCarts={SelectedCarts} setselectedcarts={setselectedcarts} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />} />
+      <Route path="/cart" element={<Cartpage SelectedCarts={SelectedCarts} setselectedcarts={setselectedcarts} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />} />
 
       </Routes>
    

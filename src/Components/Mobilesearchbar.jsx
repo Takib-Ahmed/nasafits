@@ -3,6 +3,7 @@ import { CiFilter } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import { FaFilter } from "react-icons/fa";
 import Sidedrawer from "./drawer";
+import { Link } from "react-router-dom";
 
 
 export default function Mobilesearch({ className, type, inputclass, filtermenuclass}) {
@@ -17,9 +18,10 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
           className={` bg-default-200   items-center flex justify-center p-2  ${filtermenuclass}`}
         >
           {" "}
-          <div className=" bg-black hover:bg-white hover:text-black transition-all duration-200 text-white  p-3 w-10 h-8 flex justify-center items-center  cursor-pointer ">
+          <Link to='/shop' className=" bg-black hover:bg-white hover:text-black transition-all duration-200 text-white  p-3 w-10 h-8 flex justify-center items-center  cursor-pointer ">
      <FaFilter/>
-          </div>
+     <Sidedrawer />
+          </Link>
         </div>
         <div>
           {" "}
