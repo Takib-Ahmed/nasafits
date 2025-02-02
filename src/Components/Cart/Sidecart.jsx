@@ -10,13 +10,27 @@ import { MdOpenInFull } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import Cartcard from "./Cartcard";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts}){
+export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,setselectedcarts}){
   const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
 
     const [showcart,setshowcart] = useState(false)
     const location = useLocation();
     const {setItem} = useLocalStorage('cartedProduct')
 
+  
+    
+    useEffect(() => {
+      const savedCartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");
+      
+      // Only update cartedProduct if it's empty (prevents overwriting)
+      if (cartedProduct.length === 0 && savedCartedProduct.length > 0) {
+        setcartedproduct(savedCartedProduct);
+      }else{
+        setItem(cartedProduct);
+      }
+    }, [cartedProduct,setcartedproduct,setItem]);  // Removed dependency to run only on mount
+    
+    
     return (
         <>
       {
@@ -37,13 +51,13 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts})
   }}>  <MdOpenInFull/></Link>
   
 </div>
-<div className="flex flex-col-reverse justify-start gap-2 py-2    overflow-y-scroll pt-0">
+<div className={`flex flex-col-reverse justify-start gap-2 py-2    overflow-y-scroll pt-0`}>
  
  
  {
   cartedProduct.length > 0 ?
   cartedProduct.map((product,key)=>(
-      <Cartcard product={product}   key={key} position={key} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />
+      <Cartcard setshowcart={setshowcart} product={product}   key={key} position={key} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} setselectedcarts={setselectedcarts} />
   
   )):<div className="h-96 flex flex-col gap-2 justify-center items-center text-center" onClick={()=>{
   setshowcart(false)

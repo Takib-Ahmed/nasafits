@@ -23,6 +23,7 @@ html{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+ 
 
 }
 
@@ -73,6 +74,13 @@ background: inherit !important;
 .mobilesearch{
  display: none !important;
  }
+ .input-field {
+  @apply border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500;
+}
+
+.payment-btn {
+  @apply border p-3 rounded-md text-center cursor-pointer ;
+}
 @media only screen and (max-width: 1500px){
 
   .shopcard{

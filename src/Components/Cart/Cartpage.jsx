@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { BsBagCheckFill } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useLocalStorage as useSelectedCartsStorage } from "../hooks/useLocalStorage";
+import { Button } from "@heroui/react";
 
 export default function Cartpage({cartedProduct,setcartedproduct,setselectedcarts,SelectedCarts}){
 
@@ -19,28 +20,25 @@ const totalDiscountprice = SelectedCarts.reduce((total, selectedcarts) => total 
 const totalQuantity = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.quantity, 0);
 const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
 const {setItem} = useLocalStorage('cartedProduct')
-        
+const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};       
 
 const { setItem: setSelectedCartsItem } = useSelectedCartsStorage('selectedcarts')
 useEffect(() => {
-  if(cartedProduct){
-    setItem(cartedProduct);
-  }
+
   setSelectedCartsItem(SelectedCarts)
 }, [cartedProduct, setItem,setSelectedCartsItem,SelectedCarts]);
 
 useEffect(() => {
-  const SavedcartedProduct = JSON.parse(localStorage.getItem('cartedProduct') || '[]');
-  const storedUser = JSON.parse(localStorage.getItem('userdata'));
-  if(storedUser && storedUser.cart.ischecked){
-    setcartedproduct(storedUser.cart);
-    console.log(storedUser.cart.ischecked)
+  const savedCartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");
+  
+  // Only update cartedProduct if it's empty (prevents overwriting)
+  if (cartedProduct.length === 0 && savedCartedProduct.length > 0) {
+    setcartedproduct(savedCartedProduct);
+  }else{
+    setItem(cartedProduct);
   }
-  else if(SavedcartedProduct.length > 0){
-    setcartedproduct(SavedcartedProduct);
-  }
+}, [cartedProduct,setcartedproduct,setItem]);  // Removed dependency to run only on mount
 
-}, [setcartedproduct]);
 
 
 
@@ -141,11 +139,13 @@ useEffect(() => {
    {/* Action Column */}
    <div className={`flex gap-2 justify-center  w-full     md:flex-col md:items-center  md:w-[18%] `}>
   
-<Link to={SelectedCarts.length > 0 && '/account'} className={`bg-green-600 w-full p-2  rounded-lg flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
+<Button className={`bg-green-600 w-full p-2  rounded-lg flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
+<Link to={SelectedCarts.length > 0 ? (Object.keys(storedUser).length === 0 ? '/account' : '/checkout') : ''} 
+      className={`bg-green-600 w-full p-2 rounded-lg flex gap-2 justify-center text-white items-center text-nowrap text-lg ${SelectedCarts.length > 0 ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
+  Checkout <BsBagCheckFill className="pt-0 text-medium mb-0.5" />
+</Link>
 
-  
-     Checkout   <BsBagCheckFill className="  pt-0 text-medium mb-0.5"/>
-  </Link>
+</Button>
     
    </div>
  </div>

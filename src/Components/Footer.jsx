@@ -1,7 +1,7 @@
 
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa";
-const Footer = () => {
+const Footer = ({setSelectedFilters}) => {
   const footerSections = [
     {
       title: "Follow Us",
@@ -33,10 +33,14 @@ const Footer = () => {
     {
       title: "Shop Now",
       content: (
-        <ul className="space-y-1">
-          {["Hoodie", "Jacket", "Polo Shirt", "T-Shirt"].map(
+        <ul className="space-y-3">
+          {["Hoodie", "Jacket", "Polo Shirt", "T Shirt"].map(
             (category, index) => (
-              <li key={index}>{category}</li>
+              <li  key={index} className=" cursor-pointer" onClick={()=>{
+                setSelectedFilters({[category.toLocaleLowerCase()]:true})
+                console.log()
+              }
+              } >{category}</li>
             )
           )}
         </ul>

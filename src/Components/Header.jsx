@@ -26,7 +26,7 @@ import HoverDropdown from "./Customdropdown";
 import { CgProfile } from "react-icons/cg";
 
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import Mobilesearch from "./Mobilesearchbar";
 import Sidedrawer from "./drawer";
 
@@ -63,7 +63,7 @@ import Sidedrawer from "./drawer";
     );
   };
   
-  export default function Header({showmbsearhbar,setshowsearchbar}) {
+  export default function Header({showmbsearhbar,setshowsearchbar,setSelectedFilters}) {
     const storedUser = JSON.parse(localStorage.getItem('userdata'));
 
     const location = useLocation();
@@ -120,12 +120,17 @@ import Sidedrawer from "./drawer";
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link  to='/shop' color="foreground" href="#">
+              <Link  to='/shop' color="foreground" href="#"  onClick={()=>{
+                setSelectedFilters({"winter collection":true})
+                console.log()
+              }}>
               Winter Collection
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link color="foreground" href="#" to='/shop'>
+              <Link color="foreground" href="#" to='/shop'  onClick={()=>{
+                setSelectedFilters({"flash sale":true})
+              }} >
                 Flash Sale
               </Link>
             </NavbarItem>
@@ -144,21 +149,18 @@ import Sidedrawer from "./drawer";
             }}
             placeholder="Type to search..."
             size="sm"
-            endContent={<IoIosSearch size={25}  className="Searchicn bg-black h-full   absolute right-0 w-10 p-2 text-white" onClick={()=>{
-              if (location.pathname.includes("/shop")) {
-                setshowsearchbar(false);
-            }
-            else{
+            endContent={<IoIosSearch size={25}  className=" cursor-pointer Searchicn bg-black h-full   absolute right-0 w-10 p-2 text-white" onClick={()=>{
+   
               setshowsearchbar((prev)=>!prev)
-            } 
+            
             }}/>}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
-          /> {showmbsearhbar && <Mobilesearch className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' />}
+          /> {showmbsearhbar && <Mobilesearch className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' location={location} />}
          <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
 
-<Link to='/account'  >    <Avatar
+<Link to={storedUser?'/profile':'/account'}  >    <Avatar
                 isBordered
                 as="button"
                 className="transition-transform    rounded-full  text-white"

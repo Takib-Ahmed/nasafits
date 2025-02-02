@@ -1,252 +1,298 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
-import './App.css'
-import Header from './Components/Header'
-import Slidershow from './Components/Homepage/Slidershow'
-import Categories from './Components/Homepage/Category'
-import Collection from './Components/Homepage/Collections'
-import Banner from './Components/Homepage/Banner'
-import Footer from './Components/Footer'
-import Flashsale from './Components/Homepage/Flashsale'
+import "./App.css";
+import Header from "./Components/Header";
+import Slidershow from "./Components/Homepage/Slidershow";
+import Categories from "./Components/Homepage/Category";
+import Collection from "./Components/Homepage/Collections";
+import Banner from "./Components/Homepage/Banner";
+import Footer from "./Components/Footer";
+import Flashsale from "./Components/Homepage/Flashsale";
 
-import Hoodies from './Components/Homepage/cc'
-import Dealsubscribe from './Components/Subscribe'
-import Details from './Components/Details/details'
-import Cartpage from './Components/Cart/Cartpage'
-import Sidecart from './Components/Cart/Sidecart'
-import AccountForm from './Components/Login_SignUp/AccountForm'
-import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
-import Homepage from './Components/Homepage/Homepage'
+import Hoodies from "./Components/Homepage/cc";
+import Dealsubscribe from "./Components/Subscribe";
+import Details from "./Components/Details/details";
+import Cartpage from "./Components/Cart/Cartpage";
+import Sidecart from "./Components/Cart/Sidecart";
+import AccountForm from "./Components/Login_SignUp/AccountForm";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import Homepage from "./Components/Homepage/Homepage";
 import { HeroUIProvider } from "@heroui/react";
-import Shop from './Components/Search_shop/Shoppage'
-
+import Shop from "./Components/Search_shop/Shoppage";
+import Context from "./contexts/Context";
+import AccountPage from "./Components/Profile/Account";
+import Checkout from "./Components/Checkout/Checkoutpage";
 
 function App() {
-const productDetails = [
+  const productDetails = [
     {
-        id: 1,
-        coverImage: "/collections/edited/black.png",
-        name: "Mens Premium Polo Black",
-        category: 'polo shirt',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["new arrival", "best selling", "summer"],
-        images: [
-            "/collections/black.png",
-            "/collections/black.png",
-            "/collections/black.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    },
-    {
-        id: 2,
-        coverImage: "/collections/edited/gray.png",
-        name: "Mens Premium T-Shirt - Gray",
-        category: 't shirt',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["featured", "best selling", "summer"],
-        images: [
-            "/collections/gray.png",
-            "/collections/gray.png",
-            "/collections/gray.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    },
-    {
-        id: 3,
-        coverImage: "/collections/edited/itachi.png",
-        name: "Mens Premium Hoodie Itachi",
-        category: 'hoodie',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["best selling", "winter"],
-        images: [
-            "/collections/itachi2.png",
-            "/collections/itachi2.png",
-            "/collections/itachi2.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    },
-    {
-        id: 4,
-        coverImage: "/collections/edited/ai.png",
-        name: "Mens Premium Hoodie AI",
-        category: 'hoodie',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["winter", "flash sale"],
-        images: [
-            "/collections/ai2.png",
-            "/collections/ai2.png",
-            "/collections/ai2.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    },
-    {
-        id: 5,
-        coverImage: "/collections/edited/brown.png",
-        name: "Mens Premium Hoodie Browny",
-        category: 'hoodie',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["winter"],
-        images: [
-            "/collections/brown2.png",
-            "/collections/brown2.png",
-            "/collections/brown2.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    },
-    {
-        id: 6,
-        coverImage: "/collections/edited/red jacket.png",
-        name: "Mens Premium Jacket - Red",
-        category: 'hoodie',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["new arrival", "winter"],
-        images: [
-            "/collections/red jacket.png",
-            "/collections/red jacket.png",
-            "/collections/red jacket.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    },
-    {
-        id: 7,
-        coverImage: "/collections/edited/red.png",
-        name: "Mens Premium Hoodie - Red",
-        category: 'hoodie',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["best selling", "winter", "flash sale"],
-        images: [
-            "/collections/red2.png",
-            "/collections/red2.png",
-            "/collections/red2.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    },
-    {
-        id: 8,
-        coverImage: "/collections/edited/itachi.png",
-        name: "Mens Premium Hoodie Itachi",
-        category: 'hoodie',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["best selling", "winter", "flash sale"],
-        images: [
-            "/collections/itachi2.png",
-            "/collections/itachi2.png",
-            "/collections/itachi2.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    },
-    {
-        id: 9,
-        coverImage: "/collections/edited/green.png",
-        name: "Mens Premium Hoodie Green",
-        category: 'hoodie',
-        for: 'Men',
-        save: 200,
-        mainPrice: 1000,
-        discountPrice: 800,
-        showcases: ["new arrival", "winter"],
-        images: [
-            "/collections/green2.png",
-            "/collections/green2.png",
-            "/collections/green2.png"
-        ],
-        sizes: ["M", "L", "XL", "2XL"]
-    }
-];
-
-    
-
-    const [product,setproduct] = useState({
       id: 1,
-      coverImage: "/collections/edited/ai.png",
-      name: "Mens Premium Hoodie Itachi - Tsukuyomi",
-      category:'hoddie',
+      coverImage: "/collections/edited/black.png",
+      name: "Mens Premium Polo Black",
+      category: ["polo shirt"],
+      for: ["men"],
       save: 200,
       mainPrice: 1000,
       discountPrice: 800,
+      showcases: ["new arrival", "best selling", "summer", "top selling"],
+      images: [
+        "/collections/black.png",
+        "/collections/black.png",
+        "/collections/black.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+    {
+      id: 2,
+      coverImage: "/collections/edited/gray.png",
+      name: "Mens Premium T-Shirt - Gray",
+      category: ["t shirt"],
+      for: ["men"],
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      showcases: ["featured", "best selling", "summer"],
+      images: [
+        "/collections/gray.png",
+        "/collections/gray.png",
+        "/collections/gray.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+    {
+      id: 3,
+      coverImage: "/collections/edited/itachi.png",
+      name: "Mens Premium Hoodie Itachi",
+      category: ["hoodie"],
+      for: ["men"],
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      showcases: ["best selling", "winter collection", "top selling"],
+      images: [
+        "/collections/itachi2.png",
+        "/collections/itachi2.png",
+        "/collections/itachi2.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+    {
+      id: 4,
+      coverImage: "/collections/edited/ai.png",
+      name: "Mens Premium Hoodie AI",
+      category: ["hoodie"],
+      for: ["men"],
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      showcases: ["winter collection", "flash sale"],
       images: [
         "/collections/ai2.png",
         "/collections/ai2.png",
-        "/collections/ai2.png"
+        "/collections/ai2.png",
       ],
-      sizes: ["M", "L", "XL", "2XL"]
-    },)
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+    {
+      id: 5,
+      coverImage: "/collections/edited/brown.png",
+      name: "Mens Premium Hoodie Browny",
+      category: ["hoodie"],
+      for: ["men"],
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      showcases: ["winter collection", "top selling"],
+      images: [
+        "/collections/brown2.png",
+        "/collections/brown2.png",
+        "/collections/brown2.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+    {
+      id: 6,
+      coverImage: "/collections/edited/red jacket.png",
+      name: "Mens Premium Jacket - Red",
+      category: ["jacket"],
+      for: ["men"],
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      showcases: ["new arrival", "winter collection"],
+      images: [
+        "/collections/red jacket.png",
+        "/collections/red jacket.png",
+        "/collections/red jacket.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+    {
+      id: 7,
+      coverImage: "/collections/edited/red.png",
+      name: "Mens Premium Hoodie - Red",
+      category: ["hoodie"],
+      for: ["men"],
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      showcases: ["best selling", "winter collection", "flash sale"],
+      images: [
+        "/collections/red2.png",
+        "/collections/red2.png",
+        "/collections/red2.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+    {
+      id: 8,
+      coverImage: "/collections/edited/itachi.png",
+      name: "Mens Premium Hoodie Itachi",
+      category: ["hoodie"],
+      for: ["men"],
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      showcases: [
+        "best selling",
+        "winter collection",
+        "flash sale",
+        "top selling",
+      ],
+      images: [
+        "/collections/itachi2.png",
+        "/collections/itachi2.png",
+        "/collections/itachi2.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+    {
+      id: 9,
+      coverImage: "/collections/edited/green.png",
+      name: "Mens Premium Hoodie Green",
+      category: ["hoodie"],
+      for: ["men"],
+      save: 200,
+      mainPrice: 1000,
+      discountPrice: 800,
+      showcases: ["new arrival", "winter collection"],
+      images: [
+        "/collections/green2.png",
+        "/collections/green2.png",
+        "/collections/green2.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    },
+  ];
+  
 
-    const [showmbsearhbar,setshowsearchbar] = useState(false)
-    
-    const [cartedProduct,setcartedproduct] = useState([ ])
-    const [SelectedCarts,setselectedcarts] = useState([])
-    const {id} = useParams()
-    const detailedproduct =  productDetails.find((iteam)=>iteam.id == parseInt(id))
-          useEffect(() => {
-setproduct(detailedproduct)}, [detailedproduct,id])
-const [selectedFilters, setSelectedFilters] = useState({});
-const selectedFilterArray = Object.keys(selectedFilters).filter(
-  (key) => selectedFilters[key] === true
-);
+  const [product, setproduct] = useState({
+    id: 1,
+    coverImage: "/collections/edited/ai.png",
+    name: "Mens Premium Hoodie Itachi - Tsukuyomi",
+    category: "hoddie",
+    save: 200,
+    mainPrice: 1000,
+    discountPrice: 800,
+    images: [
+      "/collections/ai2.png",
+      "/collections/ai2.png",
+      "/collections/ai2.png",
+    ],
+    sizes: ["M", "L", "XL", "2XL"],
+  });
+
+  const [showmbsearhbar, setshowsearchbar] = useState(false);
+
+  const [cartedProduct, setcartedproduct] = useState([]);
+  const [SelectedCarts, setselectedcarts] = useState([]);
+  const { id } = useParams();
+  const detailedproduct = productDetails.find(
+    (iteam) => iteam.id == parseInt(id)
+  );
+  useEffect(() => {
+    setproduct(detailedproduct);
+  }, [detailedproduct, id]);
+  const [selectedFilters, setSelectedFilters] = useState({});
+  const selectedFilterArray = Object.keys(selectedFilters).filter(
+    (key) => selectedFilters[key] === true
+  );
+  const filteredProducts =
+    selectedFilterArray.length === 0
+      ? productDetails
+      : productDetails.filter((product) =>
+          selectedFilterArray.every(
+            (filter) =>
+              product.category.includes(filter.toLocaleLowerCase()) ||
+              product.showcases.includes(filter.toLocaleLowerCase()) ||
+              product.for.includes(filter.toLocaleLowerCase())
+          )
+        );
+
   return (
     <>
-    <BrowserRouter >
-    <HeroUIProvider >
-   <Header  showmbsearhbar={showmbsearhbar} setshowsearchbar={setshowsearchbar}/>
-   <Sidecart cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} SelectedCarts={SelectedCarts}/>
+      <BrowserRouter>
+        <Context.Provider value={{ setSelectedFilters, selectedFilters }}>
+          <HeroUIProvider>
+            <Header
+              showmbsearhbar={showmbsearhbar}
+              setshowsearchbar={setshowsearchbar}
+              setSelectedFilters={setSelectedFilters}
+            />
+            <Sidecart
+   SelectedCarts={SelectedCarts}
+   setselectedcarts={setselectedcarts}
+   cartedProduct={cartedProduct}
+   setcartedproduct={setcartedproduct}
+            />
 
-    <Routes>
-      <Route path="/" element={<Homepage  productDetails={productDetails} />} />
+            <Routes>
+              <Route
+                path="/"
+                element={<Homepage productDetails={productDetails} />}
+              />
 
+              <Route path="/profile" element={<AccountPage />} />
+              <Route path="/checkout" element={<Checkout
+              SelectedCarts={SelectedCarts} />} />
+              <Route
+                path="/shop"
+                element={<Shop filteredProducts={filteredProducts} />}
+              />
+              {productDetails.map((product, key) => (
+                <Route
+                  key={key}
+                  path={`/details/${product.id}`}
+                  element={
+                    <Details
+                      product={product}
+                      setcartedproduct={setcartedproduct}
+                      cartedProduct={cartedProduct}
+                    />
+                  }
+                ></Route>
+              ))}
+              <Route path="/account" element={<AccountForm />} />
+              <Route
+                path="/cart"
+                element={
+                  <Cartpage
+                    SelectedCarts={SelectedCarts}
+                    setselectedcarts={setselectedcarts}
+                    cartedProduct={cartedProduct}
+                    setcartedproduct={setcartedproduct}
+                  />
+                }
+              />
+            </Routes>
 
-
-   <Route path='/shop' element={<Shop productDetails={productDetails} />} />
-  {productDetails.map((product,key)=>(
-    <Route key={key} path={`/details/${product.id}`} element={ <Details product={product} setcartedproduct={setcartedproduct}  cartedProduct={cartedProduct}/>}></Route>
-  ))}
-      <Route path="/account" element={<AccountForm/>} />
-      <Route path="/cart" element={<Cartpage SelectedCarts={SelectedCarts} setselectedcarts={setselectedcarts} cartedProduct={cartedProduct} setcartedproduct={setcartedproduct} />} />
-
-      </Routes>
-   
- 
-  <Dealsubscribe/>
-<Footer/>
-</HeroUIProvider>
-</BrowserRouter>
-
-
-
-
-
-  
- 
-
-
-
-
+            <Dealsubscribe />
+            <Footer setSelectedFilters={setSelectedFilters} />
+          </HeroUIProvider>
+        </Context.Provider>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

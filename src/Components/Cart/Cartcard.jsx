@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
+import { Checkbox } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { IoTrash } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-export default function Cartcard({product,type,position,cartedProduct,setcartedproduct,setselectedcarts}){
+export default function Cartcard({product,type,position,cartedProduct,setcartedproduct,setselectedcarts,setshowcart}){
 
        useEffect(() => {
         setcartedproduct((prev) =>
@@ -36,21 +37,39 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
           setselectedcarts && setselectedcarts(checkedProducts);
         }, [cartedProduct, setselectedcarts]);
   
+
+
+
+
     return (
     
-      <div
+      <label
    
-      className={`flex flex-wrap justify-between items-center px-1 border-b bg-white ${type === 'maincart' ? 'md:flex-nowrap gap-1 md:gap-0 md:px-4 lg:mx-14 py-2' : 'w-full gap-1 px-4 py-3'}`}
-    >
+      className={`   cursor-pointer flex flex-wrap justify-between items-center px-1 border-b bg-white ${type === 'maincart' ? 'md:flex-nowrap gap-1 md:gap-0 md:px-4 lg:mx-14 py-2' : 'w-full gap-1 px-4 py-3'}` }
+      onClick={(e)=>{
+        e.stopPropagation()
+      }} >
       {/* Product Column */}
 
-      <div className={`flex items-center gap-2 lg:gap-2.5 flex-row-reverse md:flex-row ${type === 'maincart' ? 'w-full md:w-[20%] md:flex-nowrap' : ''}`}>
-      <input type="checkbox" name="" id=""  className="  scale-150 md:scale-125"  checked={product.Ischecked || false}
-      onChange={(e)=>{
-        handleCheckboxChange(e)
-      }}/>
+      <div className={`flex items-center gap-2 lg:gap-2.5 flex-row-reverse md:flex-row ${type === 'maincart' ? '  w-[100%]  overflow-hidden md:overflow-visible  md:w-[20%] md:flex-nowrap' : ''}`}>
+
+      <Checkbox 
+    
+  size="sm" 
+  type="checkbox" 
+  id="checked"  
+  className=" md:scale-125"  
+  defaultSelected={product.Ischecked ? true : false}  // ✅ Controlled component
+  onChange={(e) => handleCheckboxChange(e)}
+/>
+
+        
+    
+
   <div className={`flex items-center gap-2 lg:gap-4 ${type === 'maincart' ? 'w-full  md:flex-nowrap' : ''}`}> 
-  <Link to={`/details/${product.id}`} className="cover ">
+  <Link to={`/details/${product.id}`} className="cover " onClick={(e)=>{
+    e.stopPropagation()
+  }}>
          
          <img
            src={product.coverImage}
@@ -58,7 +77,9 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
            className="w-32 object-cover"
          />
        </Link>
-       <Link to={`/details/${product.id}`} className="title font-semibold break-words w-full hover:text-blue-500 cursor-pointer">
+       <Link to={`/details/${product.id}`} className="title font-semibold break-words w-full hover:text-blue-500 cursor-pointer" onClick={(e)=>{
+    e.stopPropagation()
+  }}>
          <h3>{product.name}</h3>
        </Link>
 
@@ -106,12 +127,18 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
       </div>
     
       {/* Quantity Column */}
-      <div className={`flex justify-between ${type === 'maincart' ? 'w-full md:w-[15%] md:justify-center' : 'w-full my-2 mb-0'}`}>
-        <div className="flex gap-2 items-center md:w-28">
+      <div className={`flex justify-between ${type === 'maincart' ? 'w-full md:w-[15%] md:justify-center' : 'w-full my-2 mb-0'}`}
+      
+      
+      onClick={(e)=>{
+        e.stopPropagation()
+    }}>
+        <div className="flex gap-2 items-center md:w-28"  >
           <FaMinus
             className="border border-black cursor-pointer w-6 h-6 p-1 hover:bg-black hover:text-white transition-all duration-300"
-            onClick={() => {
-   
+            onClick={(e) => {
+    e.stopPropagation()
+    e.preventDefault();
               setcartedproduct((prev) =>
                 prev.map((carted) =>
                   carted.id === product.id && carted.selectedsize === product.selectedsize
@@ -120,10 +147,16 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
                 ))
             }}
           />
-          <p className="  select-none">{product.quantity}</p>
+          <p className="  select-none"
+          onClick={(e)=>{
+            e.stopPropagation()
+            e.preventDefault()
+        }}>{product.quantity}</p>
           <FaPlus
             className="border border-black cursor-pointer w-6 h-6 p-1 hover:bg-black hover:text-white transition-all duration-300"
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation() 
+              e.preventDefault()
               setcartedproduct((prev) =>
                 prev.map((carted) =>
                   carted.id === product.id && carted.selectedsize === product.selectedsize
@@ -142,9 +175,12 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
     
       {/* Action Column */}
       <div className={`flex gap-2 justify-between ${type === 'maincart' ? 'w-full md:w-[20%] md:flex-col md:items-end' : 'w-full'}`}>
-   <Link to={`/details/${product.id}`} className={`bg-sky-500 px-2 py-1 cursor-pointer flex gap-2 justify-center text-white text-xs lg:text-sm items-center w-full  text-nowrap ${type=='maincart' && 'md:w-auto'}`}>
+   <Link  onClick={()=>{
+    setshowcart(false)
+   }} to={`/details/${product.id}`} className={`bg-sky-500 px-2 py-1 cursor-pointer flex gap-2 justify-center text-white text-xs lg:text-sm items-center w-full  text-nowrap ${type=='maincart' && 'md:w-auto'}`}>
 
           <FaPlus />
+
           Add another Size
      </Link>
         <p className={`bg-red-600 cursor-pointer flex justify-center text-white w-full  overflow-hidden items-center ${type=='maincart' && 'md:w-fit'}`} 
@@ -158,7 +194,7 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
           <IoTrash className="mt-0.5" size={20} />
         </p>
       </div>
-    </div>
+    </label>
     
     );
 }

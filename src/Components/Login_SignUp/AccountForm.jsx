@@ -3,14 +3,15 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useLocalStorage as userememberme } from "../hooks/useLocalStorage";
 import { Link } from "react-router-dom";
 
-const AccountForm = () => {
+const AccountForm = () => {  
+  const { setItem } = useLocalStorage("userdata");
   const { setItem: setremeberme } = userememberme("rememberme");
   const Rememberme = JSON.parse(localStorage.getItem("rememberme"));
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
   
   const [isRegister, setIsRegister] = useState(false);
   const [isremember, setmemberme] = useState(Rememberme ? !!Rememberme : false);
-  const { setItem } = useLocalStorage("userdata");
+
 
   const SavedcartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");
 
