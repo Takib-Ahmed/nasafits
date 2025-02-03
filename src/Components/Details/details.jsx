@@ -17,6 +17,7 @@ export default function Details({product,setcartedproduct,cartedProduct}){
   const[cartproduct,setcartprouct] = useState(product)
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
   const sliderRef = useRef(null);
+  const [productUrl,setProductUrl] = useState()
    var settings = {
         dots: false,
         
@@ -120,7 +121,7 @@ export default function Details({product,setcartedproduct,cartedProduct}){
                               <div className="flex gap-5">
                               {product.sizes.map((size,key)=>( <p onClick={()=>{
                                 setselectedsize(size)
-                          
+                                setProductUrl(location.href)
 
                               }} className={ `border border-black p-1 cursor-pointer  w-12 text-center ${selectedsize== size && 'bg-black text-white'}`} key={key}>{size}</p>)
                                
@@ -151,13 +152,13 @@ export default function Details({product,setcartedproduct,cartedProduct}){
                       setcartedproduct((prev) =>
                         prev.map((carted) =>
                           carted.id === product.id && carted.selectedsize === selectedsize
-                            ? { ...carted, quantity: carted.quantity + quantity,
+                            ? { ...carted, quantity: carted.quantity + quantity,ProductAdress:productUrl
                               
-                             }:carted
+                             }:{...carted,ProductAdress:productUrl}
                             
                         ))
                     } else {
-                      setcartedproduct((prev) => [...prev, cartproduct]);
+                      setcartedproduct((prev) => [...prev, {...cartproduct,ProductAdress:productUrl}]);
                    
                     }
                   }

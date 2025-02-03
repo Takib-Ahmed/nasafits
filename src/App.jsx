@@ -22,6 +22,7 @@ import Shop from "./Components/Search_shop/Shoppage";
 import Context from "./contexts/Context";
 import AccountPage from "./Components/Profile/Account";
 import Checkout from "./Components/Checkout/Checkoutpage";
+import ScrollToTop from "./Components/ScrollToTop";
 
 function App() {
   const productDetails = [
@@ -203,9 +204,9 @@ function App() {
   });
 
   const [showmbsearhbar, setshowsearchbar] = useState(false);
-
-  const [cartedProduct, setcartedproduct] = useState([]);
-  const [SelectedCarts, setselectedcarts] = useState([]);
+  const savedCartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");
+  const [cartedProduct, setcartedproduct] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
+  const [SelectedCarts, setselectedcarts] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
   const { id } = useParams();
   const detailedproduct = productDetails.find(
     (iteam) => iteam.id == parseInt(id)
@@ -229,6 +230,7 @@ function App() {
           )
         );
 
+   
   return (
     <>
       <BrowserRouter>
@@ -245,6 +247,7 @@ function App() {
    cartedProduct={cartedProduct}
    setcartedproduct={setcartedproduct}
             />
+            <ScrollToTop/>
 
             <Routes>
               <Route

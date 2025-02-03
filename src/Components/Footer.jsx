@@ -1,7 +1,11 @@
 
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Footer = ({setSelectedFilters}) => {
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0); // Scroll to the top
+  };
   const footerSections = [
     {
       title: "Follow Us",
@@ -33,14 +37,14 @@ const Footer = ({setSelectedFilters}) => {
     {
       title: "Shop Now",
       content: (
-        <ul className="space-y-3">
+        <ul className="space-y-3 flex flex-col">
           {["Hoodie", "Jacket", "Polo Shirt", "T Shirt"].map(
             (category, index) => (
-              <li  key={index} className=" cursor-pointer" onClick={()=>{
+              <Link hrefLang=""   to='/shop'  key={index} className=" cursor-pointer" onClick={()=>{
                 setSelectedFilters({[category.toLocaleLowerCase()]:true})
-                console.log()
+                handleScrollToTop()
               }
-              } >{category}</li>
+              } >{category}</Link>
             )
           )}
         </ul>

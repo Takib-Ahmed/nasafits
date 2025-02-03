@@ -1,17 +1,74 @@
+/* eslint-disable react/prop-types */
 import { Autocomplete, AutocompleteItem, Button, Checkbox, Textarea } from "@heroui/react";
 import { Input } from "@nextui-org/react";
-import { useState } from "react";
-
-const Checkout = ({SelectedCarts}) => {
+import { useEffect, useState } from "react";
+import { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+const Checkout = ({ SelectedCarts }) => {
   const [paymentMethod, setPaymentMethod] = useState("cod"); // Default payment method
-  const [selectedCity, setSelectedCity] = useState("-- Select Your City --");
-  // Dummy product data (You can replace this with actual cart data)
-  const totalAmount = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.discountPrice * selectedcarts.quantity, 0);
+  const [selectedCity, setSelectedCity] = useState("");
+  const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
+  const [inputName,setinputname] = useState()
+  // User input state
+  const [Order, setOrder] = useState({
+    fullName: storedUser.name ? storedUser.name :'',
+    email:  storedUser.email ? storedUser.email:'',
+    phoneNumber: storedUser.phone ? storedUser.phone:'',
+    detailedAddress: "",
+    note: "",
+    altPhone: "",
+    couponCode: "",
+    agreeTerms: false,
+    Id:Date.now(),
+    Products:SelectedCarts,
+
+    
+  });
+const [Orderhistory,setOrderhistory] = useState([])
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setOrder((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value
+    }));
+    setinputname(name)
+  };
+  const handleClear = (name) => {
+  
+     if(name){
+      setOrder((prevData) => ({
+        ...prevData,
+         [name]:''
+      }));
+     }
+    
+  
+
+  };
+  const handleCleardes = () => {
+  
+   
+     setOrder((prevData) => ({
+       ...prevData,
+        [inputName]:''
+     }));
+    
+   
+ 
+
+ };
+
+  const totalAmount = SelectedCarts.reduce(
+    (total, cart) => total + cart.discountPrice * cart.quantity,
+    0
+  );
+  const shippingCost = 60;
+  const payableAmount = totalAmount + shippingCost; 
 
   const cities = [
     "Dhaka", "Savar", "Nabinagar", "Ashulia", "Keraniganj", "Tongi", "Bagerhat",
     "Bandarban", "Barguna", "Barisal", "Bhola", "Bogra", "Brahmanbaria", "Chandpur",
-    "Chapainawabganj", "Chittagong", "Chuadanga", "Comilla", "Coxs Bazar",
+    "Chapainawabganj", "Chittagong", "Chuadanga", "Cumilla", "Coxs Bazar",
     "Dinajpur", "Faridpur", "Feni", "Gaibandha", "Gazipur", "Gopalganj", "Habiganj",
     "Jamalpur", "Jessore", "Jhalokathi", "Jhenaidah", "Joypurhat", "Khagrachari",
     "Khulna", "Kishoreganj", "Kurigram", "Kushtia", "Lakshmipur", "Lalmonirhat",
@@ -21,114 +78,159 @@ const Checkout = ({SelectedCarts}) => {
     "Pirojpur", "Rajbari", "Rajshahi", "Rangamati", "Rangpur", "Satkhira",
     "Shariatpur", "Sherpur", "Sirajganj", "Sunamganj", "Sylhet", "Tangail", "Thakurgaon"
   ];
-  
+  const sendEmail = (Placedorder) => {
+    const templateParams = {
+      Order_id:Placedorder.Id,
+      full_name: Placedorder.fullName,
+      email: Placedorder.email,
+      phone_number: Placedorder.phoneNumber,
+      alt_phone: Placedorder.altPhone,
+      city: Placedorder.city,
+      address: Placedorder.detailedAddress,
+      coupon_code: Placedorder.couponCode,
+      payment_method: Placedorder.paymentMethod,
+      total_amount: Placedorder.totalAmount,
+      note: Placedorder.note,
+      agree_Terms:Placedorder.agreeTerms,
+      products_list: Placedorder.Products.map(
+        (product) =>
+        `${product.name} 
+        Size: ${product.selectedsize}, 
+        Quantity: ${product.quantity}, 
+        URL: ${product.ProductAdress}, 
+        Id: ${product.id}`
+      ).join('\n')
+    };
+    console.log(Placedorder.Products)
+   
+    emailjs
+      .send('service_q26jdmu', 'template_64jstfk', templateParams, {
+        publicKey: 'UhFs-e6E1DIJ4bSAw',
+      })
+      .then(
+        () => {
+          console.log('Email sent successfully!');
+       
+        },
+        (error) => {
+          console.log('Failed to send email:', error.text);
+        },
+      );
+  };
 
-  const shippingCost = 60;
-  const payableAmount = totalAmount + shippingCost;
+  const handleSubmit = () => {
+    if(Order.agreeTerms && Order.fullName!='' && Order.phoneNumber!='' && Order.email!='' && selectedCity!='' ){
+
+      const Placedorder = {
+        ...Order,
+        city: selectedCity,
+
+        paymentMethod,
+        totalAmount: totalAmount + shippingCost
+      };
+      setOrderhistory((prev)=>[...prev,Placedorder])
+   console.log(Orderhistory)
+   sendEmail(Placedorder);
+    }
+    else{
+      alert('Plz fill all the inputs')
+    }
+
+    // Backend API call or further processing
+  };
+
+
+
+
+
+
+
+
+ 
 
   return (
-    <div className=" mx-auto py-20 px-5 sm:px-10 lg:p-20   bg-white shadow-md rounded-md ">
-      <h2 className="text-3xl font-bold text-center pb-10">Checkout Info</h2>
+    <div className="mx-auto py-20 px-5 sm:px-10 lg:p-20 bg-white shadow-md rounded-md">
+      <h2 className="text-3xl font-bold text-center pb-10"  onClick={()=>{
+      
+       
+      }}>Checkout Info</h2>
 
-      <div className=" flex flex-col-reverse lg:flex-row justify-around gap-5 flex-wrap lg:flex-nowrap ">
-        {/* Left Section - User Info */}
+      <div className="flex flex-col-reverse lg:flex-row justify-around gap-5 flex-wrap lg:flex-nowrap">
         <div className="w-full md:px-5 lg:px-10">
           <h3 className="font-bold text-lg mb-2">Contact Info</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-    
-            <Input
-      isClearable
-      className="lg:max-w-xs"
-  
-      label="Full Name"
-     
-      type="name"
-      variant="bordered"
-isRequired
-  
-    />
-            <Input
-      isClearable
-    className="lg:max-w-xs"
-   isRequired
-      label="Email"
-     
-      type="email"
-      variant="bordered"
-  
-     
-    />
-       
-            <Input
-      isClearable
-className="lg:max-w-xs"
-  
-      label="Phone Number"
-    isRequired
-      type="name"
-      variant="bordered"
-
-     
-    />
+            {[
+              { label: "Full Name", name: "fullName", type: "text" },
+              { label: "Email", name: "email", type: "email" },
+              { label: "Phone Number", name: "phoneNumber", type: "text" }
+            ].map((field) => (
+              <Input
+                key={field.name}
+                isClearable
+                className="lg:max-w-xs"
+                label={field.label}
+                name={field.name}
+                type={field.type}
+                variant="bordered"
+                value={Order[field.name]}
+                onChange={handleChange}
+                isRequired
+               onClear={()=>{
+                handleClear([field.name])
+               }}
+              />
+            ))}
           </div>
 
           <h3 className="font-bold text-lg mb-2">Shipping Info</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <Textarea
-    className="lg:max-w-xs"
-    isRequired
-      label="Detailed Address"
- 
-      variant="bordered"
-    />
-          
-          <Textarea
- className="lg:max-w-xs"
-    isRequired
-      label="Note (Optional)"
-     variant="bordered"
- 
-    />
-      
-          
- 
-            <div className="lg:max-w-xs">
-   
-   <Autocomplete
-     label="Select Your City"
-    variant="bordered"
-     defaultItems={cities.map((city) => ({ label: city, key: city }))}
-     selectedKey={selectedCity}
-     onSelectionChange={setSelectedCity}
-     className="w-full"
-     isRequired
-   >
-     {(item) => (
-       <AutocompleteItem key={item.key}>{item.label}</AutocompleteItem>
-     )}
-   </Autocomplete>
+            {[
+              { label: "Detailed Address", name: "detailedAddress" },
+              { label: "Note (Optional)", name: "note" }
+            ].map((field) => (
+              <Textarea
+                key={field.name}
+                className="lg:max-w-xs"
+                label={field.label}
+                name={field.name}
+                variant="bordered"
+                value={Order[field.name]}
+                onChange={handleChange}
+                isRequired={field.name !== "note"}
+                isClearable = { Order[field.name]!='' ?true:false}
+                
+             onClear={Order[field.name]!='' && handleCleardes}
+              />
+            ))}
 
- 
- </div>
+            <Autocomplete
+              label="Select Your City"
+              variant="bordered"
+              defaultItems={cities.map((city) => ({ label: city, key: city }))}
+              selectedKey={selectedCity}
+              onSelectionChange={setSelectedCity}
+              className="lg:max-w-xs"
+              isRequired
+            >
+              {(item) => <AutocompleteItem key={item.key}>{item.label}</AutocompleteItem>}
+            </Autocomplete>
 
- <Input
-      isClearable
-  className="lg:max-w-xs"
-  
-      label="Alt. Phone (Optional)"
-
-      type="name"
-      variant="bordered"
-
-     
-    />
-
-
-
-
+            <Input
+              isClearable
+              className="lg:max-w-xs"
+              label="Alt. Phone (Optional)"
+              name="altPhone"
+              type="text"
+              variant="bordered"
+              value={Order.altPhone}
+              onChange={handleChange}
+              onClear={()=>{
+                handleClear(['altPhone'])
+               }}
+            />
           </div>
 
-          <div className="bg-gray-100 p-6  mb-4 text-center  w-full rounded-lg">
+      <div className="bg-gray-100 p-6  mb-4 text-center  w-full rounded-lg">
   <h3 className="text-lg font-semibold">Your total payable amount is</h3>
   <p className="text-2xl font-bold text-green-600">৳{payableAmount}</p>
 
@@ -161,56 +263,59 @@ className="lg:max-w-xs"
   </p>
 </div>
 
-
-          {/* Payment Options */}
           <h3 className="font-bold mb-2">Payment Options</h3>
           <div className="flex space-x-4 mb-4">
-            <button
-              className={`payment-btn ${paymentMethod === "cod" ? "border-green-500 bg-green-500 text-white" : ""}`}
-              onClick={() => setPaymentMethod("cod")}
-            >Delivery Payment</button>
-            <button
-              className={`payment-btn ${paymentMethod === "card" ? "border-green-500 bg-green-500 text-white" : ""}`}
-              onClick={() => setPaymentMethod("card")}
-            >Full Payment</button>
-   
+            {[
+              { label: "Delivery Payment", method: "cod" },
+              { label: "Full Payment", method: "card" }
+            ].map((option) => (
+              <button
+                key={option.method}
+                className={`payment-btn ${
+                  paymentMethod === option.method ? "border-green-500 bg-green-500 text-white" : ""
+                }`}
+                onClick={() => setPaymentMethod(option.method)}
+              >
+                {option.label}
+              </button>
+            ))}
           </div>
 
-          {/* Coupon Code */}
           <div className="flex space-x-2 mb-4">
-          <Input
-      isClearable
-      className="max-w-xs  flex-1 "
-  
-      label="Enter Coupon Code Here"
-
-      type="name"
-      variant="bordered"
-size="sm"
-     
-    />
-
-<Button radius="lg" size="lg"  className="bg-blue-500 text-white px-4 py-2 rounded-md">Add Coupon</Button>
-   
+            <Input
+              isClearable
+              className="max-w-xs flex-1"
+              label="Enter Coupon Code Here"
+              name="couponCode"
+              type="text"
+              variant="bordered"
+              value={Order.couponCode}
+              onChange={handleChange}
+              onClear={()=>{
+                handleClear(['couponCode'])
+               }}
+              size="sm"
+            />
+            <Button radius="lg" size="lg" className="bg-blue-500 text-white px-4 py-2 rounded-md">
+              Add Coupon
+            </Button>
           </div>
 
-          {/* Terms & Confirm Order */}
           <div className="mb-4">
-        
-       
-            <label   className=" text-medium cursor-pointer">
-            <Checkbox  size="sm"  type="checkbox" id="terms" className="  -translate-y-0.5" >
-
-</Checkbox>
-              I agree to the <span className="text-blue-500">Terms & Conditions, Refund Policy</span> and
-              <span className="text-blue-500"> Privacy Policy</span>.
-            </label>
+            <Checkbox
+              size="sm"
+              name="agreeTerms"
+              checked={Order.agreeTerms}
+              onChange={handleChange}
+            >
+              I agree to the <span className="text-blue-500">Terms & Conditions</span>, <span className="text-blue-500">Refund Policy</span>, and <span className="text-blue-500">Privacy Policy</span>.
+            </Checkbox>
           </div>
-          <Button radius="lg" size="lg"  className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-bold">Confirm Order</Button>
- 
-        </div>
 
-        {/* Right Section - Cart Overview */}
+          <Button onClick={handleSubmit} radius="lg" size="lg" className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-bold">
+            Confirm Order
+          </Button>
+        </div>
         <div className=" w-full lg:w-[75%] bg-gray-100 p-4 sm:px-5 shadow  h-fit mt-5 flex flex-col lg:mx-10 mb-0 ">
           <h3 className="font-bold text-lg mb-3">Cart Overview</h3>
           {SelectedCarts.map((item) => (
@@ -243,3 +348,6 @@ size="sm"
 };
 
 export default Checkout;
+
+
+

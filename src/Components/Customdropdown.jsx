@@ -1,10 +1,12 @@
-export default function HoverDropdown() {
+import { Link } from "react-router-dom";
+
+export default function HoverDropdown({setSelectedFilters}) {
   const categories = {
     mens: [
       "Hoodie",
       "Jacket",
-      "T-shirt",
-      "Polo-Shirt",
+      "T shirt",
+      "Polo Shirt",
       "T-shirt (Blanks)",
       "Full Sleeve T-shirt",
       "Full Sleeve (Raglan)",
@@ -14,7 +16,7 @@ export default function HoverDropdown() {
     others: [
       "Panjabi",
       "Shirt",
-      "Polo T-shirt",
+      "Polo Shirt",
       "Hoodie",
       "Jacket",
       "Denim Jeans",
@@ -34,14 +36,18 @@ export default function HoverDropdown() {
         <div className="flex flex-col space-y-2 text-black">
           <h3 className="font-bold">MENS</h3>
           {categories.mens.map((item, index) => (
-            <a key={index} href="#" className="hover:text-blue-600">{item}</a>
+            <Link to='/shop' key={index}  className="hover:text-blue-600" onClick={()=>{
+              setSelectedFilters({[item.toLocaleLowerCase()]:true})
+            }}>{item}</Link>
           ))}
         </div>
 
         {/* Right Column */}
         <div className="flex flex-col space-y-2 text-black">
           {categories.others.map((item, index) => (
-            <a key={index} href="#" className="hover:text-blue-600">{item}</a>
+            <Link key={index} to="/shop" className="hover:text-blue-600"  onClick={()=>{
+              setSelectedFilters({[item.toLocaleLowerCase()]:true})
+            }}>{item}</Link>
           ))}
         </div>
       </div>

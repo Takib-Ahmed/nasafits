@@ -23,23 +23,22 @@ const {setItem} = useLocalStorage('cartedProduct')
 const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};       
 
 const { setItem: setSelectedCartsItem } = useSelectedCartsStorage('selectedcarts')
+
 useEffect(() => {
 
+ if(SelectedCarts.length>0){
   setSelectedCartsItem(SelectedCarts)
+ }
 }, [cartedProduct, setItem,setSelectedCartsItem,SelectedCarts]);
 
 useEffect(() => {
   const savedCartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");
   
   // Only update cartedProduct if it's empty (prevents overwriting)
-  if (cartedProduct.length === 0 && savedCartedProduct.length > 0) {
-    setcartedproduct(savedCartedProduct);
-  }else{
+
     setItem(cartedProduct);
-  }
-}, [cartedProduct,setcartedproduct,setItem]);  // Removed dependency to run only on mount
-
-
+  
+}, [cartedProduct,setcartedproduct,setItem]); 
 
 
 
