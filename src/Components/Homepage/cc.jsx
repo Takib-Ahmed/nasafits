@@ -76,7 +76,7 @@ export default function All({
             ))}
 
           </div>
-                      <Link to='/shop' className=" flex w-full justify-center  items-center"><Button size="lg"  color="primary"  radius="md">Show More</Button></Link></>
+                <div className=" flex justify-center w-full items-center">      <Link to='/shop' className=" flex w-fit justify-center  items-center"><Button size="md"    variant="solid" color=""  className='bg-slate-700 text-white md:hidden' radius="md">Show More</Button><Button size="lg"    variant="solid" color=""  className=' hidden md:block bg-slate-700 text-white' radius="md">Show More</Button></Link></div></>
         )}
       </div>
     </>
