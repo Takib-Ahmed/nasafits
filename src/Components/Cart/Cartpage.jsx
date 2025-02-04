@@ -79,19 +79,7 @@ prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
           <div className="w-[20%] text-right break-words">Action</div>
         </label>
       
-        <div className=" flex flex-row-reverse  md:hidden w-full justify-between  overflow-hidden  px-1  py-2  border-gray-500 border-b-2"><Checkbox 
     
-    size="sm" 
-    type="checkbox" 
-    id="checked"  
-    className=" md:scale-125"  
-    isSelected={cartedProduct.every(carted=>carted.Ischecked == true)}  
-    onChange={(e) => handleAllCheckboxChange(e)
-  
-  
-      
-    }
-  /><div>Select ALL</div></div>
         {/* Table Content */}
         
 <div className=" flex  flex-col-reverse gap-5  ">
@@ -164,12 +152,12 @@ prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
    </div>
  
    {/* Subtotal Column */}
-   <div className={`flex  w-full md:w-[15%] justify-center  bg-red-500 text-white p-2 rounded-lg   `}>
+   <div className={` hidden   md:flex  w-full md:w-[15%] justify-center  bg-red-500 text-white p-2 rounded-lg   `}>
      <div className="discountprice text-lg ">Total {totalSubtotal}৳</div>
    </div>
  
    {/* Action Column */}
-   <div className={`flex gap-2 justify-center  w-full     md:flex-col md:items-center  md:w-[18%] `}>
+   <div className={` hidden md:flex gap-2 justify-center  w-full     md:flex-col md:items-center  md:w-[18%] `}>
   
 <Button className={`bg-green-600 w-full p-2  rounded-lg flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
 <Link to={SelectedCarts.length > 0 ? (Object.keys(storedUser).length === 0 ? '/account' : '/checkout') : ''} 
@@ -179,6 +167,40 @@ prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
 
 </Button>
     
+   </div>
+   <div className="flex flex-col w-full gap-2 fixed  bottom-0 p-2 z-50 bg-white left-0">
+   <label className=" flex flex-row-reverse  md:hidden w-full justify-between  overflow-hidden  p-1   border-gray-500 border-b-1"><Checkbox 
+    
+    size="sm" 
+    type="checkbox" 
+    id="checked"  
+    className=" md:scale-125"  
+    isSelected={cartedProduct.every(carted=>carted.Ischecked == true)}  
+    onChange={(e) => handleAllCheckboxChange(e)
+  
+  
+      
+    }
+  /><div>Select ALL</div></label>
+<div className="flex gap-2  h-full">
+<div className={`flex  w-full md:w-[15%] justify-center  bg-red-500 text-white p-1  text-center items-center rounded-lg   `}>
+     <div className="discountprice text-lg ">Total {totalSubtotal}৳</div>
+   </div>
+ 
+   {/* Action Column */}
+   <div className={`flex gap-2 justify-center  w-full     md:flex-col md:items-center  md:w-[18%] `}>
+
+  
+<Button className={`bg-green-600   w-full p-2  rounded-lg flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
+<Link to={SelectedCarts.length > 0 ? (Object.keys(storedUser).length === 0 ? '/account' : '/checkout') : ''} 
+      className={`bg-green-600 w-full p-2 rounded-lg flex gap-2 justify-center text-white items-center text-nowrap text-lg ${SelectedCarts.length > 0 ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
+  Checkout <BsBagCheckFill className="pt-0 text-medium mb-0.5" />
+</Link>
+
+</Button>
+    
+   </div>
+</div>
    </div>
  </div>
 }
