@@ -4,7 +4,7 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { IoTrash } from "react-icons/io5";
 import Cartcard from "./Cartcard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsBagCheckFill } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useLocalStorage as useSelectedCartsStorage } from "../hooks/useLocalStorage";
@@ -22,7 +22,7 @@ const totalQuantity = SelectedCarts.reduce((total, selectedcarts) => total + sel
 const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
 const {setItem} = useLocalStorage('cartedProduct')
 const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};       
-
+const navigate = useNavigate()
 const { setItem: setSelectedCartsItem } = useSelectedCartsStorage('selectedcarts')
 
 useEffect(() => {
@@ -191,8 +191,10 @@ prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
    <div className={`flex gap-2 justify-center  w-full     md:flex-col md:items-center  md:w-[18%] `}>
 
   
-<Button className={`bg-green-600   w-full p-2  rounded-lg flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
-<Link to={SelectedCarts.length > 0 ? (Object.keys(storedUser).length === 0 ? '/account' : '/checkout') : ''} 
+<Button   className={`bg-green-600   w-full p-2  rounded-lg flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
+<Link onClick={()=>{
+  navigate('/shop')
+}} to={SelectedCarts.length > 0 ? (Object.keys(storedUser).length === 0 ? '/account' : '/checkout') : ''} 
       className={`bg-green-600 w-full p-2 rounded-lg flex gap-2 justify-center text-white items-center text-nowrap text-lg ${SelectedCarts.length > 0 ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
   Checkout <BsBagCheckFill className="pt-0 text-medium mb-0.5" />
 </Link>
