@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { PiShoppingCartSimple } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProductCard from "../ProductCard";
 import Mobilesearch from "../Mobilesearchbar";
 import Filterlist from "../Search_shop/Filterlist";
@@ -17,7 +17,7 @@ export default function All({
   productDetails,
 }) {
   let Showproducts = slice && productDetails.slice(0, slice);
-
+  const navigate = useNavigate()
   return (
     <>
       <div
@@ -76,7 +76,12 @@ export default function All({
             ))}
 
           </div>
-                <div className=" flex justify-center w-full items-center">      <Link to='/shop' className="cursor-pointer" role="button"><button       className='bg-slate-700 text-white md:hidden p-3   rounded-xl'  radius="md">Show More</button><Button size="lg"    variant="solid" color=""  className=' hidden md:block bg-slate-700 text-white' radius="md">Show More</Button></Link></div></>
+                <div className=" flex justify-center w-full items-center">      <Link to='/shop' className="cursor-pointer" role="button"><Button    size="md"  href='/shop'   variant="solid" color=""  className='bg-slate-700 text-white md:hidden' radius="md"
+                
+                onClick={()=>{
+                  navigate('/shop')
+                }} 
+                >Show More</Button><Button size="lg"    variant="solid" color=""  className=' hidden md:block bg-slate-700 text-white' radius="md">Show More</Button></Link></div></>
         )}
       </div>
     </>
