@@ -27,6 +27,7 @@ export default function Filterlist({className,setSelectedFilters,selectedFilters
      
             { name: "T Shirt", count: 24 },
             { name: "Polo Shirt", count: 28 },
+            { name: "Panjabi", count: 1},
     
           ],
         },

@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
-
 import "./App.css";
 import Header from "./Components/Header";
-import Slidershow from "./Components/Homepage/Slidershow";
-import Categories from "./Components/Homepage/Category";
-import Collection from "./Components/Homepage/Collections";
-import Banner from "./Components/Homepage/Banner";
 import Footer from "./Components/Footer";
-import Flashsale from "./Components/Homepage/Flashsale";
-
-import Hoodies from "./Components/Homepage/cc";
 import Dealsubscribe from "./Components/Subscribe";
 import Details from "./Components/Details/details";
 import Cartpage from "./Components/Cart/Cartpage";
@@ -184,9 +176,24 @@ function App() {
       ],
       sizes: ["M", "L", "XL", "2XL"],
     },
+    {
+      id: 10,
+      coverImage: "/collections/edited/panjabi.png",
+      name: "Mens Premium Panjabi Violet",
+      category: ["panjabi"],
+      for: ["men"],
+      save: 600,
+      mainPrice: 1800,
+      discountPrice: 1200,
+      showcases: ["new arrival"],
+      images: [
+        "/collections/panjabi.png",
+        "/collections/panjabi.png",
+        "/collections/panjabi.png",
+      ],
+      sizes: ["M", "L", "XL", "2XL"],
+    }
   ];
-  
-
   const [product, setproduct] = useState({
     id: 1,
     coverImage: "/collections/edited/ai.png",
@@ -204,20 +211,19 @@ function App() {
   });
 
   const [showmbsearhbar, setshowsearchbar] = useState(false);
+
   const savedCartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");
   const [cartedProduct, setcartedproduct] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
   const [SelectedCarts, setselectedcarts] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
+
+
   const { id } = useParams();
-  const detailedproduct = productDetails.find(
-    (iteam) => iteam.id == parseInt(id)
-  );
-  useEffect(() => {
-    setproduct(detailedproduct);
-  }, [detailedproduct, id]);
+  const detailedproduct = productDetails.find((iteam) => iteam.id == parseInt(id));
+  useEffect(() => {setproduct(detailedproduct);}, [detailedproduct, id]);
+
+
   const [selectedFilters, setSelectedFilters] = useState({});
-  const selectedFilterArray = Object.keys(selectedFilters).filter(
-    (key) => selectedFilters[key] === true
-  );
+  const selectedFilterArray = Object.keys(selectedFilters).filter((key) => selectedFilters[key] === true  );
   const filteredProducts =
     selectedFilterArray.length === 0
       ? productDetails
@@ -230,6 +236,8 @@ function App() {
           )
         );
 
+
+  const [Orderhistory,setOrderhistory] = useState([])
    
   return (
     <>
@@ -252,12 +260,12 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Homepage productDetails={productDetails} />}
+                element={<Homepage setSelectedFilters={setSelectedFilters} productDetails={productDetails} />}
               />
 
               <Route path="/profile" element={<AccountPage />} />
               <Route path="/checkout" element={<Checkout
-              SelectedCarts={SelectedCarts} />} />
+              SelectedCarts={SelectedCarts} setOrderhistory={setOrderhistory}  Orderhistory={Orderhistory}/>} />
               <Route
                 path="/shop"
                 element={<Shop filteredProducts={filteredProducts} />}
@@ -287,6 +295,7 @@ function App() {
                   />
                 }
               />
+              
             </Routes>
 
             <Dealsubscribe />

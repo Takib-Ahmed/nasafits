@@ -4,8 +4,9 @@ import { Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
-const Checkout = ({ SelectedCarts }) => {
-  const [paymentMethod, setPaymentMethod] = useState("cod"); // Default payment method
+import PaymentConfirmation from "./Paymentconfrimation";
+const Checkout = ({ SelectedCarts,setOrderhistory }) => {
+  const [paymentMethod, setPaymentMethod] = useState("Deliverypaid"); // Default payment method
   const [selectedCity, setSelectedCity] = useState("");
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
   const [inputName,setinputname] = useState()
@@ -21,10 +22,12 @@ const Checkout = ({ SelectedCarts }) => {
     agreeTerms: false,
     Id:Date.now(),
     Products:SelectedCarts,
+    paid:'',
+
 
     
   });
-const [Orderhistory,setOrderhistory] = useState([])
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setOrder((prevData) => ({
@@ -124,12 +127,12 @@ const [Orderhistory,setOrderhistory] = useState([])
       const Placedorder = {
         ...Order,
         city: selectedCity,
-
+        Ordered:true,
         paymentMethod,
         totalAmount: totalAmount + shippingCost
       };
       setOrderhistory((prev)=>[...prev,Placedorder])
-   console.log(Orderhistory)
+   
    sendEmail(Placedorder);
     }
     else{
@@ -266,8 +269,8 @@ const [Orderhistory,setOrderhistory] = useState([])
           <h3 className="font-bold mb-2">Payment Options</h3>
           <div className="flex space-x-4 mb-4">
             {[
-              { label: "Delivery Payment", method: "cod" },
-              { label: "Full Payment", method: "card" }
+              { label: "Delivery Payment", method: "Deliverypaid" },
+              { label: "Full Payment", method: "Fullypaid" }
             ].map((option) => (
               <button
                 key={option.method}
@@ -284,7 +287,7 @@ const [Orderhistory,setOrderhistory] = useState([])
           <div className="flex space-x-2 mb-4">
             <Input
               isClearable
-              className="max-w-xs flex-1"
+              className=" w-full"
               label="Enter Coupon Code Here"
               name="couponCode"
               type="text"
@@ -295,6 +298,15 @@ const [Orderhistory,setOrderhistory] = useState([])
                 handleClear(['couponCode'])
                }}
               size="sm"
+            
+              validate={(value) => {
+                if (value.length < 3) {
+                  return "Username must be at least 3 characters long";
+                }
+      
+                return value === "admin" ? "Nice try!" : null;
+              }}
+            
             />
             <Button radius="lg" size="lg" className="bg-blue-500 text-white px-4 py-2 rounded-md">
               Add Coupon
@@ -313,9 +325,10 @@ const [Orderhistory,setOrderhistory] = useState([])
           </div>
 
           <Button onClick={handleSubmit} radius="lg" size="lg" className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-bold">
-            Confirm Order
+            Place Order
           </Button>
         </div>
+           <PaymentConfirmation/>
         <div className=" w-full lg:w-[75%] bg-gray-100 p-4 sm:px-5 shadow  h-fit mt-5 flex flex-col lg:mx-10 mb-0 ">
           <h3 className="font-bold text-lg mb-3">Cart Overview</h3>
           {SelectedCarts.map((item) => (
@@ -343,6 +356,7 @@ const [Orderhistory,setOrderhistory] = useState([])
           </div>
         </div>
       </div>
+   
     </div>
   );
 };

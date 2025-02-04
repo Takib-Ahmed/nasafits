@@ -7,14 +7,14 @@ import Collection from "./Collections";
 import Flashsale from "./Flashsale";
 import Slidershow from "./Slidershow";
 
-export default function Homepage({productDetails,}){
+export default function Homepage({productDetails,setSelectedFilters}){
     
     return (
         <>
        
            <Slidershow/>
         
-   <Categories/>
+   <Categories setSelectedFilters={setSelectedFilters}/>
    <Flashsale productDetails={productDetails} />
    <Collection Collectiontype={'Featured Product'} productDetails={productDetails} />
    <Collection Collectiontype={'New Arrivals'} productDetails={productDetails}/>

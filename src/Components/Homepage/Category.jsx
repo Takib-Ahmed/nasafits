@@ -1,7 +1,9 @@
-export default function Categories() {
+import { Link } from "react-router-dom";
+
+export default function Categories({setSelectedFilters}) {
     const categories = [
       {
-        name: "Hoddie",
+        name: "Hoodie",
         imgSrc: "/Categories/hoodie.png",
       },
       {
@@ -13,7 +15,7 @@ export default function Categories() {
         imgSrc: "/Categories/polo-shirt (1).png",
       },
       {
-        name: "T-Shirt",
+        name: "T Shirt",
         imgSrc: "/Categories/t-shirt (2).png",
       },
       {
@@ -30,7 +32,10 @@ export default function Categories() {
         <br className="hidden lg:block" />
         <div className=" Categorycontainer p-2 lg:p-0  grid grid-cols-2 sm:flex flex-wrap  w-full justify-center lg:justify-around gap-2 sm:gap-5 sm:gap-10 md:gap-5 ">
           {categories.map((category, index) => (
-            <div
+            <Link to='/shop'
+            onClick={()=>{
+              setSelectedFilters({[category.name.toLocaleLowerCase()]:true})
+            }}
               key={index}
               className="Category flex flex-col-reverse sm:72 md:w-80 lg:w-60 relative text-center overflow-hidden rounded"
             >
@@ -44,7 +49,7 @@ export default function Categories() {
                   <p className="text-white opacity-100">{category.name}</p>
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
