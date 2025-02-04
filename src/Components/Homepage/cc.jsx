@@ -63,7 +63,8 @@ export default function All({
             </div>
           </div>
         ) : (
-          <div className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2 md:gap-4  py-10 pt-5 pb-5">
+<>
+<div className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2 md:gap-4  py-10 pt-5 pb-5">
             {Showproducts.map((product) => (
               <ProductCard
                 key={product.id}
@@ -73,8 +74,9 @@ export default function All({
                 type="ALL"
               />
             ))}
-            <Link to='/shop' className="  mt-5"><Button size="lg"  color="primary"  radius="md">Show More</Button></Link>
+
           </div>
+                      <Link to='/shop' className=" flex w-full justify-center  items-center"><Button size="lg"  color="primary"  radius="md">Show More</Button></Link></>
         )}
       </div>
     </>

@@ -168,7 +168,7 @@ prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
 </Button>
     
    </div>
-   <div className="flex flex-col w-full gap-2 fixed  bottom-0 p-2 z-50 bg-white left-0">
+   <div className="flex flex-col md:hidden w-full gap-2 fixed  bottom-0 p-2 z-50 bg-white left-0">
    <label className=" flex flex-row-reverse  md:hidden w-full justify-between  overflow-hidden  p-1   border-gray-500 border-b-1"><Checkbox 
     
     size="sm" 
