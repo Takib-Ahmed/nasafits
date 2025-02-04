@@ -6,8 +6,10 @@ import { FaFilter } from "react-icons/fa";
 import Sidedrawer from "./drawer";
 import { Link } from "react-router-dom";
 
-
+import { MdOutlineClear } from "react-icons/md";
+import { useState } from "react";
 export default function Mobilesearch({ className, type, inputclass, filtermenuclass,location}) {
+  const [searchvalue,setsearchvalue] = useState('')
   return (
     <>
       <div
@@ -27,6 +29,7 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
         <div>
        
           <Input
+          value={searchvalue}
             classNames={{
               base: `   bg-white    ${
                 type === "mbsearchbar"
@@ -40,12 +43,20 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
             }}
             placeholder="Type to search..."
             size="sm"
+          startContent={
+            <MdOutlineClear className={` cursor-pointer absolute right-12 ${searchvalue!=''?'block':'hidden'}`} onClick={(e)=>{
+setsearchvalue('')
+            }}/>
+          }
+          onChange={(e)=>{
+            setsearchvalue(e.target.value)
+          }}
             endContent={
               <IoIosSearch className=" bg-black h-full   cursor-pointer absolute right-0 w-10 p-1 text-white" />
             }
             type="search"
             className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
-          />{" "}
+          />
         </div>
       </div>
     </>

@@ -3,9 +3,10 @@ import Slider from "react-slick";
 import { CustomNextArrow, CustomPrevArrow } from "./prevnext";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
   
-export default function Slidershow(){
+export default function Slidershow({setSelectedFilters}){
     var settings = {
         dots: true,
         
@@ -24,7 +25,9 @@ export default function Slidershow(){
         <div className=" flex flex-col gap-0">
   
 <Slider {...settings} className="   relative Slider w-full mt-16 md:mt-14 lg:mt-2.5    lg:h-[51rem]  overflow-hidden">
-<div className=" ">
+<Link to='/shop' className=" " onClick={()=>{
+    setSelectedFilters({'winter collection':true})
+}}>
 <img
       alt="NextUI hero Image with delay"
      
@@ -32,7 +35,7 @@ export default function Slidershow(){
   className="   w-full   "
     />
 
-</div>
+</Link>
 
 <div className="  ">
 <img

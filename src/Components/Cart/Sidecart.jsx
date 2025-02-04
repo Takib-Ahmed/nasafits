@@ -10,6 +10,7 @@ import { MdOpenInFull } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import Cartcard from "./Cartcard";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Checkbox } from "@nextui-org/react";
 export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,setselectedcarts}){
   const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
 
@@ -29,7 +30,11 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
     }, [cartedProduct,setcartedproduct,setItem]); 
  // Removed dependency to run only on mount
     
-    
+ const handleAllCheckboxChange=(e)=>{
+  setcartedproduct((prev)=>
+  prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
+  }
+  
     return (
         <>
       {
@@ -44,12 +49,26 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
 
 
   {/* Cart Content */}
+
   <div className=" flex w-full   text-center bg-gray-600 text-white py-2 text-xl justify-between px-2 items-center"><IoCloseOutline className="text-2xl cursor-pointer" onClick={()=>{ setshowcart(false)}}/><p>Cart</p>
   <Link to='/cart' onClick={()=>{
     setshowcart(false)
   }}>  <MdOpenInFull/></Link>
   
 </div>
+<div className=" flex w-full justify-between px-4 bg-slate-400 py-2 text-white"><Checkbox 
+    
+    size="sm" 
+    type="checkbox" 
+    id="checked"  
+    className=" md:scale-125"  
+    isSelected={cartedProduct.every(carted=>carted.Ischecked == true)}  
+    onChange={(e) => handleAllCheckboxChange(e)
+  
+  
+      
+    }
+  /><div>Select ALL</div></div>
 <div className={`flex flex-col-reverse justify-start gap-2 py-2     pt-0 ${cartedProduct.length > 2 && 'h-[85%] overflow-y-scroll'}`}>
  
  

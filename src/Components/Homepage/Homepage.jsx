@@ -12,7 +12,7 @@ export default function Homepage({productDetails,setSelectedFilters}){
     return (
         <>
        
-           <Slidershow/>
+           <Slidershow setSelectedFilters={setSelectedFilters}/>
         
    <Categories setSelectedFilters={setSelectedFilters}/>
    <Flashsale productDetails={productDetails} />

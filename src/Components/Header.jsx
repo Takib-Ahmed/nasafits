@@ -139,9 +139,16 @@ import Sidedrawer from "./drawer";
         </NavbarContent>
   
         <NavbarContent as="div" className=" navright items-center sm:gap-4 lg:gap-5  flex  relative" justify="end">
-          <Input
+        <form action="
+        " className="flex" onClick={()=>{
+   
+          setshowsearchbar((prev)=>!prev)
+        
+        }}>
+            <Input
+          isClearable
             classNames={{
-              base: "     searchbar    w-60 sm:w-80 md:w-96  md:h-8 lg:h-10   ",
+              base: "     searchbar    w-60 sm:w-80 md:w-80 lg:w-96  h-10   ",
               mainWrapper: "h-full",
               input: "text-small bg-default-400/20",
               inputWrapper:
@@ -150,13 +157,13 @@ import Sidedrawer from "./drawer";
             }}
             placeholder="Type to search..."
             size="sm"
-            endContent={<IoIosSearch size={25}  className=" cursor-pointer Searchicn bg-black h-full   absolute right-0 w-10 p-2 text-white" onClick={()=>{
-   
-              setshowsearchbar((prev)=>!prev)
-            
-            }}/>}
+      
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
-          /> {showmbsearhbar && <Mobilesearch className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' location={location} />}
+          /><IoIosSearch size={25}  className=" cursor-pointer Searchicn bg-black h-full    w-10 p-2 text-white z-50" /> 
+        </form>
+          
+          
+          {showmbsearhbar && <Mobilesearch className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' location={location} />}
          <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      

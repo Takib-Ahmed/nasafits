@@ -59,7 +59,7 @@ export default function Cartcard({product,type,position,cartedProduct,setcartedp
   type="checkbox" 
   id="checked"  
   className=" md:scale-125"  
-  defaultSelected={product.Ischecked ? true : false}  // ✅ Controlled component
+  isSelected={product.Ischecked ? true : false}  // ✅ Controlled component
   onChange={(e) => handleCheckboxChange(e)
 
 

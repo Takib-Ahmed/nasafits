@@ -9,6 +9,7 @@ import { BsBagCheckFill } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useLocalStorage as useSelectedCartsStorage } from "../hooks/useLocalStorage";
 import { Button } from "@heroui/react";
+import { Checkbox } from "@nextui-org/react";
 
 export default function Cartpage({cartedProduct,setcartedproduct,setselectedcarts,SelectedCarts}){
 
@@ -42,6 +43,12 @@ useEffect(() => {
 
 
 
+const handleAllCheckboxChange=(e)=>{
+setcartedproduct((prev)=>
+prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
+}
+
+
     return (
         <>
    <center className=" text-3xl  mt-20  ">Your Cart</center>  
@@ -50,15 +57,41 @@ useEffect(() => {
 
    <div className={`grid items-start gap-0 `}>
         {/* Table Header */}
-        <div className="hidden md:flex justify-between items-center px-1 md:px-4 lg:mx-14 py-2 border-b bg-white font-semibold text-sm ">
-          <div className="w-[20%] text-left break-words">Product</div>
+        <label className="hidden cursor-pointer md:flex justify-between items-center px-1 md:px-4 lg:mx-14 py-2 border-b bg-white font-semibold text-sm ">
+    
+          <div className="w-[20%] text-left break-words">    <Checkbox 
+    
+    size="sm" 
+    type="checkbox" 
+    id="checked"  
+    className=" md:scale-125 me-2"  
+    isSelected={cartedProduct.every(carted=>carted.Ischecked == true)}  
+    onChange={(e) => handleAllCheckboxChange(e)
+  
+  
+      
+    }
+  />Product</div>
           <div className="w-[15%] text-center break-words">Unit Price</div>
           <div className="w-[15%] text-center break-words">Size</div>
           <div className="w-[15%] text-center break-words pe-9 ">Quantity</div>
           <div className="w-[15%] text-center break-words">Subtotal</div>
           <div className="w-[20%] text-right break-words">Action</div>
-        </div>
+        </label>
       
+        <div className=" flex flex-row-reverse  md:hidden w-full justify-between  overflow-hidden  px-1  py-2  border-gray-500 border-b-2"><Checkbox 
+    
+    size="sm" 
+    type="checkbox" 
+    id="checked"  
+    className=" md:scale-125"  
+    isSelected={cartedProduct.every(carted=>carted.Ischecked == true)}  
+    onChange={(e) => handleAllCheckboxChange(e)
+  
+  
+      
+    }
+  /><div>Select ALL</div></div>
         {/* Table Content */}
         
 <div className=" flex  flex-col-reverse gap-5  ">
