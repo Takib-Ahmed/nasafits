@@ -2,18 +2,18 @@
 import { Autocomplete, AutocompleteItem, Button, Checkbox, Textarea } from "@heroui/react";
 import { Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
+
 import PaymentConfirmation from "./Paymentconfrimation";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 const Checkout = ({ SelectedCarts,setOrderhistory,setplacedOrder ,Orderhistory,setcartedproduct,setselectedcarts}) => {
-  const [paymentMethod, setPaymentMethod] = useState("PayDelivery"); // Default payment method
-  const [selectedCity, setSelectedCity] = useState("");
+ 
+const [Gotopay,setGotopay] = useState('')
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
   const [inputName,setinputname] = useState()
   const {setItem} = useLocalStorage('Orderhistory')
-  
+  const [paymentMethod, setPaymentMethod] = useState("PayDelivery"); // Default payment method
+  const [selectedCity, setSelectedCity] = useState("");
   const nowDate = new Date(); 
 const ampm = nowDate.getHours()>=12 ? 'pm':'am'
 const minutes = (nowDate.getMinutes()+1) <=9 ? '0'+(nowDate.getMinutes()+1) :(nowDate.getMinutes()+1) 
@@ -100,66 +100,35 @@ const OrderedTime = (nowDate.getHours()%12)+':'+minutes+' '+ampm;
     "Pirojpur", "Rajbari", "Rajshahi", "Rangamati", "Rangpur", "Satkhira",
     "Shariatpur", "Sherpur", "Sirajganj", "Sunamganj", "Sylhet", "Tangail", "Thakurgaon"
   ];
-  const sendEmail = (Placedorder) => {
-    const templateParams = {
-      Order_id:Placedorder.Id,
-      full_name: Placedorder.fullName,
-      email: Placedorder.email,
-      phone_number: Placedorder.phoneNumber,
-      alt_phone: Placedorder.altPhone,
-      city: Placedorder.city,
-      address: Placedorder.detailedAddress,
-      coupon_code: Placedorder.couponCode,
-      payment_method: Placedorder.paymentMethod,
-      total_amount: Placedorder.totalAmount,
-      note: Placedorder.note,
-      agree_Terms:Placedorder.agreeTerms,
-      products_list: Placedorder.Products.map(
-        (product) =>
-        `${product.name} 
-        Size: ${product.selectedsize}, 
-        Quantity: ${product.quantity}, 
-        URL: ${product.ProductAdress}, 
-        Id: ${product.id}`
-      ).join('\n')
-    };
 
-   
-    emailjs
-      .send('service_q26jdmu', 'template_64jstfk', templateParams, {
-        publicKey: 'UhFs-e6E1DIJ4bSAw',
-      })
-      .then(
-        () => {
-          console.log('Email sent successfully!');
-       
-        },
-        (error) => {
-          console.log('Failed to send email:', error.text);
-        },
-      );
-  };
 
   useEffect(() => {
     setItem(Orderhistory)
   }, [Orderhistory,setItem]);
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     
+
     if(Order.agreeTerms && Order.fullName!='' && Order.phoneNumber!='' && Order.email!='' && selectedCity!='' ){
+if(SelectedCarts.length>0){
+  setGotopay(`/payment/${Order.Id}`)
+  const Placedorder = {
+    ...Order
 
-      const Placedorder = {
-        ...Order
+  };
+  setcartedproduct((prev)=>prev.filter((product)=>
+    !Order.Products.some((Product)=>Product.id=== product.id && Product.selectedsize === product.selectedsize)))
+  setselectedcarts([])
+  setplacedOrder(Order)
+  setOrderhistory((prev) => {
+    const updatedHistory = [...prev, Placedorder];
+    return updatedHistory;
+  })
 
-      };
-      setcartedproduct((prev)=>prev.filter((product)=>
-        !Order.Products.some((Product)=>Product.id=== product.id && Product.selectedsize === product.selectedsize)))
-      setselectedcarts([])
-      setplacedOrder(Order)
-      setOrderhistory((prev) => {
-        const updatedHistory = [...prev, Placedorder];
-        return updatedHistory;
-      })
-  ;
+
+}
+else{
+  alert('Select a product first ')
+}
   
 
   //  sendEmail(Placedorder);
@@ -352,10 +321,10 @@ const OrderedTime = (nowDate.getHours()%12)+':'+minutes+' '+ampm;
               I agree to the <span className="text-blue-500">Terms & Conditions</span>, <span className="text-blue-500">Refund Policy</span>, and <span className="text-blue-500">Privacy Policy</span>.
             </Checkbox>
           </div>
-          <Link to={`/payment/${Order.Id}`} className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-bold">
-          <Button onPress={()=>{
+          <Link  to={Gotopay} className="w-fit  text-white py-3 rounded-md text-lg font-bold">
+          <Button onClick={()=>{
             handleSubmit()
-          }} radius="lg" size="lg" >
+          }} radius="lg" size="lg"  className=" w-full bg-green-600 text-white py-3 rounded-md text-lg font-bold">
   Place Order
           </Button></Link>
           

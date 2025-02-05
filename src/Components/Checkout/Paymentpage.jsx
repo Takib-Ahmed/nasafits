@@ -5,19 +5,19 @@ export default function Paymentpage({placedOrder}){
   const [Paying,setPaying] = useState(placedOrder.paymentMethod==='PayDelivery'?placedOrder.shippingCost:placedOrder.payableAmount)
     return (
         <>
-            <div className="mx-auto py-20 px-5 sm:px-10 lg:p-20 bg-white shadow-md rounded-md">
-      <h2 className="text-3xl font-bold text-center pb-10"  onClick={()=>{
+            <div className="mx-auto py-20 px-5 lg:px-10 lg:p-20 bg-white shadow-md rounded-md">
+      <h2 className=" text-2xl md:text-3xl font-bold text-center pb-5 md:pb-10"  onClick={()=>{
       
        
       }}>Payment Confirmation</h2>
 
-      <div className="flex flex-col-reverse lg:flex-row justify-around gap-5 flex-wrap lg:flex-nowrap">
+      <div className="flex flex-col-reverse md:flex-row-reverse justify-around gap-5 flex-wrap md:flex-nowrap">
     
-           <PaymentConfirmation Paying={Paying}/>
-        <div className=" w-full lg:w-[75%] bg-gray-100 p-4 sm:px-5 shadow  h-fit mt-5 flex flex-col lg:mx-10 mb-0 ">
+           <PaymentConfirmation Paying={Paying} placedOrder={placedOrder}/>
+        <div className=" w-full md:w-[50%]  bg-gray-100 p-4 sm:px-5  shadow   flex flex-col lg:mx-10 mb-0 ">
           <h3 className="font-bold text-lg mb-3">Cart Overview</h3>
           {placedOrder.Products.map((item) => (
-            <div key={item.id} className="flex justify-between items-center border-b pb-2 mb-2">
+            <div key={item.id} className="flex justify-between items-center border-b pb-2 mb-2 h-full ">
               <img src={item.coverImage} alt={item.name} className="w-20 h-20 object-cover rounded-md" />
               <div className="flex-1 ml-3">
                 <p className=" text-sm lg:font-medium sm:text-medium">{item.name}</p>
