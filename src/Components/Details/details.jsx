@@ -7,11 +7,11 @@ import { FaMinus } from "react-icons/fa6";
 import SizeGuide from "./SIzeguide";
 import Slider from "react-slick";
 import InfoSection from "./Info";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GrCheckboxSelected } from "react-icons/gr";
 import { FaHandPointUp } from "react-icons/fa";
 export default function Details({product,setcartedproduct,cartedProduct}){
-
+  const { id } = useParams();
   const [quantity,setquantity] = useState(1);
   const [selectedsize,setselectedsize] = useState('')
   const[cartproduct,setcartprouct] = useState(product)
@@ -104,7 +104,9 @@ export default function Details({product,setcartedproduct,cartedProduct}){
                             </div>
                           <div className="grid gap-3  pt-3 p-3 sm:p-5  ">
                           <div className="title text-2xl font-semibold sm:font-bold  ">
-                              <h3>{product.name}</h3>
+                              <h3 onClick={()=>{
+                                console.log(id)
+                              }}>{product.name}</h3>
                             </div> 
                             {/* <div className="  Save  justify-center   py-0.5 hidden
                             ">

@@ -15,6 +15,7 @@ import Context from "./contexts/Context";
 import AccountPage from "./Components/Profile/Account";
 import Checkout from "./Components/Checkout/Checkoutpage";
 import ScrollToTop from "./Components/ScrollToTop";
+import Paymentpage from "./Components/Checkout/Paymentpage";
 
 function App() {
   const productDetails = [
@@ -217,9 +218,9 @@ function App() {
   const [SelectedCarts, setselectedcarts] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
 
 
-  const { id } = useParams();
-  const detailedproduct = productDetails.find((iteam) => iteam.id == parseInt(id));
-  useEffect(() => {setproduct(detailedproduct);}, [detailedproduct, id]);
+ 
+  // const detailedproduct = productDetails.find((iteam) => iteam.id == parseInt(id));
+  // useEffect(() => {setproduct(detailedproduct);}, [detailedproduct, id]);
 
 
   const [selectedFilters, setSelectedFilters] = useState({});
@@ -236,8 +237,10 @@ function App() {
           )
         );
 
+        const StoredOrderhistory = JSON.parse(localStorage.getItem("Orderhistory")) || []; 
+  const [Orderhistory,setOrderhistory] = useState(StoredOrderhistory)
+  const [placedOrder,setplacedOrder] = useState({})
 
-  const [Orderhistory,setOrderhistory] = useState([])
    
   return (
     <>
@@ -263,8 +266,8 @@ function App() {
                 element={<Homepage setSelectedFilters={setSelectedFilters} productDetails={productDetails} />}
               />
 
-              <Route path="/profile" element={<AccountPage />} />
-              <Route path="/checkout" element={<Checkout
+              <Route path="/profile" element={<AccountPage Orderhistory={Orderhistory} />} />
+              <Route path="/checkout" element={<Checkout setplacedOrder={setplacedOrder} setselectedcarts={setselectedcarts}     setcartedproduct={setcartedproduct}
               SelectedCarts={SelectedCarts} setOrderhistory={setOrderhistory}  Orderhistory={Orderhistory}/>} />
               <Route
                 path="/shop"
@@ -295,8 +298,17 @@ function App() {
                   />
                 }
               />
+       {
+        Orderhistory.map((placedOrdered)=>(
+          <Route key={placedOrdered.Id} path={`/payment/${placedOrdered.Id}`} element={<Paymentpage placedOrder={placedOrdered} />}/>
+        )
+
+         
+        )
+       }
               
             </Routes>
+          
 
             <Dealsubscribe />
             <Footer setSelectedFilters={setSelectedFilters} />

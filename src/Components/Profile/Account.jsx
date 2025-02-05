@@ -7,7 +7,7 @@ import Addresscard from "./Adresscard";
 import Addressbooks from "./Adressbooks";
 import AccountDetails from "./Accountdetails";
 
-const AccountPage = () => {
+const AccountPage = ({Orderhistory}) => {
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
   const user = {
     name: storedUser?.name || "SA Takib",
@@ -16,11 +16,7 @@ const AccountPage = () => {
     marketingEmail: false,
   };
 
-  const orders = [
-    { id: "670379841430393", date: "27/01/2025", image: "/item1.png", total: 300 },
-    { id: "669957167730393", date: "26/12/2024", image: "/item2.png", total: 780 },
-    { id: "669932985830393", date: "25/12/2024", image: "/item3.png", total: 780 },
-  ];
+
 
   const userAddresses = [
     {
@@ -50,11 +46,11 @@ const AccountPage = () => {
             ))}
           </div>
         </div>
-        <Orders orders={orders} />
+        <Orders Orderhistory={Orderhistory} />
       </>
     ),
     "Address Book": <Addressbooks userAddresses={userAddresses} />,
-    "My Orders": <Orders orders={orders} />,
+    "My Orders": <Orders Orderhistory={Orderhistory} />,
     "Account Details": <AccountDetails />,
   };
 

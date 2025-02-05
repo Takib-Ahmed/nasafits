@@ -5,11 +5,27 @@ import { useEffect, useState } from "react";
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import PaymentConfirmation from "./Paymentconfrimation";
-const Checkout = ({ SelectedCarts,setOrderhistory }) => {
-  const [paymentMethod, setPaymentMethod] = useState("Deliverypaid"); // Default payment method
+import { Link } from "react-router-dom";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+const Checkout = ({ SelectedCarts,setOrderhistory,setplacedOrder ,Orderhistory,setcartedproduct,setselectedcarts}) => {
+  const [paymentMethod, setPaymentMethod] = useState("PayDelivery"); // Default payment method
   const [selectedCity, setSelectedCity] = useState("");
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
   const [inputName,setinputname] = useState()
+  const {setItem} = useLocalStorage('Orderhistory')
+  
+  const nowDate = new Date(); 
+const ampm = nowDate.getHours()>=12 ? 'pm':'am'
+const minutes = (nowDate.getMinutes()+1) <=9 ? '0'+(nowDate.getMinutes()+1) :(nowDate.getMinutes()+1) 
+const OrderedDate = nowDate.getDate()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getFullYear()
+const OrderedTime = (nowDate.getHours()%12)+':'+minutes+' '+ampm; 
+
+  const totalAmount = SelectedCarts.reduce(
+    (total, cart) => total + cart.discountPrice * cart.quantity,
+    0
+  );
+  const shippingCost = 60;
+  const payableAmount = totalAmount + shippingCost; 
   // User input state
   const [Order, setOrder] = useState({
     fullName: storedUser.name ? storedUser.name :'',
@@ -23,6 +39,15 @@ const Checkout = ({ SelectedCarts,setOrderhistory }) => {
     Id:Date.now(),
     Products:SelectedCarts,
     paid:'',
+    city: selectedCity,
+    Ordered:true,
+    paymentMethod,
+    totalAmount,
+    shippingCost,
+    payableAmount,
+   Date:OrderedDate,
+    Time:OrderedTime,
+   
 
 
     
@@ -61,12 +86,6 @@ const Checkout = ({ SelectedCarts,setOrderhistory }) => {
 
  };
 
-  const totalAmount = SelectedCarts.reduce(
-    (total, cart) => total + cart.discountPrice * cart.quantity,
-    0
-  );
-  const shippingCost = 60;
-  const payableAmount = totalAmount + shippingCost; 
 
   const cities = [
     "Dhaka", "Savar", "Nabinagar", "Ashulia", "Keraniganj", "Tongi", "Bagerhat",
@@ -104,7 +123,7 @@ const Checkout = ({ SelectedCarts,setOrderhistory }) => {
         Id: ${product.id}`
       ).join('\n')
     };
-    console.log(Placedorder.Products)
+
    
     emailjs
       .send('service_q26jdmu', 'template_64jstfk', templateParams, {
@@ -121,19 +140,29 @@ const Checkout = ({ SelectedCarts,setOrderhistory }) => {
       );
   };
 
+  useEffect(() => {
+    setItem(Orderhistory)
+  }, [Orderhistory,setItem]);
   const handleSubmit = () => {
+    
     if(Order.agreeTerms && Order.fullName!='' && Order.phoneNumber!='' && Order.email!='' && selectedCity!='' ){
 
       const Placedorder = {
-        ...Order,
-        city: selectedCity,
-        Ordered:true,
-        paymentMethod,
-        totalAmount: totalAmount + shippingCost
+        ...Order
+
       };
-      setOrderhistory((prev)=>[...prev,Placedorder])
-   
-   sendEmail(Placedorder);
+      setcartedproduct((prev)=>prev.filter((product)=>
+        !Order.Products.some((Product)=>Product.id=== product.id && Product.selectedsize === product.selectedsize)))
+      setselectedcarts([])
+      setplacedOrder(Order)
+      setOrderhistory((prev) => {
+        const updatedHistory = [...prev, Placedorder];
+        return updatedHistory;
+      })
+  ;
+  
+
+  //  sendEmail(Placedorder);
     }
     else{
       alert('Plz fill all the inputs')
@@ -146,7 +175,7 @@ const Checkout = ({ SelectedCarts,setOrderhistory }) => {
 
 
 
-
+ 
 
 
  
@@ -154,7 +183,7 @@ const Checkout = ({ SelectedCarts,setOrderhistory }) => {
   return (
     <div className="mx-auto py-20 px-5 sm:px-10 lg:p-20 bg-white shadow-md rounded-md">
       <h2 className="text-3xl font-bold text-center pb-10"  onClick={()=>{
-      
+
        
       }}>Checkout Info</h2>
 
@@ -269,8 +298,8 @@ const Checkout = ({ SelectedCarts,setOrderhistory }) => {
           <h3 className="font-bold mb-2">Payment Options</h3>
           <div className="flex space-x-4 mb-4">
             {[
-              { label: "Delivery Payment", method: "Deliverypaid" },
-              { label: "Full Payment", method: "Fullypaid" }
+              { label: "Delivery Payment", method: "PayDelivery" },
+              { label: "Full Payment", method: "PayFull" }
             ].map((option) => (
               <button
                 key={option.method}
@@ -323,12 +352,15 @@ const Checkout = ({ SelectedCarts,setOrderhistory }) => {
               I agree to the <span className="text-blue-500">Terms & Conditions</span>, <span className="text-blue-500">Refund Policy</span>, and <span className="text-blue-500">Privacy Policy</span>.
             </Checkbox>
           </div>
-
-          <Button onClick={handleSubmit} radius="lg" size="lg" className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-bold">
-            Place Order
-          </Button>
+          <Link to={`/payment/${Order.Id}`} className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-bold">
+          <Button onPress={()=>{
+            handleSubmit()
+          }} radius="lg" size="lg" >
+  Place Order
+          </Button></Link>
+          
         </div>
-           <PaymentConfirmation/>
+       
         <div className=" w-full lg:w-[75%] bg-gray-100 p-4 sm:px-5 shadow  h-fit mt-5 flex flex-col lg:mx-10 mb-0 ">
           <h3 className="font-bold text-lg mb-3">Cart Overview</h3>
           {SelectedCarts.map((item) => (

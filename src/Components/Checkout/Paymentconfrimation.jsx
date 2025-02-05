@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Alert, Button, Input, Select } from "@nextui-org/react";
 import { SelectItem } from "@heroui/react";
 
-const PaymentConfirmation = ({ handleGoBack }) => {
+const PaymentConfirmation = ({ handleGoBack,placedOrder,Paying }) => {
   const [transactionID, setTransactionID] = useState("");
   const [mobileBank, setMobileBank] = useState("");
   const [transactionImage, setTransactionImage] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
 const [Paid,setpaid] = useState(false)
+
   const handleImageUpload = (e) => {
     setTransactionImage(e.target.files[0]);
   };
@@ -41,8 +42,8 @@ else{
 
   return (
     <div className="w-[55%]  p-8 bg-white rounded-md">
-      <h3 className="font-bold text-2xl text-center mb-2">Payment Confirmation</h3>
-<div className="flex justify-center text-center h-20 "><center className=" w-fit "><Alert className=" text-center   h-full "  variant={"flat"} color={Paid?'success':'primary'} ><p className=" pt-1.5 ">{Paid?'Your Order Has been Confirmed':'Your Order is pending, Pay to confirm the order'}</p></Alert> </center></div>
+
+<div className="flex justify-center text-center h-20 "><center className=" w-fit "><Alert className=" text-center   h-full "  variant={"flat"} color={Paid?'success':'primary'} ><p className=" pt-1.5 ">{Paid?'Your Order Has been Confirmed':`Your Order is pending, Pay ${Paying} to confirm the order`}</p></Alert> </center></div>
  
    
       <div className="mb-4">
