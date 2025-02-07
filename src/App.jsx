@@ -16,6 +16,7 @@ import AccountPage from "./Components/Profile/Account";
 import Checkout from "./Components/Checkout/Checkoutpage";
 import ScrollToTop from "./Components/ScrollToTop";
 import Paymentpage from "./Components/Checkout/Paymentpage";
+import { useLocalStorage } from "./Components/hooks/useLocalStorage";
 
 function App() {
   const productDetails = [
@@ -217,12 +218,6 @@ function App() {
   const [cartedProduct, setcartedproduct] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
   const [SelectedCarts, setselectedcarts] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
 
-
- 
-  // const detailedproduct = productDetails.find((iteam) => iteam.id == parseInt(id));
-  // useEffect(() => {setproduct(detailedproduct);}, [detailedproduct, id]);
-
-
   const [selectedFilters, setSelectedFilters] = useState({});
   const selectedFilterArray = Object.keys(selectedFilters).filter((key) => selectedFilters[key] === true  );
   const filteredProducts =
@@ -240,8 +235,24 @@ function App() {
         const StoredOrderhistory = JSON.parse(localStorage.getItem("Orderhistory")) || []; 
   const [Orderhistory,setOrderhistory] = useState(StoredOrderhistory)
   const [placedOrder,setplacedOrder] = useState({})
+  const {setItem} = useLocalStorage('Orderhistory')
+  useEffect(() => {
+    
+    setItem(Orderhistory)
+  }, [Orderhistory,setItem]);
 
-   
+
+
+const [profilelocation,setprofilelocation] = useState('Dashboard')
+
+  const menuSections = [
+    {
+      title: "Manage My Account",
+      items: ["Dashboard",'Account Details', "Address Book",'My Orders',"My Returns", "My Cancellations"],
+    },
+
+ 
+  ];
   return (
     <>
       <BrowserRouter>
@@ -266,9 +277,17 @@ function App() {
                 element={<Homepage setSelectedFilters={setSelectedFilters} productDetails={productDetails} />}
               />
 
-              <Route path="/profile" element={<AccountPage Orderhistory={Orderhistory} />} />
-              <Route path="/checkout" element={<Checkout setplacedOrder={setplacedOrder} setselectedcarts={setselectedcarts}     setcartedproduct={setcartedproduct}
-              SelectedCarts={SelectedCarts} setOrderhistory={setOrderhistory}  Orderhistory={Orderhistory}/>} />
+<Route  path={`/profile`} element={<AccountPage  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation}  menuSections={menuSections} Orderhistory={Orderhistory}  />} />
+{
+  menuSections.map((section)=>(
+    section.items.map((goto,key)=>(
+      <Route key={key} path={`/profile/${goto}`} element={<AccountPage  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={goto} menuSections={menuSections} Orderhistory={Orderhistory}  />} />
+      
+    ))
+  ))
+}
+           <Route path="/checkout" element={<Checkout setplacedOrder={setplacedOrder} setselectedcarts={setselectedcarts}     setcartedproduct={setcartedproduct}
+              SelectedCarts={SelectedCarts} setOrderhistory={setOrderhistory}  Orderhistory={Orderhistory} />} />
               <Route
                 path="/shop"
                 element={<Shop filteredProducts={filteredProducts} />}
@@ -300,7 +319,19 @@ function App() {
               />
        {
         Orderhistory.map((placedOrdered)=>(
-          <Route key={placedOrdered.Id} path={`/payment/${placedOrdered.Id}`} element={<Paymentpage placedOrder={placedOrdered} />}/>
+     
+
+          <Route key={placedOrdered.Id} path={`/payment/${placedOrdered.Id}`} element={<Paymentpage setOrderhistory={setOrderhistory} placedOrdered={placedOrdered} />}/>
+        )
+
+         
+        )
+       }
+           {
+        Orderhistory.map((placedOrdered)=>(
+
+         <Route  key={placedOrdered.Id} path={`/profile/${profilelocation}-${placedOrdered.Id}`}  element={<AccountPage setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
+
         )
 
          

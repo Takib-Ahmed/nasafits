@@ -16,7 +16,7 @@ import {
     NavbarMenuItem,
     Image,
   } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import CustomDropdown from "./Customdropdown";
@@ -64,8 +64,21 @@ import Sidedrawer from "./drawer";
   };
   
   export default function Header({showmbsearhbar,setshowsearchbar,setSelectedFilters}) {
+    const [screenSize, setScreenSize] = useState(window.innerWidth);
 
-    const storedUser = JSON.parse(localStorage.getItem('userdata'));
+    useEffect(() => {
+      const handleResize = () => {
+        setScreenSize(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      // Cleanup the event listener on component unmount
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+    const storedUser = JSON.parse(localStorage.getItem('userdata')) || {};
 
     const location = useLocation();
     const menuItems = [
@@ -168,7 +181,7 @@ import Sidedrawer from "./drawer";
           <Dropdown placement="bottom-end">
      
 
-<Link to={storedUser?'/profile':'/account'}  >    <Avatar
+<Link to={storedUser? screenSize>768? '/profile/Dashboard':'/profile':'/account'}  >    <Avatar
                 isBordered
                 as="button"
                 className="transition-transform    rounded-full  text-white"

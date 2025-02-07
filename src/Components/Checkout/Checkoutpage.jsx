@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 import PaymentConfirmation from "./Paymentconfrimation";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-const Checkout = ({ SelectedCarts,setOrderhistory,setplacedOrder ,Orderhistory,setcartedproduct,setselectedcarts}) => {
+const Checkout = ({ SelectedCarts,setOrderhistory,setplacedOrder ,setcartedproduct,setselectedcarts}) => {
  
-const [Gotopay,setGotopay] = useState('')
+ const navigate = useNavigate()
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
   const [inputName,setinputname] = useState()
-  const {setItem} = useLocalStorage('Orderhistory')
-  const [paymentMethod, setPaymentMethod] = useState("PayDelivery"); // Default payment method
+
+  const [paymentMethod, setPaymentMethod] = useState("Delivery Paid"); // Default payment method
   const [selectedCity, setSelectedCity] = useState("");
   const nowDate = new Date(); 
 const ampm = nowDate.getHours()>=12 ? 'pm':'am'
@@ -41,12 +41,13 @@ const OrderedTime = (nowDate.getHours()%12)+':'+minutes+' '+ampm;
     paid:'',
     city: selectedCity,
     Ordered:true,
-    paymentMethod,
+    paymentMethod:'',
     totalAmount,
     shippingCost,
     payableAmount,
    Date:OrderedDate,
     Time:OrderedTime,
+    status:'pending',
    
 
 
@@ -102,17 +103,16 @@ const OrderedTime = (nowDate.getHours()%12)+':'+minutes+' '+ampm;
   ];
 
 
-  useEffect(() => {
-    setItem(Orderhistory)
-  }, [Orderhistory,setItem]);
+
   const handleSubmit = (e) => {
     
 
     if(Order.agreeTerms && Order.fullName!='' && Order.phoneNumber!='' && Order.email!='' && selectedCity!='' ){
 if(SelectedCarts.length>0){
-  setGotopay(`/payment/${Order.Id}`)
+  navigate(`/payment/${Order.Id}`)
   const Placedorder = {
-    ...Order
+    ...Order,
+    paymentMethod
 
   };
   setcartedproduct((prev)=>prev.filter((product)=>
@@ -153,7 +153,7 @@ else{
     <div className="mx-auto py-20 px-5 sm:px-10 lg:p-20 bg-white shadow-md rounded-md">
       <h2 className="text-3xl font-bold text-center pb-10"  onClick={()=>{
 
-       
+       console.log(Order)
       }}>Checkout Info</h2>
 
       <div className="flex flex-col-reverse lg:flex-row justify-around gap-5 flex-wrap lg:flex-nowrap">
@@ -267,15 +267,22 @@ else{
           <h3 className="font-bold mb-2">Payment Options</h3>
           <div className="flex space-x-4 mb-4">
             {[
-              { label: "Delivery Payment", method: "PayDelivery" },
-              { label: "Full Payment", method: "PayFull" }
+              { label: "Delivery Payment", method: "Delivery Paid" },
+              { label: "Full Payment", method: "Fully Paid" }
             ].map((option) => (
               <button
                 key={option.method}
                 className={`payment-btn ${
                   paymentMethod === option.method ? "border-green-500 bg-green-500 text-white" : ""
                 }`}
-                onClick={() => setPaymentMethod(option.method)}
+        onClick={()=>{
+          setPaymentMethod(option.method)
+          setOrder((prev)=>({...prev,paymentMethod:option.method}))
+        }
+
+
+
+        }
               >
                 {option.label}
               </button>
@@ -321,12 +328,13 @@ else{
               I agree to the <span className="text-blue-500">Terms & Conditions</span>, <span className="text-blue-500">Refund Policy</span>, and <span className="text-blue-500">Privacy Policy</span>.
             </Checkbox>
           </div>
-          <Link  to={Gotopay} className="w-fit  text-white py-3 rounded-md text-lg font-bold">
+        
           <Button onClick={()=>{
+
             handleSubmit()
           }} radius="lg" size="lg"  className=" w-full bg-green-600 text-white py-3 rounded-md text-lg font-bold">
   Place Order
-          </Button></Link>
+          </Button>
           
         </div>
        

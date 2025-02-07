@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Alert, Button, Input, Select } from "@nextui-org/react";
 import { SelectItem } from "@heroui/react";
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
-const PaymentConfirmation = ({ handleGoBack,placedOrder,Paying }) => {
+import { useNavigate } from "react-router-dom";
+const PaymentConfirmation = ({placedOrdered,Paying ,setOrderhistory}) => {
   const [transactionID, setTransactionID] = useState("");
   const [mobileBank, setMobileBank] = useState("");
   const [transactionImage, setTransactionImage] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
 const [Paid,setpaid] = useState(false)
-
+const navigate = useNavigate()
   const handleImageUpload = (e) => {
     setTransactionImage(e.target.files[0]);
   };
@@ -30,34 +32,36 @@ if(mobileBank && transactionID || transactionImage){
   };
   setpaid(true)
   setIsVisible(true)
-  sendEmail(placedOrder,paymentData)
+  sendEmail(placedOrdered,paymentData)
   setTimeout(() => {
     setIsVisible(false)
   }, 5000);
+  setOrderhistory((prev)=>
+    prev.map((placedOrder)=>placedOrder.Id === placedOrdered.Id  ? {...placedOrder,status:placedOrdered.paymentMethod}:placedOrder))
 }
 else{
   alert('fill all datas')
 }
     // You can send this object to an API or handle it as needed
   };
-  const sendEmail = (Placedorder, paymentData) => {
+  const sendEmail = (placedOrdered, paymentData) => {
     const templateParams = {
-      Order_id: Placedorder.Id,
-      full_name: Placedorder.fullName,
-      email: Placedorder.email,
-      phone_number: Placedorder.phoneNumber,
-      alt_phone: Placedorder.altPhone,
-      city: Placedorder.city,
-      address: Placedorder.detailedAddress,
-      coupon_code: Placedorder.couponCode,
-      payment_method: Placedorder.paymentMethod,
-      total_amount: Placedorder.totalAmount,
-      note: Placedorder.note,
-      agree_Terms: Placedorder.agreeTerms,
+      Order_id: placedOrdered.Id,
+      full_name: placedOrdered.fullName,
+      email: placedOrdered.email,
+      phone_number: placedOrdered.phoneNumber,
+      alt_phone: placedOrdered.altPhone,
+      city: placedOrdered.city,
+      address: placedOrdered.detailedAddress,
+      coupon_code: placedOrdered.couponCode,
+      payment_method: placedOrdered.paymentMethod,
+      total_amount: placedOrdered.totalAmount,
+      note: placedOrdered.note,
+      agree_Terms: placedOrdered.agreeTerms,
       transactionID: transactionID,
       mobileBank: mobileBank,
       transactionImage: transactionImage ? transactionImage.name : 'No Image', // ফাইলের নাম পাঠানো
-      products_list: Placedorder.Products.map(
+      products_list: placedOrdered.Products.map(
         (product) =>
           `${product.name} 
           Size: ${product.selectedsize}, 
@@ -85,14 +89,19 @@ else{
       );
   };
   
+  const handlecanceled = ()=>{
+    setOrderhistory((prev)=>
+      prev.map((placedOrder)=>placedOrder.Id === placedOrdered.Id  ? {...placedOrder,status:'canceled'}:placedOrder))
+  
+  }
 
   return (
     <div className=" w-full md:w-[55%] grid gap-2 p-0 sm:p-3  md:p-5 md:pt-0 lg:p-8 lg:pt-0 bg-white rounded-md">
 
-<div className="flex justify-center text-center  h-20  text-xs md:text-sm lg:text-medium "><center className=" w-fit "><Alert   className=" text-center   h-full " variant={"flat"} color={Paid?'success':'primary'} ><p className=" pt-3 md:pt-1.5 ">{Paid?'Your Order Has been Confirmed':`Payment is pending, Pay ${Paying}tk to confirm the order`}</p></Alert> </center></div>
+<div className="flex justify-center text-center  h-20  text-xs md:text-sm lg:text-medium "><center className=" w-fit "><Alert   className=" text-center   h-full " variant={"flat"} color={Paid?'success':'primary'} ><p className={" pt-3 md:pt-1.5 "}>{Paid?'Your Order Has been Confirmed':placedOrdered.status === 'canceled'?'Your Order has been canceled':`Payment is pending, Pay ${Paying}tk to confirm the order`}</p></Alert> </center></div>
  
-   
-      <div className="mb-3">
+   {placedOrdered.status != 'canceled' && <>
+    <div className="mb-3">
         <Select label="Select Mobile Bank" variant="flat" className="text-xs md:text-sm lg:text-medium " size="md" onChange={(e)=>{
           setMobileBank(e.target.value)
           console.log(mobileBank)
@@ -131,16 +140,25 @@ else{
             className="mt-2 w-40 h-40 object-cover"
           />
         )}
-      </div>
+      </div></>}
+   
 
       <div className="flex justify-between">
-        <Button onClick={handleGoBack} className="mt-4 bg-red-500 text-center  w-28 sm:w-40 text-md text-white">
-          Cancel
+        <Button onClick={()=>{
+         placedOrdered.status ==='canceled' ? navigate('/cart'):handlecanceled()
+        }} className={` bg-red-500 text-center   text-md text-white ${
+          placedOrdered.status ==='canceled'?'w-full':'w-28 sm:w-40 mt-4'
+        }`}>
+        { placedOrdered.status ==='canceled'?'Go Back':'Cancel'}
         </Button>
-        <Button onClick={handleSubmit} className="mt-4 bg-green-500 text-center w-28  sm:w-40 text-md text-white">
+        <Button onClick={handleSubmit} className={` bg-green-500 text-center   text-md text-white ${
+
+placedOrdered.status ==='canceled'?'hidden':'w-28 sm:w-40 mt-4'
+}`}>
           Submit
         </Button>
       </div>
+      
 
       {isVisible && (
    <div className=" absolute  top-20   -translate-x-1/2 right-0">

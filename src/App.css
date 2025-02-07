@@ -82,6 +82,12 @@ background: inherit !important;
 .payment-btn {
   @apply border p-3 rounded-md text-center cursor-pointer ;
 }
+.Orderhistory{
+  font-size: medium;
+}
+.Sidebar{
+  width: 16rem;
+}
 @media only screen and (max-width: 1500px){
 
   .shopcard{
@@ -154,6 +160,16 @@ justify-content: center;
     width: 30rem;
   }
 }
+@media only screen and (max-width: 1267px){
+  .Orderhistory{
+    font-size:small;
+  }
+  .Sidebar{
+    width: 10rem;
+  }
+}
+
+
 @media only screen and (max-width: 1200px) {
   .shopcard{
     width: 12.5rem;
@@ -290,6 +306,9 @@ transform: translateY(0) !important;
 }
  }
  @media only screen and (max-width: 880px) {
+  .Orderhistory{
+    font-size:x-small;
+  }
   .sidefilterlist{
     display: none !important;
   }
