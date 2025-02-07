@@ -252,7 +252,8 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
     },
 
  
-  ];
+  ]
+  ;
   return (
     <>
       <BrowserRouter>
@@ -262,6 +263,8 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
               showmbsearhbar={showmbsearhbar}
               setshowsearchbar={setshowsearchbar}
               setSelectedFilters={setSelectedFilters}
+              menuSections={menuSections}
+              setprofilelocation={setprofilelocation}
             />
             <Sidecart
    SelectedCarts={SelectedCarts}

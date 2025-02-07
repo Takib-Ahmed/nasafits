@@ -35,7 +35,7 @@ if(mobileBank && transactionID || transactionImage){
   sendEmail(placedOrdered,paymentData)
   setTimeout(() => {
     setIsVisible(false)
-  }, 5000);
+  }, 2000);
   setOrderhistory((prev)=>
     prev.map((placedOrder)=>placedOrder.Id === placedOrdered.Id  ? {...placedOrder,status:placedOrdered.paymentMethod}:placedOrder))
 }
@@ -76,8 +76,8 @@ else{
     console.log('Email Template Params:', templateParams);  // চেক করুন সব ডাটা আসছে কিনা
   
     emailjs
-      .send('service_q26jdmu', 'template_64jstfk', templateParams, {
-        publicKey: 'UhFs-e6E1DIJ4bSAw',
+      .send('service_a9wutu6', 'template_enc24sc', templateParams, {
+        publicKey: 'y45qWjTg14A3yOeZr',
       })
       .then(
         () => {
@@ -98,7 +98,7 @@ else{
   return (
     <div className=" w-full md:w-[55%] grid gap-2 p-0 sm:p-3  md:p-5 md:pt-0 lg:p-8 lg:pt-0 bg-white rounded-md">
 
-<div className="flex justify-center text-center  h-20  text-xs md:text-sm lg:text-medium "><center className=" w-fit "><Alert   className=" text-center   h-full " variant={"flat"} color={Paid?'success':'primary'} ><p className={" pt-3 md:pt-1.5 "}>{Paid?'Your Order Has been Confirmed':placedOrdered.status === 'canceled'?'Your Order has been canceled':`Payment is pending, Pay ${Paying}tk to confirm the order`}</p></Alert> </center></div>
+<div className="flex justify-center text-center  h-20  text-xs md:text-sm lg:text-medium "><center className=" w-fit "><Alert   className=" text-center   h-full " variant={"flat"} color={Paid?'success':'primary'} ><p className={" pt-3 md:pt-1.5 "}>{Paid?'Order requested':placedOrdered.status === 'canceled'?'Your Order has been canceled':`Payment is pending, Pay ${Paying}tk to confirm the order`}</p></Alert> </center></div>
  
    {placedOrdered.status != 'canceled' && <>
     <div className="mb-3">
@@ -161,16 +161,18 @@ placedOrdered.status ==='canceled'?'hidden':'w-28 sm:w-40 mt-4'
       
 
       {isVisible && (
-   <div className=" absolute  top-20   -translate-x-1/2 right-0">
-         <Alert
+   <div className=" z-50 fixed top-5  md:top-16 translate-y-4 md:translate-y-20 lg:translate-y-5  left-0   flex md:justify-end justify-center   w-full">
+ <div className=" w-96 md:-translate-x-6">
+ <Alert
           color="success"
- className="  "
- title='Payment Confirmation'
-          isVisible={isVisible}
-          description={'Your Order Has been Confirmed'}
+ className="   "
+ title='Order Requested'
+          isVisible
+          description={'You will a receive confirmation message'}
           variant="faded"
           onClose={() => setIsVisible(false)}
         />
+ </div>
    </div>
       ) }
 

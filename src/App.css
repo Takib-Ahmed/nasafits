@@ -3,7 +3,7 @@ body{
   margin: 0 ;
   box-sizing: border-box;
   overflow-x: hidden;
-overflow-y: scroll;
+
 
 
 }
@@ -17,6 +17,7 @@ html{
   margin: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 *{
   /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important; */
@@ -359,6 +360,10 @@ transform: translateY(0) !important;
    }
  
    @media only screen and (max-width: 540px){
+    .Orderhistory{
+   overflow-x: scroll;
+  width:100vw;
+    }
     .mbsearchbar{
       display: block !important;
       width: 85vw !important;

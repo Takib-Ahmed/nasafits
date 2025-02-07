@@ -7,11 +7,11 @@ const Orders = ({ Orderhistory ,show,orderData,Goto,setorderid}) => {
   const Filterhistory = show ? Orderhistory.filter((order)=>order.status === show):Orderhistory
   const navigate = useNavigate()
   return (
-    <div className="bg-white p-4 rounded-lg  ">
+    <div className="bg-white p-4 rounded-lg Orderhistory ">
       <h2 className="text-lg font-semibold mb-4">Recent Orders</h2>
 
       {/* Desktop View - Grid Layout */}
-      <div className=" md:block Orderhistory">
+      <div className=" md:block   ">
         <div className="grid grid-cols-6 bg-gray-100 text-gray-700 font-semibold p-3 rounded-t-lg">
           <div className="">Order #</div>
           <div className="">Placed On</div>
@@ -21,7 +21,7 @@ const Orders = ({ Orderhistory ,show,orderData,Goto,setorderid}) => {
           <div className="">Action</div>
         </div>
 
-  <div className=" flex flex-col-reverse ">
+  <div className=" flex flex-col-reverse  ">
   { Filterhistory.length !=0? 
    Filterhistory.map((order,key) => (
      

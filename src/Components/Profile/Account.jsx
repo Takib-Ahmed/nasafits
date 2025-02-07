@@ -58,10 +58,10 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
       </>
     ),
     "Address Book": <Addressbooks userAddresses={userAddresses} setAdressbook={setAdressbook}  />,
-    "My Orders":<Orders Orderhistory={Orderhistory}  orderData={orderData} Goto={Goto}  />,
+    "My Orders":<Orders   Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  />,
     "Account Details": <AccountDetails storedUser={storedUser}  setItem={setItem}/>,
-    "My Cancellations": <Orders Orderhistory={Orderhistory}  show={'canceled'}  orderData={orderData} Goto={Goto}/>,
-    "My Returns": <Orders Orderhistory={Orderhistory}  show={'returned'} Goto={Goto}/>,    
+    "My Cancellations": <Orders  Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  show={'canceled'}  />,
+    "My Returns": <Orders  Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  show={'returned'} />,    
     'OrderDetails': <OrderSummary  orderData={orderData} setOrderhistory={setOrderhistory} />,
   };
 

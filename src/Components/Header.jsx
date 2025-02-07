@@ -63,9 +63,9 @@ import Sidedrawer from "./drawer";
     );
   };
   
-  export default function Header({showmbsearhbar,setshowsearchbar,setSelectedFilters}) {
+  export default function Header({showmbsearhbar,setshowsearchbar,setSelectedFilters,menuSections,setprofilelocation}) {
     const [screenSize, setScreenSize] = useState(window.innerWidth);
-
+const navigate = useNavigate()
     useEffect(() => {
       const handleResize = () => {
         setScreenSize(window.innerWidth);
@@ -91,7 +91,7 @@ import Sidedrawer from "./drawer";
     const [ishovered, setIshovered] = useState(false);
 
     return (
-      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0 " isBordered   >
+      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0  " isBordered   >
         <NavbarContent justify="start">
         <div
 
@@ -180,34 +180,55 @@ import Sidedrawer from "./drawer";
          <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
           <Dropdown placement="bottom-end">
      
+{
+  location.pathname.includes('/profile/') ?     <DropdownTrigger>
+  <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform    rounded-full  text-white"
+                  color="white"
+                  name ={storedUser && storedUser.name}
+                  size="sm"
+           
+                  icon={<CgProfile className=" w-full  text-3xl"/>}
+                 /></DropdownTrigger>  : <Link to={storedUser? screenSize>768? '/profile/Dashboard':'/profile':'/account'}  > 
+                 <Avatar
+                                 isBordered
+                                 as="button"
+                                 className="transition-transform    rounded-full  text-white"
+                                 color="white"
+                                 name ={storedUser && storedUser.name}
+                                 size="sm"
+                          
+                                 icon={<CgProfile className=" w-full  text-3xl"/>}
+                                />
+                 
+                                </Link>
+}
 
-<Link to={storedUser? screenSize>768? '/profile/Dashboard':'/profile':'/account'}  >    <Avatar
-                isBordered
-                as="button"
-                className="transition-transform    rounded-full  text-white"
-                color="white"
-                name ={storedUser && storedUser.name}
-                size="sm"
-         
-                icon={<CgProfile className=" w-full  text-3xl"/>}
-               />
-               </Link>
+            
  
-            {/* <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem onClick={()=>{
+                navigate(storedUser? screenSize>768? '/profile/Dashboard':'/profile':'/account')
+              }} key="profile" className="h-14 gap-2">
                 <p className="font-semibold">Signed in as</p>
-                <p className="font-semibold">zoey@example.com</p>
+                <p className="font-semibold">{storedUser.email}</p>
               </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
-              <DropdownItem key="team_settings">Team Settings</DropdownItem>
-              <DropdownItem key="analytics">Analytics</DropdownItem>
-              <DropdownItem key="system">System</DropdownItem>
-              <DropdownItem key="configurations">Configurations</DropdownItem>
-              <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-              <DropdownItem key="logout" color="danger">
+
+              {menuSections.map((section)=>(
+                section.items.map((options)=>(
+                  <DropdownItem onClick={()=>{
+                    navigate(`/profile/${options}`)
+                    setprofilelocation(options)
+                  }} key={options}>{options}</DropdownItem>
+                ))
+              ))}
+
+              <DropdownItem key="logout" color="danger" className=" text-danger-500">
                 Log Out
               </DropdownItem>
-            </DropdownMenu> */}
+            </DropdownMenu>
           </Dropdown>
         </NavbarContent>
  
