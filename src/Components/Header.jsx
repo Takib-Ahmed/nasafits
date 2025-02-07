@@ -91,7 +91,7 @@ const navigate = useNavigate()
     const [ishovered, setIshovered] = useState(false);
 
     return (
-      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0  " isBordered   >
+      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0   fixed" isBordered   >
         <NavbarContent justify="start">
         <div
 

@@ -47,8 +47,8 @@ const OrderSummary = ({ orderData ,setOrderhistory}) => {
             <p className="text-red-500 text-xs font-semibold">{orderData.status}</p>
           </div>
           <div className="font-semibold grid"><p className=' w-full text-end'>৳{product.discountPrice}</p>
-<div className="flex gap-2">        {orderData.status === 'pending' &&   <button  className='  flex justify-end items-center bg-green-500 text-white  text-sm h-fit p-1 mt-2 gap-1' onClick={handlePay} ><TbCoinTakaFilled size={16} className=' '/><font>Pay Now</font></button>}
-<button  className='  flex justify-end items-center bg-red-500 text-white w-fit text-sm h-fit p-1 mt-2 gap-1 ' onClick={handledelete}><IoTrash size={14} className=' '/><font>Delete</font></button></div>
+<div className="flex gap-2">        {orderData.status === 'pending' &&   <button  className='  flex justify-end items-center bg-green-500 text-white  text-sm h-fit p-1 mt-2 gap-1' onClick={handlePay} ><TbCoinTakaFilled size={16} className=' '/><font className='btntext '>Pay Now</font></button>}
+<button  className='  flex justify-end items-center bg-red-500 text-white w-fit text-sm h-fit p-1 mt-2 gap-1 ' onClick={handledelete}><IoTrash size={16} className=' '/><font className=' btntext'>Delete</font></button></div>
           
           </div>
         </div>

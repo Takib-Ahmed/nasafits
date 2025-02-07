@@ -69,7 +69,7 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
     <div className={`flex bg-gray-100 md:p-10 lg:p-20  mt-12 text-sm lg:text-medium ${Goto?'py-20':'py-10'}`}>
       <Sidebar Goto={Goto} menuSections={menuSections} setprofilelocation={setprofilelocation}  />
       {
-        Goto && <div className={`flex-1 ml-4 space-y-4 `}> 
+        Goto && <div className={`flex-1 md:ml-4 space-y-4 `}> 
         {pages[Goto] || <div className="text-center text-gray-500">Page not found</div>}
       </div>
       }

@@ -38,6 +38,7 @@ if(mobileBank && transactionID || transactionImage){
   }, 2000);
   setOrderhistory((prev)=>
     prev.map((placedOrder)=>placedOrder.Id === placedOrdered.Id  ? {...placedOrder,status:placedOrdered.paymentMethod}:placedOrder))
+  navigate('/cart')
 }
 else{
   alert('fill all datas')
@@ -94,13 +95,14 @@ else{
       prev.map((placedOrder)=>placedOrder.Id === placedOrdered.Id  ? {...placedOrder,status:'canceled'}:placedOrder))
   
   }
+  const status = placedOrdered.status === 'canceled' || placedOrdered.status === 'Delivery Paid' || placedOrdered.status === 'Fully Paid';
 
   return (
     <div className=" w-full md:w-[55%] grid gap-2 p-0 sm:p-3  md:p-5 md:pt-0 lg:p-8 lg:pt-0 bg-white rounded-md">
 
-<div className="flex justify-center text-center  h-20  text-xs md:text-sm lg:text-medium "><center className=" w-fit "><Alert   className=" text-center   h-full " variant={"flat"} color={Paid?'success':'primary'} ><p className={" pt-3 md:pt-1.5 "}>{Paid?'Order requested':placedOrdered.status === 'canceled'?'Your Order has been canceled':`Payment is pending, Pay ${Paying}tk to confirm the order`}</p></Alert> </center></div>
+<div className="flex justify-center text-center  h-20  text-xs md:text-sm lg:text-medium "><center className=" w-fit "><Alert   className=" text-center   h-full " variant={"flat"} color={status?placedOrdered.status ==='canceled' ? 'danger':'success':'primary'} ><p className={" pt-3 md:pt-1.5 "}>{status?placedOrdered.status ==='canceled' ? 'Order canceled':'Order requested':placedOrdered.status === 'canceled'?'Your Order has been canceled':`Payment is pending, Pay ${Paying}tk to confirm the order`}</p></Alert> </center></div>
  
-   {placedOrdered.status != 'canceled' && <>
+   {!status && <>
     <div className="mb-3">
         <Select label="Select Mobile Bank" variant="flat" className="text-xs md:text-sm lg:text-medium " size="md" onChange={(e)=>{
           setMobileBank(e.target.value)
@@ -145,15 +147,15 @@ else{
 
       <div className="flex justify-between">
         <Button onClick={()=>{
-         placedOrdered.status ==='canceled' ? navigate('/cart'):handlecanceled()
+         status  ? navigate('/cart'):handlecanceled()
         }} className={` bg-red-500 text-center   text-md text-white ${
-          placedOrdered.status ==='canceled'?'w-full':'w-28 sm:w-40 mt-4'
+          status ?'w-full':'w-28 sm:w-40 mt-4'
         }`}>
-        { placedOrdered.status ==='canceled'?'Go Back':'Cancel'}
+        { status ?'Go Back':'Cancel'}
         </Button>
         <Button onClick={handleSubmit} className={` bg-green-500 text-center   text-md text-white ${
 
-placedOrdered.status ==='canceled'?'hidden':'w-28 sm:w-40 mt-4'
+status?'hidden':'w-28 sm:w-40 mt-4'
 }`}>
           Submit
         </Button>
