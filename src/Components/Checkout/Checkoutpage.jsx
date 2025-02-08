@@ -12,8 +12,10 @@ const Checkout = ({ SelectedCarts,setOrderhistory,setplacedOrder ,setcartedprodu
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
   const [inputName,setinputname] = useState()
 
-  const [paymentMethod, setPaymentMethod] = useState("Delivery Paid"); // Default payment method
-  const [selectedCity, setSelectedCity] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("Delivery Paid"); 
+  const storeduserAddresses = JSON.parse(localStorage.getItem("useradress")) || [];
+  const defualadress = storeduserAddresses.find((Adress)=>Adress.defaultaddress===true)
+  const [selectedCity, setSelectedCity] = useState(defualadress? defualadress.city:"");// Default payment method
   const nowDate = new Date(); 
 const ampm = nowDate.getHours()>=12 ? 'pm':'am'
 const minutes = (nowDate.getMinutes()+1) <=9 ? '0'+(nowDate.getMinutes()+1) :(nowDate.getMinutes()+1) 
@@ -26,12 +28,13 @@ const OrderedTime = (nowDate.getHours()%12)+':'+minutes+' '+ampm;
   );
   const shippingCost = 60;
   const payableAmount = totalAmount + shippingCost; 
+
   // User input state
   const [Order, setOrder] = useState({
     fullName: storedUser.name ? storedUser.name :'',
     email:  storedUser.email ? storedUser.email:'',
     phoneNumber: storedUser.phone ? storedUser.phone:'',
-    detailedAddress: "",
+    detailedAddress: defualadress?defualadress.address:"",
     note: "",
     altPhone: "",
     couponCode: "",
@@ -123,17 +126,37 @@ if(SelectedCarts.length>0){
     const updatedHistory = [...prev, Placedorder];
     return updatedHistory;
   })
-  setAdressbook((prev) => [
-    ...prev,
-    {
-      name: Order.fullName,
-      address: Order.detailedAddress,
-      phone: Order.phoneNumber,
-      id:Date.now(),
-      city:selectedCity,
+  setAdressbook((prev) => {
+    console.log("Previous Addressbook:", prev);
+    console.log("Order Data:", Order);
+    console.log("Selected City:", selectedCity);
   
+    const isExisting = prev.some(
+      (adress) =>
+        adress.address.trim().toLowerCase() === Order.detailedAddress.trim().toLowerCase() &&
+        adress.city.trim().toLowerCase() === selectedCity.trim().toLowerCase() &&
+        adress.phone.trim() === Order.phoneNumber.trim()
+    );
+  
+    console.log("Is Existing:", isExisting);
+  
+    if (!isExisting) {
+      const newEntry = {
+        name: Order.fullName,
+        address: Order.detailedAddress,
+        phone: Order.phoneNumber,
+        id: Date.now(),
+        city: selectedCity,
+      };
+      console.log("Adding New Entry:", newEntry);
+      return [...prev, newEntry];
     }
-  ])
+  
+    return prev;
+  });
+  
+  
+  
 
 }
 else{
@@ -215,18 +238,23 @@ else{
              onClear={Order[field.name]!='' && handleCleardes}
               />
             ))}
+<Autocomplete
+  label="Select Your City"
+  variant="bordered"
+  defaultItems={cities.map((city) => ({ label: city, key: city }))}
+  selectedKey={selectedCity}
+  onSelectionChange={setSelectedCity}
+  className="lg:max-w-xs"
+  isRequired
+  defaultInputValue={Order.city}  // এটি ঠিক আছে যদি শুধু ইনপুট ফিল্ডের জন্য ডিফল্ট ভ্যালু দেখাতে চাও
+>
+  {(item) => (
+    <AutocompleteItem key={item.key}>
+      {item.label}
+    </AutocompleteItem>
+  )}
+</Autocomplete>
 
-            <Autocomplete
-              label="Select Your City"
-              variant="bordered"
-              defaultItems={cities.map((city) => ({ label: city, key: city }))}
-              selectedKey={selectedCity}
-              onSelectionChange={setSelectedCity}
-              className="lg:max-w-xs"
-              isRequired
-            >
-              {(item) => <AutocompleteItem key={item.key}>{item.label}</AutocompleteItem>}
-            </Autocomplete>
 
             <Input
               isClearable

@@ -13,7 +13,7 @@ export default function Addressbooks({userAddresses,Goto,setprofilelocation,setA
         {
 
        userAddresses.length>0? userAddresses.map((address,key)=>(
-        <Addresscard setprofilelocation={setprofilelocation} key={key} Goto={Goto}  {...address} className=' grid gap-1.5  border-b-1 border-gray-200  rounded-none' />
+        <Addresscard setAdressbook={setAdressbook} setprofilelocation={setprofilelocation} key={key} Goto={Goto}  {...address} className=' grid gap-1.5  border-b-1 border-gray-200  rounded-none' />
       )):<EditAddressForm setAdressbook={setAdressbook}/>
        } 
 

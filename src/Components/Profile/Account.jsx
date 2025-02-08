@@ -27,7 +27,7 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
 
   const [orderid,setorderid] = useState()
   const selectedItem = Orderhistory.find(item => item.Id === orderid);
-  
+  const Adresses =  userAddresses &&  userAddresses.slice(0, 2)
   // Dynamic rendering object
   const pages = {
     Dashboard: (
@@ -35,16 +35,16 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
         <Profile {...user} />
         <div className="bg-white rounded-lg">
           <h2 className="text-xl font-semibold w-full p-4 pb-0">Address Book</h2>
-          <div className="grid md:grid-cols-2  gap-4">
-            {userAddresses && userAddresses.map((address, key) => (
-              <Addresscard setprofilelocation={setprofilelocation} key={key} {...address} className="pt-0 pe-10 sm:pe-4" Goto={Goto} />
+          <div className={`flex flex-col ${Adresses.length>1?'md:flex-row-reverse':'md:flex-row'}    gap-4 p-0.5`}>
+            {Adresses && Adresses.map((address, key) => (
+              <Addresscard setAdressbook={setAdressbook} setprofilelocation={setprofilelocation} key={key} {...address} className="pt-0 pe-10 sm:pe-4" Goto={Goto} />
             ))}
           </div>
         </div>
         <Orders Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid} />
       </>
     ),
-    "Address Book": <Addressbooks setprofilelocation={setprofilelocation} userAddresses={userAddresses} setAdressbook={setAdressbook} Goto={Goto} />,
+    "Address Book": <Addressbooks  setprofilelocation={setprofilelocation} userAddresses={userAddresses} setAdressbook={setAdressbook} Goto={Goto} />,
     "My Orders":<Orders   Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  />,
     "Account Details": <AccountDetails storedUser={storedUser}  setItem={setItem}/>,
     "My Cancellations": <Orders  Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  show={'canceled'}  />,
