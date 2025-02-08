@@ -3,7 +3,7 @@ import { Checkbox } from "@heroui/react";
 /* eslint-disable react/prop-types */
 const Profile = ({ name, email, marketingSMS, marketingEmail }) => {
     return (
-      <div className="bg-white p-4 rounded-lg w-full">
+      <div className="bg-white p-4 pe-10 sm:pe-4 rounded-lg w-full ">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold">Personal Profile</h2>
           <button className="text-blue-500 hover:underline">EDIT</button>

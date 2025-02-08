@@ -37,7 +37,7 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
           <h2 className="text-xl font-semibold w-full p-4 pb-0">Address Book</h2>
           <div className="grid md:grid-cols-2  gap-4">
             {userAddresses && userAddresses.map((address, key) => (
-              <Addresscard setprofilelocation={setprofilelocation} key={key} {...address} className="pt-0" Goto={Goto} />
+              <Addresscard setprofilelocation={setprofilelocation} key={key} {...address} className="pt-0 pe-10 sm:pe-4" Goto={Goto} />
             ))}
           </div>
         </div>
