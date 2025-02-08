@@ -7,7 +7,7 @@ import Details from "./Components/Details/details";
 import Cartpage from "./Components/Cart/Cartpage";
 import Sidecart from "./Components/Cart/Sidecart";
 import AccountForm from "./Components/Login_SignUp/AccountForm";
-import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from "./Components/Homepage/Homepage";
 import { HeroUIProvider } from "@heroui/react";
 import Shop from "./Components/Search_shop/Shoppage";
@@ -17,7 +17,7 @@ import Checkout from "./Components/Checkout/Checkoutpage";
 import ScrollToTop from "./Components/ScrollToTop";
 import Paymentpage from "./Components/Checkout/Paymentpage";
 import { useLocalStorage } from "./Components/hooks/useLocalStorage";
-
+import { useLocalStorage as userAddressbook } from "./Components/hooks/useLocalStorage";
 function App() {
   const productDetails = [
     {
@@ -196,21 +196,7 @@ function App() {
       sizes: ["M", "L", "XL", "2XL"],
     }
   ];
-  const [product, setproduct] = useState({
-    id: 1,
-    coverImage: "/collections/edited/ai.png",
-    name: "Mens Premium Hoodie Itachi - Tsukuyomi",
-    category: "hoddie",
-    save: 200,
-    mainPrice: 1000,
-    discountPrice: 800,
-    images: [
-      "/collections/ai2.png",
-      "/collections/ai2.png",
-      "/collections/ai2.png",
-    ],
-    sizes: ["M", "L", "XL", "2XL"],
-  });
+
 
   const [showmbsearhbar, setshowsearchbar] = useState(false);
 
@@ -236,6 +222,8 @@ function App() {
   const [Orderhistory,setOrderhistory] = useState(StoredOrderhistory)
   const [placedOrder,setplacedOrder] = useState({})
   const {setItem} = useLocalStorage('Orderhistory')
+
+
   useEffect(() => {
     
     setItem(Orderhistory)
@@ -254,6 +242,16 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
  
   ]
   ;
+  const { setItem: setuseradresses } = userAddressbook("useradress");
+  const storeduserAddresses = JSON.parse(localStorage.getItem("useradress")) || []; 
+  const [userAddresses,setAdressbook] =useState(storeduserAddresses?storeduserAddresses:[]);
+  useEffect(() => {
+    
+  userAddresses.length > 0 &&   setuseradresses(userAddresses)
+  }, [userAddresses,setuseradresses]);
+
+
+
   return (
     <>
       <BrowserRouter>
@@ -280,16 +278,23 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
                 element={<Homepage setSelectedFilters={setSelectedFilters} productDetails={productDetails} />}
               />
 
-<Route  path={`/profile`} element={<AccountPage  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation}  menuSections={menuSections} Orderhistory={Orderhistory}  />} />
+<Route  path={`/profile`} element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation}  menuSections={menuSections} Orderhistory={Orderhistory}  />} />
 {
   menuSections.map((section)=>(
     section.items.map((goto,key)=>(
-      <Route key={key} path={`/profile/${goto}`} element={<AccountPage  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={goto} menuSections={menuSections} Orderhistory={Orderhistory}  />} />
+      <Route key={key} path={`/profile/${goto}`} element={<AccountPage  userAddresses={userAddresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={goto} menuSections={menuSections} Orderhistory={Orderhistory}  />} />
+      
+   
       
     ))
   ))
 }
-           <Route path="/checkout" element={<Checkout setplacedOrder={setplacedOrder} setselectedcarts={setselectedcarts}     setcartedproduct={setcartedproduct}
+{  userAddresses.map((Adresses)=>(
+        <Route key={Adresses.id} path={`/profile/${profilelocation}/${Adresses.id}`} element={<AccountPage
+           userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
+       ))}
+       <Route  path={`/profile/${profilelocation}/address`} element={<AccountPage  setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
+           <Route path="/checkout" element={<Checkout setAdressbook={setAdressbook} setplacedOrder={setplacedOrder} setselectedcarts={setselectedcarts}     setcartedproduct={setcartedproduct}
               SelectedCarts={SelectedCarts} setOrderhistory={setOrderhistory}  Orderhistory={Orderhistory} />} />
               <Route
                 path="/shop"
@@ -333,7 +338,7 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
            {
         Orderhistory.map((placedOrdered)=>(
 
-         <Route  key={placedOrdered.Id} path={`/profile/${profilelocation}-${placedOrdered.Id}`}  element={<AccountPage setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
+         <Route  key={placedOrdered.Id} path={`/profile/${profilelocation}-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
 
         )
 

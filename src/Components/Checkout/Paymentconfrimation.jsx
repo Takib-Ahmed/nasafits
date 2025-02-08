@@ -77,8 +77,8 @@ else{
     console.log('Email Template Params:', templateParams);  // চেক করুন সব ডাটা আসছে কিনা
   
     emailjs
-      .send('service_a9wutu6', 'template_enc24sc', templateParams, {
-        publicKey: 'y45qWjTg14A3yOeZr',
+      .send('service_q26jdmu', 'template_64jstfk', templateParams, {
+        publicKey: 'UhFs-e6E1DIJ4bSAw',
       })
       .then(
         () => {

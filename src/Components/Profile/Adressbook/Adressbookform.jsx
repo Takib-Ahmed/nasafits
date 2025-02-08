@@ -1,22 +1,26 @@
 import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
-export default function EditAddressForm({ storedAddress, handleSave, handleCancel }) {
+export default function EditAddressForm({ storedAddress,userAddress,setAdressbook}) {
+   const navigate = useNavigate()
   const [addressData, setAddressData] = useState({
-    name: storedAddress?.name || "Takib",
-    addressLine: storedAddress?.addressLine || "M/S. Nafisa Business House, Gondhomoti Buyan Market",
-    street: storedAddress?.street || "Rampur Rd",
-    postalCode: storedAddress?.postalCode || "3503",
-    city: storedAddress?.city || "Chattogram",
+    name: userAddress?.name || '',
+    address: userAddress?.address || '',
+   
+    city: userAddress?.city || '',
+    phone: userAddress?.phone || '',
+    id:userAddress?.id || Date.now()
   });
 
   // Fields configuration for dynamic rendering
   const fields = [
     { label: "Name", name: "name", placeholder: "Enter Name" },
-    { label: "Address Line", name: "addressLine", placeholder: "Enter Address Line" },
-    { label: "Street", name: "street", placeholder: "Enter Street" },
-    { label: "Postal Code", name: "postalCode", placeholder: "Enter Postal Code" },
+    { label: "Detailed Adress", name: "address", placeholder: "Enter Detailed Adress" },
+ 
     { label: "City", name: "city", placeholder: "Enter City" },
+    { label: "Phone", name: "phone", placeholder: "Enter Phone" },
+
   ];
 
   // Handle input change
@@ -25,13 +29,34 @@ export default function EditAddressForm({ storedAddress, handleSave, handleCance
   };
 
   // Save updated address
+
   const handleSubmit = () => {
-    handleSave(addressData);
+    // handleSave(addressData);
+    setAdressbook((prev) =>
+      prev.map((address) =>
+        address.id === userAddress.id ? { ...address, ...addressData } : address
+      )
+    );
+    navigate(`/profile/Address Book`)
+  
+    
   };
+  const handleAdd = () => {
+    // handleSave(addressData);
+    setAdressbook((prev) => [...prev,addressData]    );
+    
+    navigate(-1)
+  
+  };
+  const handleCancel=()=>{
+    navigate(-1)
+  }
 
   return (
     <div className="bg-white shadow-md rounded-md p-6">
-      <h2 className="text-xl font-semibold mb-4">Edit Address</h2>
+      <h2 className="text-xl font-semibold mb-4" onClick={()=>{
+        console.log(userAddress)
+      }}>{userAddress?'Edit':'Add'} Address</h2>
 
       {/* Dynamically Render Form Fields */}
       {fields.map((field) => (
@@ -51,8 +76,10 @@ export default function EditAddressForm({ storedAddress, handleSave, handleCance
         <Button className="bg-red-500 text-white" onClick={handleCancel}>
           Cancel
         </Button>
-        <Button className="bg-blue-500 text-white" onClick={handleSubmit}>
-          Save
+        <Button className="bg-blue-500 text-white" onClick={()=>{
+          userAddress?handleSubmit():handleAdd()
+        }}>
+        {userAddress?'Save':'Add'}
         </Button>
       </div>
     </div>

@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-
+import {useState } from "react";
 import Orders from "./Order/Order";
 import Profile from "./Profiledetails";
 import Sidebar from "./Sidebar";
-import Addresscard from "./Adresscard";
-import Addressbooks from "./Adressbooks";
+import Addresscard from "./Adressbook/Adresscard";
+import Addressbooks from "./Adressbook/Adressbooks";
 import AccountDetails from "./Accountdetails";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import OrderSummary from "./Order/Orderdetails";
+import EditAddressForm from "./Adressbook/Adressbookform";
 
-const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderData,setOrderhistory,mobileview}) => {
+const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderData,setOrderhistory,userAddresses,setAdressbook,userAddress}) => {
  
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
     const { setItem } = useLocalStorage("userdata");
@@ -23,19 +23,6 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
 
 
 
-  const [userAddresses,setAdressbook] =useState([
-    {
-      name: "Takib (Home)",
-      address: "M/S. Nafisa Business House, Gondhomoti Buyan Market, Rampur Rd, Kotbari 3503, Chattogram",
-      phone: storedUser?.phone || "",
-    },
-    {
-      name: "Takib (Office)",
-      address: "Tech Hub Tower, Level 5, Dhanmondi, Dhaka 1209",
-      phone: storedUser?.phone || "",
-    },
-  ]);
-
 
 
   const [orderid,setorderid] = useState()
@@ -48,21 +35,22 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
         <Profile {...user} />
         <div className="bg-white rounded-lg">
           <h2 className="text-xl font-semibold w-full p-4 pb-0">Address Book</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {userAddresses.map((address, key) => (
-              <Addresscard key={key} {...address} className="pt-0" />
+          <div className="grid md:grid-cols-2  gap-4">
+            {userAddresses && userAddresses.map((address, key) => (
+              <Addresscard setprofilelocation={setprofilelocation} key={key} {...address} className="pt-0" Goto={Goto} />
             ))}
           </div>
         </div>
         <Orders Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid} />
       </>
     ),
-    "Address Book": <Addressbooks userAddresses={userAddresses} setAdressbook={setAdressbook}  />,
+    "Address Book": <Addressbooks setprofilelocation={setprofilelocation} userAddresses={userAddresses} setAdressbook={setAdressbook} Goto={Goto} />,
     "My Orders":<Orders   Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  />,
     "Account Details": <AccountDetails storedUser={storedUser}  setItem={setItem}/>,
     "My Cancellations": <Orders  Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  show={'canceled'}  />,
     "My Returns": <Orders  Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  show={'returned'} />,    
     'OrderDetails': <OrderSummary  orderData={orderData} setOrderhistory={setOrderhistory} />,
+    'Editingadress': <EditAddressForm  userAddress={userAddress} setAdressbook={setAdressbook}  />
   };
 
   return (

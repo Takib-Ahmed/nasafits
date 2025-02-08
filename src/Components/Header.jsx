@@ -91,7 +91,7 @@ const navigate = useNavigate()
     const [ishovered, setIshovered] = useState(false);
 
     return (
-      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0   fixed" isBordered   >
+      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0  fixed  " isBordered   id="/" >
         <NavbarContent justify="start">
         <div
 
@@ -112,7 +112,7 @@ const navigate = useNavigate()
           
           <NavbarContent className=" navlinkscontainer  hidden lg:flex lg:gap-10 ">
             <NavbarItem>
-              <Link color="foreground" to='/'>
+              <Link color="foreground" to='/' className="hover:text-secondary ">
                 Home
               </Link>
             </NavbarItem>
@@ -134,7 +134,7 @@ const navigate = useNavigate()
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link  to='/shop' color="foreground" href="#"  onClick={()=>{
+              <Link  to='/shop' color="foreground" href="#" className=" hover:text-secondary"  onClick={()=>{
                 setSelectedFilters({"winter collection":true})
                 console.log()
               }}>
@@ -142,7 +142,7 @@ const navigate = useNavigate()
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link color="foreground" href="#" to='/shop'  onClick={()=>{
+              <Link color="foreground" href="#" to='/shop' className="hover:text-secondary "  onClick={()=>{
                 setSelectedFilters({"flash sale":true})
               }} >
                 Flash Sale
@@ -177,15 +177,15 @@ const navigate = useNavigate()
           
           
           {showmbsearhbar && <Mobilesearch className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' location={location} />}
-         <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black" /> </Link>
+         <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black hover:text-secondary " /> </Link>
           <Dropdown placement="bottom-end">
      
 {
-  location.pathname.includes('/profile/') ?     <DropdownTrigger>
-  <Avatar
+  location.pathname.includes('/profile/') ?     <DropdownTrigger className="hover:ring-secondary  hover:text-secondary ">
+  <Avatar  
                   isBordered
                   as="button"
-                  className="transition-transform    rounded-full  text-white"
+                  className="transition-transform    rounded-full  text-white   "
                   color="white"
                   name ={storedUser && storedUser.name}
                   size="sm"
@@ -193,9 +193,9 @@ const navigate = useNavigate()
                   icon={<CgProfile className=" w-full  text-3xl"/>}
                  /></DropdownTrigger>  : <Link to={storedUser? screenSize>768? '/profile/Dashboard':'/profile':'/account'}  > 
                  <Avatar
-                                 isBordered
+                                 isBordered 
                                  as="button"
-                                 className="transition-transform    rounded-full  text-white"
+                                 className="transition-transform    rounded-full  text-white  hover:ring-secondary hover:text-secondary "
                                  color="white"
                                  name ={storedUser && storedUser.name}
                                  size="sm"
@@ -208,7 +208,7 @@ const navigate = useNavigate()
 
             
  
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
+            <DropdownMenu aria-label="Profile Actions" variant="flat" color="secondary">
               <DropdownItem onClick={()=>{
                 navigate(storedUser? screenSize>768? '/profile/Dashboard':'/profile':'/account')
               }} key="profile" className="h-14 gap-2">

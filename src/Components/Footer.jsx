@@ -12,24 +12,24 @@ const Footer = ({setSelectedFilters}) => {
       content: (
         <div className="flex flex-wrap gap-4">
           <a href="#" aria-label="Facebook">
-            <RiFacebookCircleLine  className=" text-2xl   rounded-full w-fit p-0 m-0 " />
+            <RiFacebookCircleLine  className=" text-2xl   rounded-full w-fit p-0 m-0  hover:text-secondary" />
           </a>
           <a href="#" aria-label="YouTube">
-            <FaInstagram   className="text-2xl   rounded-full w-fit p-0 m-0 pt-0.5" />
+            <FaInstagram   className="text-2xl   rounded-full w-fit p-0 m-0 pt-0.5 hover:text-secondary" />
           </a>
         </div>
       ),
     },
     {
       title: "Blog",
-      content: <p>Nasa Fits</p>,
+      content: <Link to='/'  className="  hover:text-secondary"><a href="#">Nasa Fits</a></Link>,
     },
     {
       title: "Most Popular Products",
       content: (
         <ul className="space-y-1">
           {["Mens Premium Hoddie", "Full Sleve T-Shirt"].map((product, index) => (
-            <li key={index}>{product}</li>
+            <li className=" hover:text-secondary cursor-pointer"  key={index}>{product}</li>
           ))}
         </ul>
       ),
@@ -40,7 +40,7 @@ const Footer = ({setSelectedFilters}) => {
         <ul className="space-y-3 flex flex-col">
           {["Hoodie", "Jacket", "Polo Shirt", "T Shirt"].map(
             (category, index) => (
-              <Link hrefLang=""   to='/shop'  key={index} className=" cursor-pointer" onClick={()=>{
+              <Link hrefLang=""   to='/shop'  key={index} className=" hover:text-secondary cursor-pointer"  onClick={()=>{
                 setSelectedFilters({[category.toLocaleLowerCase()]:true})
                 handleScrollToTop()
               }

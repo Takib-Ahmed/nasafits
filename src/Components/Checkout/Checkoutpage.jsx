@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import PaymentConfirmation from "./Paymentconfrimation";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-const Checkout = ({ SelectedCarts,setOrderhistory,setplacedOrder ,setcartedproduct,setselectedcarts}) => {
+const Checkout = ({ SelectedCarts,setOrderhistory,setplacedOrder ,setcartedproduct,setselectedcarts,setAdressbook}) => {
  
  const navigate = useNavigate()
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
@@ -123,12 +123,24 @@ if(SelectedCarts.length>0){
     const updatedHistory = [...prev, Placedorder];
     return updatedHistory;
   })
-
+  setAdressbook((prev) => [
+    ...prev,
+    {
+      name: Order.fullName,
+      address: Order.detailedAddress,
+      phone: Order.phoneNumber,
+      id:Date.now(),
+      city:selectedCity,
+  
+    }
+  ])
 
 }
 else{
   alert('Select a product first ')
-}
+}console.log(Order);
+;
+
   
 
   //  sendEmail(Placedorder);
