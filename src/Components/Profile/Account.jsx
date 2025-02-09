@@ -26,7 +26,7 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
 
 
   const [orderid,setorderid] = useState()
-  const selectedItem = Orderhistory.find(item => item.Id === orderid);
+  const selectedItem = Orderhistory.find(item => item.Id === orderid)
   const Adresses =  userAddresses &&  userAddresses.slice(0, 2)
   // Dynamic rendering object
   const pages = {
@@ -49,7 +49,7 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
     "Account Details": <AccountDetails storedUser={storedUser}  setItem={setItem}/>,
     "My Cancellations": <Orders  Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  show={'canceled'}  />,
     "My Returns": <Orders  Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  show={'returned'} />,    
-    'OrderDetails': <OrderSummary  orderData={orderData} setOrderhistory={setOrderhistory} />,
+    'OrderDetails': <OrderSummary  orderData={orderData?orderData:selectedItem} setOrderhistory={setOrderhistory} />,
     'Editingadress': <EditAddressForm  userAddress={userAddress} setAdressbook={setAdressbook}  />
   };
 
