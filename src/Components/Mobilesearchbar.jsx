@@ -1,15 +1,27 @@
 /* eslint-disable react/prop-types */
-import { Input } from "@nextui-org/react";
-import { CiFilter } from "react-icons/ci";
+import {Input} from "@nextui-org/react";
 import { IoIosSearch } from "react-icons/io";
 import { FaFilter } from "react-icons/fa";
 import Sidedrawer from "./drawer";
 import { Link } from "react-router-dom";
-
 import { MdOutlineClear } from "react-icons/md";
 import { useState } from "react";
-export default function Mobilesearch({ className, type, inputclass, filtermenuclass,location}) {
-  const [searchvalue,setsearchvalue] = useState('')
+export default function Mobilesearch({ className, type, inputclass, filtermenuclass,location,Autocomplete, SearchTerm, setsearchterm, handlesearch, handleKeyDown,setSelectedFilters,setAutocomplete}) {
+  const [filterSearch,setfiltervalue] = useState(SearchTerm)
+  // const handleSearch=(e)=>{
+  //   const searchvalue = e.target.value.toLowerCase().trim()
+  //  setshowproduct && setshowproduct(
+
+  //     (prev)=>prev.map((product)=>
+      
+  //       product.category.some(cat => cat.toLowerCase().includes(searchvalue)) ||
+  //           product.for.some(f => f.toLowerCase().includes(searchvalue)) ||
+  //           product.showcases.some(showcase => showcase.toLowerCase().includes(searchvalue)) ||
+  //           product.name.toLowerCase().includes(searchvalue)
+  //     )
+  //   )
+  // }
+  
   return (
     <>
       <div
@@ -29,7 +41,7 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
         <div>
        
           <Input
-          value={searchvalue}
+          value={SearchTerm && SearchTerm || filterSearch}
             classNames={{
               base: `   bg-white    ${
                 type === "mbsearchbar"
@@ -44,19 +56,59 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
             placeholder="Type to search..."
             size="sm"
           startContent={
-            <MdOutlineClear className={` cursor-pointer absolute right-12 ${searchvalue!=''?'block':'hidden'}`} onClick={(e)=>{
-setsearchvalue('')
+            <MdOutlineClear className={` cursor-pointer absolute right-12 ${ SearchTerm? SearchTerm!=''?'block':'hidden' :  filterSearch!=''?'block':'hidden'}`} onClick={()=>{
+              setsearchterm && setsearchterm('')
+              setfiltervalue('')
             }}/>
           }
           onChange={(e)=>{
-            setsearchvalue(e.target.value)
+          handlesearch &&  handlesearch(e)
+            setfiltervalue(e.target.value)
+            
           }}
+          onKeyDown={handleKeyDown && handleKeyDown}
+          
             endContent={
               <IoIosSearch className=" bg-black h-full   cursor-pointer absolute right-0 w-10 p-1 text-white" />
             }
             type="search"
             className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           />
+          <ul className={` top-14 absolute left-0  w-full  overflow-hidden   ${ Autocomplete?.length>0 ? 'flex flex-col bg-default-100':'hidden'}  gap-2    text-sm    border-[0.01px] border-default border-opacity-10 border-t-0`}>
+          
+             
+           
+                    
+                    
+            {SearchTerm != '' &&   
+          Autocomplete?.length > 0 ? (
+            Autocomplete.map((item, index) => (
+                <Link
+                  key={index}
+                  className={`px-3 py-1.5 hover:text-secondary cursor-pointer mx-2 ${
+                    index !== Autocomplete.length - 1 ? 'border-b border-gray-400 border-opacity-10' : ''
+                  }`}
+          
+          to={item.id ? `/details/${item.id}`:'/shop'}
+              onClick={()=>{
+                setsearchterm( item.id ? item.name :item)
+                setSelectedFilters(!item.id && {[item.toLowerCase()]:true}) 
+                setAutocomplete([])
+              }}
+                >
+                  {item.id ? item.name : item}
+                </Link>
+              ))
+            ) : (
+              SearchTerm != '' &&  <li className="px-3 py-1.5 text-gray-500">No results found</li>
+            )}
+          
+          
+            
+          
+          
+          
+                    </ul>
         </div>
       </div>
     </>

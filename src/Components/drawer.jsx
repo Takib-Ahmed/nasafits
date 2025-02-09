@@ -82,8 +82,9 @@ export default function Sidedrawer({ menuItems, location }) {
               </div>
             ) : (
               <Context.Consumer>
-                {({ setSelectedFilters, selectedFilters }) => (
+                {({ setSelectedFilters, selectedFilters ,getPropertyCount}) => (
                   <Filterlist
+                  getPropertyCount={getPropertyCount}
                     setSelectedFilters={setSelectedFilters}
                     selectedFilters={selectedFilters}
                   />

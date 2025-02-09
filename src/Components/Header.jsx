@@ -63,7 +63,9 @@ import Sidedrawer from "./drawer";
     );
   };
   
-  export default function Header({showmbsearhbar,setshowsearchbar,setSelectedFilters,menuSections,setprofilelocation}) {
+  export default function Header({showmbsearhbar,setshowsearchbar,setSelectedFilters,menuSections,setprofilelocation,productDetails,
+    
+  }) {
     const [screenSize, setScreenSize] = useState(window.innerWidth);
 const navigate = useNavigate()
     useEffect(() => {
@@ -89,6 +91,88 @@ const navigate = useNavigate()
     
     ];
     const [ishovered, setIshovered] = useState(false);
+  const [Autocomplete,setAutocomplete] = useState([])
+  const [SearchTerm,setsearchterm] = useState('')
+  
+  const handlesearch = (e) => {
+
+
+    const searchTerm = e.target.value.toLowerCase().trim();
+setsearchterm(e.target.value);
+
+const filteredProducts = productDetails.filter((product) => 
+  product.name.toLowerCase().includes(searchTerm)  // ছোট অক্ষরে ঠিক করা হলো
+);
+
+// ইনপুট ফাঁকা নাকি তা চেক করে প্রোডাক্ট লিস্ট সেট করা
+
+  
+    // প্রোডাক্ট খুঁজে রাখার জন্য
+    const matchesMap = {};
+
+    productDetails.forEach(product => {
+
+      if (product.for && product.for.includes(searchTerm)) {
+        matchesMap[product.for] = true; // Only adds if not already present
+      }
+    
+      // Check the category for a match
+
+      if (product.category && product.category.includes(searchTerm)) {
+        matchesMap[product.category] = true; // Only adds if not already present
+      }
+    
+      // Check each showcase entry for a match
+      if (Array.isArray(product.showcases)) {
+        product.showcases.forEach(showcase => {
+          if (typeof showcase === 'string' && showcase.includes(searchTerm)) {
+            matchesMap[showcase] = true; // Ensures uniqueness
+          }
+        });
+      }
+    });
+    
+    const uniqueMatches = Object.keys(matchesMap);
+    
+    // Update autocomplete if there is a searchTerm and the input isn't empty
+    if (searchTerm && e.target.value !== '') {
+      
+      if(filteredProducts.length > uniqueMatches.length){
+        setAutocomplete([ ...filteredProducts,...uniqueMatches]);
+      }
+      else{
+        setAutocomplete([...uniqueMatches, ...filteredProducts]);
+      }
+      
+;
+    } else {
+      setAutocomplete([]);
+    }
+    
+  
+    
+    
+  
+  };
+  
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+    
+      navigate('/shop')
+      setSelectedFilters({[SearchTerm.toLowerCase()]:true})
+      setAutocomplete([])
+      // You can trigger your search or any function here
+    }
+  };
+
+
+  const handleClear = ()=>{
+    setsearchterm('')
+    setSelectedFilters({})
+  }
+  
+
+  
 
     return (
       <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0  fixed  " isBordered   id="/" >
@@ -122,7 +206,10 @@ const navigate = useNavigate()
               setIshovered(false)
             }} >
               <Link aria-current="page" className="   font-normal hover:text-secondary flex  " color="foreground"  to='/shop' >
-          Shop  <MdKeyboardArrowDown  size={20} className={"  transition-all duration-300 mt-1 " + `${ishovered && 'rotate-180'}`}/>
+          Shop  <MdKeyboardArrowDown  
+         
+          
+          size={20} className={"  transition-all duration-300 mt-1 " + `${ishovered && 'rotate-180'}`}/>
 
 
 {
@@ -153,13 +240,16 @@ const navigate = useNavigate()
   
         <NavbarContent as="div" className=" navright items-center sm:gap-4 lg:gap-5  flex  relative" justify="end">
         <form action="
-        " className="flex" onClick={()=>{
-   
+        " className="flex relative" onSubmit={(e)=>{
+          e.preventDefault()
+        }} onClick={()=>{
+
           setshowsearchbar((prev)=>!prev)
         
         }}>
             <Input
-          isClearable
+          isClearable={screenSize>768?true:false}
+          value={SearchTerm}
             classNames={{
               base: "     searchbar    w-60 sm:w-80 md:w-80 lg:w-96  h-10   ",
               mainWrapper: "h-full",
@@ -168,15 +258,64 @@ const navigate = useNavigate()
                 "  h-full font-normal text-default-500 bg-default-400/20 focus:bg-default-400/20 rounded-none inputwrapper",
               
             }}
+            onKeyDown={handleKeyDown}
             placeholder="Type to search..."
             size="sm"
+           onClear={handleClear}
       
+      onChange={(e)=>{handlesearch(e)}}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
-          /><IoIosSearch size={25}  className=" cursor-pointer Searchicn bg-black h-full    w-10 p-2 text-white z-50" /> 
+          /><IoIosSearch size={25} onClick={()=>{
+            navigate('/shop')
+            setSelectedFilters({[SearchTerm.toLowerCase()]:true})
+          }}  className=" cursor-pointer Searchicn bg-black h-full    w-10 p-2 text-white z-50" /> 
+          <ul className={` top-10 absolute ${ screenSize>768 && Autocomplete.length>0 ? 'flex flex-col bg-white':'hidden'}  gap-2     w-full  border-[0.01px] border-gray-400 border-opacity-10 border-t-0`}>
+
+   
+ 
+          
+          
+  {screenSize>768 && SearchTerm != '' &&   
+  Autocomplete.length > 0 ? (
+    Autocomplete.map((item, index) => (
+      <Link
+        key={index}
+        className={`px-3 py-1.5 hover:text-secondary cursor-pointer ${
+          index !== Autocomplete.length - 1 ? 'border-b border-gray-400 border-opacity-10' : ''
+        }`}
+
+to={item.id ? `/details/${item.id}`:'/shop'}
+    onClick={()=>{
+      setsearchterm( item.id ? item.name :item)
+      setSelectedFilters(!item.id && {[item.toLowerCase()]:true}) 
+      setAutocomplete([])
+    }}
+      >
+        {item.id ? item.name : item}
+      </Link>
+    ))
+  ) : (
+    SearchTerm != '' &&  <li className="px-3 py-1.5 text-gray-500">No results found</li>
+  )}
+
+
+  
+
+
+
+          </ul>
         </form>
           
           
-          {showmbsearhbar && <Mobilesearch className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' location={location} />}
+          {showmbsearhbar && <Mobilesearch  Autocomplete={Autocomplete}
+          SearchTerm={SearchTerm}
+          setsearchterm={setsearchterm}
+          handlesearch={handlesearch}
+          handleKeyDown={handleKeyDown}
+          handleClear={handleClear}
+          setAutocomplete={setAutocomplete}
+          setSelectedFilters={setSelectedFilters}
+       className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' location={location} />}
          <Link to='/cart'  > <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black hover:text-secondary " /> </Link>
           <Dropdown placement="bottom-end">
      

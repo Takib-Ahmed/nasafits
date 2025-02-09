@@ -16,7 +16,7 @@ export default function All({
   showFilterlist,
   productDetails,
 }) {
-  let Showproducts = slice && productDetails.slice(0, slice);
+  const Showproducts = slice && productDetails.slice(0, slice)
   const navigate = useNavigate()
   return (
     <>
@@ -25,8 +25,9 @@ export default function All({
       >
         {showFilterlist ? (
           <Context.Consumer>
-            {({ setSelectedFilters, selectedFilters }) => (
+            {({ setSelectedFilters, selectedFilters,getPropertyCount }) => (
               <Filterlist
+              getPropertyCount={getPropertyCount}
                 setSelectedFilters={setSelectedFilters}
                 selectedFilters={selectedFilters}
                 className={
@@ -45,7 +46,8 @@ export default function All({
         )}
         {page == "Shop" ? (
           <div className=" shoplist flex flex-col  gap-2  justify-end">
-            <Mobilesearch
+            <Mobilesearch 
+            Showproducts={Showproducts}
               className=" w-fit lg:w-full  flex   justify-center  "
               filtermenuclass="hidden"
               inputclass=" w-[60vw] sm:w-[65vw] md:w-[70vw]   lg:w-[76.5vw]  shopsearchbar        p-2    "

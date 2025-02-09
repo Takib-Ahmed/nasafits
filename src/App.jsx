@@ -204,19 +204,27 @@ function App() {
   const [cartedProduct, setcartedproduct] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
   const [SelectedCarts, setselectedcarts] = useState(savedCartedProduct.length>0 ? savedCartedProduct:[]);
 
+
+  
   const [selectedFilters, setSelectedFilters] = useState({});
   const selectedFilterArray = Object.keys(selectedFilters).filter((key) => selectedFilters[key] === true  );
   const filteredProducts =
-    selectedFilterArray.length === 0
-      ? productDetails
-      : productDetails.filter((product) =>
-          selectedFilterArray.every(
-            (filter) =>
-              product.category.includes(filter.toLocaleLowerCase()) ||
-              product.showcases.includes(filter.toLocaleLowerCase()) ||
-              product.for.includes(filter.toLocaleLowerCase())
-          )
-        );
+  selectedFilterArray.length === 0
+    ? productDetails
+    : productDetails.filter((product) =>
+        selectedFilterArray.every((filter) => {
+          const lowerFilter = filter.toLowerCase();
+          return (
+            product.category.some(cat => cat.toLowerCase().includes(lowerFilter)) ||
+            product.for.some(f => f.toLowerCase().includes(lowerFilter)) ||
+            product.showcases.some(showcase => showcase.toLowerCase().includes(lowerFilter)) ||
+            product.name.toLowerCase().includes(lowerFilter)
+          );
+        })
+      );
+
+      
+
 
         const StoredOrderhistory = JSON.parse(localStorage.getItem("Orderhistory")) || []; 
   const [Orderhistory,setOrderhistory] = useState(StoredOrderhistory)
@@ -246,18 +254,50 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
   const storeduserAddresses = JSON.parse(localStorage.getItem("useradress")) || []; 
   const [userAddresses,setAdressbook] =useState(storeduserAddresses?storeduserAddresses:[]);
   useEffect(() => {
-    
+  
   userAddresses.length > 0 &&   setuseradresses(userAddresses)
-  }, [userAddresses,setuseradresses]);
+  }, [userAddresses,setuseradresses,selectedFilterArray]);
+
+
+  const getPropertyCount = (counterm) => {
+    const count = productDetails.reduce((total, product) => {
+      let matchFound = false;
+  
+      if (product.name && product.name.includes(counterm)) {
+        matchFound = true;
+      }
+  
+      if (product.for && product.for.includes(counterm)) {
+        matchFound = true;
+      }
+  
+      if (product.category && product.category.includes(counterm)) {
+        matchFound = true;
+      }
+  
+      if (Array.isArray(product.showcases)) {
+        const showcaseMatch = product.showcases.some(showcase =>
+          showcase.includes(counterm)
+        );
+        if (showcaseMatch) matchFound = true;
+      }
+  
+      return matchFound ? total + 1 : total;
+    }, 0);
+  
+    return count;
+  };
+  
 
 
 
   return (
     <>
       <BrowserRouter>
-        <Context.Provider value={{ setSelectedFilters, selectedFilters }}>
+        <Context.Provider value={{ setSelectedFilters, selectedFilters ,getPropertyCount}}>
           <HeroUIProvider>
             <Header
+            productDetails={productDetails}
               showmbsearhbar={showmbsearhbar}
               setshowsearchbar={setshowsearchbar}
               setSelectedFilters={setSelectedFilters}
