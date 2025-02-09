@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 import { PiShoppingCartSimple } from "react-icons/pi";
-import Cartpage from "./Cartpage";
 import { useEffect, useState } from "react";
-import { FaMinus, FaPlus } from "react-icons/fa6";
-import { IoTrash } from "react-icons/io5";
-import { BsBagCheckFill, BsFillCartCheckFill } from "react-icons/bs";
+import {  BsFillCartCheckFill } from "react-icons/bs";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdOpenInFull } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";

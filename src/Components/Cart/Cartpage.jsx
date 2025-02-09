@@ -1,8 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import { FaMinus, FaPlus } from "react-icons/fa6";
-import { PiShoppingCartSimple } from "react-icons/pi";
-import { IoTrash } from "react-icons/io5";
+import { useEffect } from "react";
 import Cartcard from "./Cartcard";
 import { Link, useNavigate } from "react-router-dom";
 import { BsBagCheckFill } from "react-icons/bs";

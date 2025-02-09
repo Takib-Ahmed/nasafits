@@ -20,7 +20,7 @@ export default function Dealsubscribe(){
             </p>
             <div className="flex  gap-1">
          
-              <Input label="Enter your email" type="email" variant={'underlined'}    color="white"     className="px-3  text-white  focus:outline-none w-40 md:w-80 bg-transparent hover:border-gray-400  inputwrap"/>
+              <Input label="Enter your email" type="email" variant={'underlined'}    color="white"     className="px-3  text-white  focus:outline-none w-40 md:w-80 lg:w-96  bg-transparent hover:border-gray-400  inputwrap"/>
               <Button radius="none"  size="md" variant="flat" className="bg-yellow-600 px-4   py-2 mt-4 hover:rounded hover:bg-yellow-600 text-white">
                 Subscribe
               </Button>
