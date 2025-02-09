@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { PiShoppingCartSimple } from "react-icons/pi";
+
 import { Link, useNavigate } from "react-router-dom";
 import ProductCard from "../ProductCard";
 import Mobilesearch from "../Mobilesearchbar";
 import Filterlist from "../Search_shop/Filterlist";
-import { useState } from "react";
+
 import Context from "../../contexts/Context";
 import { Button } from "@nextui-org/react";
 export default function All({
@@ -15,12 +15,12 @@ export default function All({
   slice,
   showFilterlist,
   productDetails,
+  FilteredProducts,setfilteredProducts,ShowFIlteredproducts
 }) {
 
  
   const Showproducts = slice && productDetails.slice(0, slice)
-  const [FilteredProducts,setfilteredProducts]  = useState([])
-  const ShowFIlteredproducts = FilteredProducts.length>0 ? FilteredProducts: filteredProducts
+
   const navigate = useNavigate()
   return (
     <>
@@ -29,8 +29,10 @@ export default function All({
       >
         {showFilterlist ? (
           <Context.Consumer>
-            {({ setSelectedFilters, selectedFilters,getPropertyCount }) => (
+            {({ setSelectedFilters, selectedFilters,getPropertyCount ,FilteredProducts,setfilteredProducts,ShowFIlteredproducts}) => (
               <Filterlist
+              FilteredProducts={FilteredProducts}
+              setfilteredProducts={setfilteredProducts}
               ShowFIlteredproducts={ShowFIlteredproducts}
               getPropertyCount={getPropertyCount}
                 setSelectedFilters={setSelectedFilters}

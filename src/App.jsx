@@ -289,12 +289,13 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
   };
   
 
-
+  const [FilteredProducts,setfilteredProducts]  = useState([])
+  const ShowFIlteredproducts = FilteredProducts.length>0 ? FilteredProducts: filteredProducts
 
   return (
     <>
       <BrowserRouter>
-        <Context.Provider value={{ setSelectedFilters, selectedFilters ,getPropertyCount}}>
+        <Context.Provider value={{ setSelectedFilters, selectedFilters ,getPropertyCount,FilteredProducts,setfilteredProducts,ShowFIlteredproducts}}>
           <HeroUIProvider>
             <Header
             productDetails={productDetails}

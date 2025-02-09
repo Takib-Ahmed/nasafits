@@ -33,11 +33,16 @@ console.log(FilteredProducts)
         <div
           className={` bg-default-200   items-center flex justify-center p-2  ${filtermenuclass}`}
         >
-    
-          <Link to={location && !location.pathname.includes('/shop') &&'/shop'} className=" bg-black hover:bg-white hover:text-black transition-all duration-200 text-white  p-3 w-10 h-8 flex justify-center items-center  cursor-pointer ">
+    {
+      location && !location.pathname.includes('/shop') ?<Link to={ '/shop'} className=" bg-black hover:bg-white hover:text-black transition-all duration-200 text-white  p-3 w-10 h-8 flex justify-center items-center  cursor-pointer ">
+      <FaFilter/>
+   { location && location.pathname.includes('/shop') ?    <Sidedrawer />:<></>}
+           </Link>:<li className=" bg-black hover:bg-white hover:text-black transition-all duration-200 text-white  p-3 w-10 h-8 flex justify-center items-center  cursor-pointer ">
      <FaFilter/>
-  { location && location.pathname.includes('/shop') &&    <Sidedrawer />}
-          </Link>
+  { location && location.pathname.includes('/shop') ?    <Sidedrawer />:<></>}
+          </li>
+    }
+          
         </div>
         <div>
        
