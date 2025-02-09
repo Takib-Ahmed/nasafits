@@ -332,11 +332,13 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
     ))
   ))
 }
+<Route  path={`/profile/Address Book/address`} element={<AccountPage
+            setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
 {  userAddresses.map((Adresses)=>(
 <>
 <Route key={Adresses.id} path={`/profile/Address Book/${Adresses.id}`} element={<AccountPage
             userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
-        <Route key={Adresses.id} path={`/profile/${profilelocation||'Address Book'}/${Adresses.id}`} element={<AccountPage
+        <Route key={Adresses.id} path={`/profile/${profilelocation}/${Adresses.id}`} element={<AccountPage
            userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} /></>
        ))}
        <Route  path={`/profile/${profilelocation}/address`} element={<AccountPage  setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
