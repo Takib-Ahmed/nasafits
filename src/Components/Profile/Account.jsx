@@ -35,7 +35,7 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
         <Profile {...user} />
         <div className="bg-white rounded-lg">
           <h2 className="text-xl font-semibold w-full p-4 pb-0">Address Book</h2>
-          <div className={`flex flex-col ${Adresses.length>1?'md:flex-row-reverse':'md:flex-row'}    gap-4 p-0.5`}>
+          <div className={`flex flex-col ${Adresses && Adresses.length>1?'md:flex-row-reverse':'md:flex-row'}    gap-4 p-0.5`}>
             {Adresses && Adresses.map((address, key) => (
               <Addresscard setAdressbook={setAdressbook} setprofilelocation={setprofilelocation} key={key} {...address} className="pt-0 pe-10 sm:pe-4" Goto={Goto} />
             ))}
