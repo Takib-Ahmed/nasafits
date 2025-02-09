@@ -254,6 +254,8 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
   const storeduserAddresses = JSON.parse(localStorage.getItem("useradress")) || []; 
   const [userAddresses,setAdressbook] =useState(storeduserAddresses?storeduserAddresses:[]);
   useEffect(() => {
+   
+
   
   userAddresses.length > 0 &&   setuseradresses(userAddresses)
   }, [userAddresses,setuseradresses,selectedFilterArray]);
@@ -331,8 +333,11 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
   ))
 }
 {  userAddresses.map((Adresses)=>(
-        <Route key={Adresses.id} path={`/profile/${profilelocation}/${Adresses.id}`} element={<AccountPage
-           userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
+<>
+<Route key={Adresses.id} path={`/profile/Address Book/${Adresses.id}`} element={<AccountPage
+            userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
+        <Route key={Adresses.id} path={`/profile/${profilelocation||'Address Book'}/${Adresses.id}`} element={<AccountPage
+           userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} /></>
        ))}
        <Route  path={`/profile/${profilelocation}/address`} element={<AccountPage  setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
            <Route path="/checkout" element={<Checkout setAdressbook={setAdressbook} setplacedOrder={setplacedOrder} setselectedcarts={setselectedcarts}     setcartedproduct={setcartedproduct}
@@ -378,8 +383,11 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
        }
            {
         Orderhistory.map((placedOrdered)=>(
-
-         <Route  key={placedOrdered.Id} path={`/profile/${profilelocation}-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
+<>
+<Route  key={placedOrdered.Id} path={`/profile/My Orders-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
+<Route  key={placedOrdered.Id} path={`/profile/My Returns-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
+<Route  key={placedOrdered.Id} path={`/profile/My Cancellations-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
+<Route  key={placedOrdered.Id} path={`/profile/${profilelocation}-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} /></>
 
         )
 

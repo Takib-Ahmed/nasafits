@@ -38,7 +38,7 @@ if(mobileBank && transactionID || transactionImage){
   }, 2000);
   setOrderhistory((prev)=>
     prev.map((placedOrder)=>placedOrder.Id === placedOrdered.Id  ? {...placedOrder,status:placedOrdered.paymentMethod}:placedOrder))
-  navigate('/cart')
+  // navigate('/cart')
 }
 else{
   alert('fill all datas')

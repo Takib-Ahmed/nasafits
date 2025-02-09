@@ -4,28 +4,20 @@ import {
     NavbarBrand,
     NavbarContent,
     NavbarItem,
-    
     Input,
     DropdownItem,
     DropdownTrigger,
     Dropdown,
     DropdownMenu,
     Avatar,
-    NavbarMenuToggle,
-    NavbarMenu,
-    NavbarMenuItem,
-    Image,
   } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { PiShoppingCartSimple } from "react-icons/pi";
-import CustomDropdown from "./Customdropdown";
 import { IoMenuOutline } from "react-icons/io5";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import HoverDropdown from "./Customdropdown";
 import { CgProfile } from "react-icons/cg";
-
-
 import { Link, useLocation, useNavigate} from "react-router-dom";
 import Mobilesearch from "./Mobilesearchbar";
 import Sidedrawer from "./drawer";
@@ -268,8 +260,8 @@ const filteredProducts = productDetails.filter((product) =>
       }}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /><IoIosSearch size={25} onClick={()=>{
-            navigate('/shop')
-            setSelectedFilters({[SearchTerm.toLowerCase()]:true})
+            screenSize>768 &&  navigate('/shop')
+            screenSize>768 && setSelectedFilters({[SearchTerm.toLowerCase()]:true})
           }}  className=" cursor-pointer Searchicn bg-black h-full    w-10 p-2 text-white z-50" /> 
           <ul className={` top-10 absolute ${ screenSize>768 && Autocomplete.length>0 ? 'flex flex-col bg-white':'hidden'}  gap-2     w-full  border-[0.01px] border-gray-400 border-opacity-10 border-t-0`}>
 

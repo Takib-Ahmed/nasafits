@@ -56,7 +56,7 @@ const Footer = ({setSelectedFilters}) => {
         <address className="not-italic space-y-1">
           <p>Miabazar Road, Cumilla</p>
           <p>01615081141</p>
-          <p>satakib300@gmail.com</p>
+          <p>nasafits@gmail.com</p>
         </address>
       ),
     },

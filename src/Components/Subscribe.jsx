@@ -1,3 +1,5 @@
+import { Button, Input } from "@heroui/react";
+
 import { MdForwardToInbox } from "react-icons/md";
 export default function Dealsubscribe(){
     return (
@@ -16,15 +18,12 @@ export default function Dealsubscribe(){
             <p className="text-sm text-gray-400">
               Enter email to get offers, discounts and more.
             </p>
-            <div className="flex mt-2 gap-1.5">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-3 py-2 text-white  focus:outline-none w-40 md:w-80 bg-transparent border-gray-500 border-b-2"
-              />
-              <button className="bg-yellow-600 px-4 py-2  hover:rounded hover:bg-yellow-600">
+            <div className="flex  gap-1">
+         
+              <Input label="Enter your email" type="email" variant={'underlined'}    color="white"     className="px-3  text-white  focus:outline-none w-40 md:w-80 bg-transparent hover:border-gray-400  inputwrap"/>
+              <Button radius="none"  size="md" variant="flat" className="bg-yellow-600 px-4   py-2 mt-4 hover:rounded hover:bg-yellow-600 text-white">
                 Subscribe
-              </button>
+              </Button>
             </div>
           </div>
         </div>

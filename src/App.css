@@ -4,8 +4,13 @@ body{
   box-sizing: border-box;
   overflow-x: hidden;
 
-  background-color:whitesmoke;
 
+
+}
+
+.inputwrap{
+  border: none !important;
+  color: white !important;
 }
 .mobilesearch{
   background-color:whitesmoke;

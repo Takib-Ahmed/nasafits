@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineClear } from "react-icons/md";
 import { useState } from "react";
 export default function Mobilesearch({ className, type, inputclass, filtermenuclass,location,Autocomplete, SearchTerm, setsearchterm, handlesearch, handleKeyDown,setSelectedFilters,setAutocomplete,setfilteredProducts,filteredProducts,FilteredProducts}) {
-  const [filterSearch,setfiltervalue] = useState(SearchTerm)
+  const [filterSearch,setfiltervalue] = useState('')
   const handleSearch=(e)=>{
 
     const searchvalue = e.target.value.toLowerCase().trim()
@@ -75,7 +75,10 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
           onKeyDown={handleKeyDown && handleKeyDown}
           
             endContent={
-              <IoIosSearch className=" bg-black h-full   cursor-pointer absolute right-0 w-10 p-1 text-white" />
+              <IoIosSearch className=" bg-black h-full   cursor-pointer absolute right-0 w-10 p-1 text-white" onClick={()=>{
+              navigate('/shop')
+               setSelectedFilters({[filterSearch.toLowerCase()]:true})
+              }} />
             }
             type="search"
             className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
