@@ -2,17 +2,26 @@
 import { Checkbox, Chip } from "@heroui/react";
 import React, { useState } from "react";
 import { GoDotFill } from "react-icons/go";
-export default function Filterlist({className,setSelectedFilters,selectedFilters,getPropertyCount}) {
+export default function Filterlist({className,setSelectedFilters,selectedFilters,getPropertyCount,ShowFIlteredproducts}) {
 
 
-  const categories = [
+  const demohcategories = [
     { name: "New Arrival" },
     { name: "Flash Sale" },
     { name: "Top Selling" },
     { name: "Winter Collection" }
   ];
+  const categories = demohcategories.filter((category) =>
+    ShowFIlteredproducts.some((product) =>
+      product.category.some(cat => cat.toLowerCase().includes(category.name.toLowerCase())) ||
+      product.for.some(f => f.toLowerCase().includes(category.name.toLowerCase())) ||
+      product.showcases.some(showcase => showcase.toLowerCase().includes(category.name.toLowerCase())) ||
+      product.name.toLowerCase().includes(category.name.toLowerCase())
+    )
+  );
   
-  const products = [
+  
+  const demoproducts = [
     {
       name: "Men",
       subCategories: [
@@ -43,6 +52,34 @@ export default function Filterlist({className,setSelectedFilters,selectedFilters
   );
 
 
+  function filterCategories(categories, products) {
+    return categories
+      .map(category => {
+        // Check if the category matches with any product
+        const isCategoryMatch = products.some(product =>
+          product.category.some(cat => cat.toLowerCase().includes(category.name.toLowerCase())) ||
+          product.for.some(f => f.toLowerCase().includes(category.name.toLowerCase())) ||
+          product.showcases.some(showcase => showcase.toLowerCase().includes(category.name.toLowerCase())) ||
+          product.name.toLowerCase().includes(category.name.toLowerCase())
+        );
+  
+        // If there are subcategories, filter them recursively
+        const filteredSubCategories = category.subCategories
+          ? filterCategories(category.subCategories, products)
+          : [];
+  
+        // Include the category if it matches or has matching subcategories
+        if (isCategoryMatch || filteredSubCategories.length > 0) {
+          return {
+            ...category,
+            subCategories: filteredSubCategories
+          };
+        }
+        return null; // If no match, exclude the category
+      })
+      .filter(Boolean); // Remove null values
+  }
+  const products = filterCategories(demoproducts, ShowFIlteredproducts);
 
 
   return (

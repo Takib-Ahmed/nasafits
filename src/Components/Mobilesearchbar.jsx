@@ -6,21 +6,22 @@ import Sidedrawer from "./drawer";
 import { Link } from "react-router-dom";
 import { MdOutlineClear } from "react-icons/md";
 import { useState } from "react";
-export default function Mobilesearch({ className, type, inputclass, filtermenuclass,location,Autocomplete, SearchTerm, setsearchterm, handlesearch, handleKeyDown,setSelectedFilters,setAutocomplete}) {
+export default function Mobilesearch({ className, type, inputclass, filtermenuclass,location,Autocomplete, SearchTerm, setsearchterm, handlesearch, handleKeyDown,setSelectedFilters,setAutocomplete,setfilteredProducts,filteredProducts,FilteredProducts}) {
   const [filterSearch,setfiltervalue] = useState(SearchTerm)
-  // const handleSearch=(e)=>{
-  //   const searchvalue = e.target.value.toLowerCase().trim()
-  //  setshowproduct && setshowproduct(
-
-  //     (prev)=>prev.map((product)=>
-      
-  //       product.category.some(cat => cat.toLowerCase().includes(searchvalue)) ||
-  //           product.for.some(f => f.toLowerCase().includes(searchvalue)) ||
-  //           product.showcases.some(showcase => showcase.toLowerCase().includes(searchvalue)) ||
-  //           product.name.toLowerCase().includes(searchvalue)
-  //     )
-  //   )
-  // }
+  const handleSearch=(e)=>{
+console.log(FilteredProducts)
+    const searchvalue = e.target.value.toLowerCase().trim()
+    setfilteredProducts && setfilteredProducts(
+      filteredProducts &&
+      filteredProducts.filter((product) =>
+        product.category.some(cat => cat.toLowerCase().includes(searchvalue.toLowerCase())) ||
+        product.for.some(f => f.toLowerCase().includes(searchvalue.toLowerCase())) ||
+        product.showcases.some(showcase => showcase.toLowerCase().includes(searchvalue.toLowerCase())) ||
+        product.name.toLowerCase().includes(searchvalue.toLowerCase())
+      )
+    );
+    
+  }
   
   return (
     <>
@@ -62,7 +63,7 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
             }}/>
           }
           onChange={(e)=>{
-          handlesearch &&  handlesearch(e)
+          handlesearch ?  handlesearch(e):handleSearch(e)
             setfiltervalue(e.target.value)
             
           }}
@@ -80,7 +81,7 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
            
                     
                     
-            {SearchTerm != '' &&   
+            {filterSearch != '' &&   
           Autocomplete?.length > 0 ? (
             Autocomplete.map((item, index) => (
                 <Link
@@ -91,7 +92,7 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
           
           to={item.id ? `/details/${item.id}`:'/shop'}
               onClick={()=>{
-                setsearchterm( item.id ? item.name :item)
+                setfiltervalue( item.id ? item.name :item)
                 setSelectedFilters(!item.id && {[item.toLowerCase()]:true}) 
                 setAutocomplete([])
               }}
@@ -100,7 +101,7 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
                 </Link>
               ))
             ) : (
-              SearchTerm != '' &&  <li className="px-3 py-1.5 text-gray-500">No results found</li>
+              filterSearch != '' &&  <li className="px-3 py-1.5 text-gray-500">No results found</li>
             )}
           
           

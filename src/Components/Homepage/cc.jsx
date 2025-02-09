@@ -16,7 +16,11 @@ export default function All({
   showFilterlist,
   productDetails,
 }) {
+
+ 
   const Showproducts = slice && productDetails.slice(0, slice)
+  const [FilteredProducts,setfilteredProducts]  = useState([])
+  const ShowFIlteredproducts = FilteredProducts.length>0 ? FilteredProducts: filteredProducts
   const navigate = useNavigate()
   return (
     <>
@@ -27,6 +31,7 @@ export default function All({
           <Context.Consumer>
             {({ setSelectedFilters, selectedFilters,getPropertyCount }) => (
               <Filterlist
+              ShowFIlteredproducts={ShowFIlteredproducts}
               getPropertyCount={getPropertyCount}
                 setSelectedFilters={setSelectedFilters}
                 selectedFilters={selectedFilters}
@@ -47,13 +52,16 @@ export default function All({
         {page == "Shop" ? (
           <div className=" shoplist flex flex-col  gap-2  justify-end">
             <Mobilesearch 
-            Showproducts={Showproducts}
+            FilteredProducts={FilteredProducts}
+            setfilteredProducts={setfilteredProducts}
+            filteredProducts={filteredProducts}
+           
               className=" w-fit lg:w-full  flex   justify-center  "
               filtermenuclass="hidden"
               inputclass=" w-[60vw] sm:w-[65vw] md:w-[70vw]   lg:w-[76.5vw]  shopsearchbar        p-2    "
             />
             <div className=" Cardcontainer    grid grid-cols-2 md:flex flex-wrap w-full justify-center gap-1.5 sm:gap-2  px-2 sm:px-0 ">
-              {filteredProducts.map((product) => (
+              {ShowFIlteredproducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}

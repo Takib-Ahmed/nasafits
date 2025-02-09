@@ -98,7 +98,7 @@ const navigate = useNavigate()
 
 
     const searchTerm = e.target.value.toLowerCase().trim();
-setsearchterm(e.target.value);
+
 
 const filteredProducts = productDetails.filter((product) => 
   product.name.toLowerCase().includes(searchTerm)  // ছোট অক্ষরে ঠিক করা হলো
@@ -263,7 +263,9 @@ const filteredProducts = productDetails.filter((product) =>
             size="sm"
            onClear={handleClear}
       
-      onChange={(e)=>{handlesearch(e)}}
+      onChange={(e)=>{handlesearch(e)
+        setsearchterm(e.target.value);
+      }}
             type="search" className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           /><IoIosSearch size={25} onClick={()=>{
             navigate('/shop')
