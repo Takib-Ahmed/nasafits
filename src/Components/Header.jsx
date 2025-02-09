@@ -180,7 +180,7 @@ const filteredProducts = productDetails.filter((product) =>
         <div
 
     className="navmenu  hidden     p-0 m-0 text-3xl sm:text-4xl  w-8 sm:w-10  h-full" 
-  ><IoMenuOutline className="  absolute top-4  sm:top-3"/><Sidedrawer location={location} menuItems={menuItems}/></div>
+  ><IoMenuOutline className="  absolute top-4  sm:top-3"/><Sidedrawer setSelectedFilters={setSelectedFilters} location={location} menuItems={menuItems}/></div>
   <NavbarBrand className=" left-shadow h-full ps-2 " >
  <Link  to="/"
   >        <img

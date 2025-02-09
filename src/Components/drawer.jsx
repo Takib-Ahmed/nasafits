@@ -11,7 +11,7 @@ import Filterlist from "./Search_shop/Filterlist";
 import { Button } from "@nextui-org/react";
 import { Link, useLocation } from "react-router-dom";
 import Context from "../contexts/Context";
-export default function Sidedrawer({ menuItems, location }) {
+export default function Sidedrawer({ menuItems, location,setSelectedFilters }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [size, setSize] = useState("md");
 
@@ -65,6 +65,11 @@ export default function Sidedrawer({ menuItems, location }) {
                   <div key={`${item}-${index}`} className="">
                     <Link
                       className="w-full"
+                      to={`${item === 'Home' ? '/':  '/shop' 
+
+
+
+                      }`}
                       color={
                         index === 2
                           ? "primary"
@@ -74,7 +79,10 @@ export default function Sidedrawer({ menuItems, location }) {
                       }
                       href="#"
                       size="lg"
-                    >
+                  
+                  onClick={()=>{
+item === 'Winter Collection' ? setSelectedFilters({['winter collection']:true}) : item === 'Flash Sale' &&  setSelectedFilters({['flash sale']:true}) 
+                  }}>
                       {item}
                     </Link>
                   </div>
