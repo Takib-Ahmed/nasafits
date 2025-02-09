@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Addresscard = ({ name, address, phone,className,id ,Goto,setprofilelocation,city,setAdressbook,defaultaddress}) => {
     return (
-      <label className={`bg-white p-4 rounded-lg relative cursor-pointer  ${className}`}>
+      <label className={`bg-white p-4 rounded-lg relative cursor-pointer  ${className} w-full`}>
      
         <div className="flex justify-between items-center">
         <Checkbox className=" flex  items-center"  size="sm"  isSelected={defaultaddress} color={defaultaddress ? 'success':'danger'} onChange={(e)=>{

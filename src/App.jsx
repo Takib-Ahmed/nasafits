@@ -196,6 +196,8 @@ function App() {
       sizes: ["M", "L", "XL", "2XL"],
     }
   ];
+
+
   const [showmbsearhbar, setshowsearchbar] = useState(false);
 
   const savedCartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");
