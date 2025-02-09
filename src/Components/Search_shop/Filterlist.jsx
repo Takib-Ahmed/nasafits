@@ -2,7 +2,7 @@
 import { Checkbox, Chip } from "@heroui/react";
 import React, { useState } from "react";
 import { GoDotFill } from "react-icons/go";
-export default function Filterlist({className,setSelectedFilters,selectedFilters,getPropertyCount,ShowFIlteredproducts}) {
+export default function Filterlist({className,setSelectedFilters,selectedFilters,getPropertyCount,ShowFIlteredproducts,FilteredProducts}) {
 
 
   const demohcategories = [
@@ -11,14 +11,15 @@ export default function Filterlist({className,setSelectedFilters,selectedFilters
     { name: "Top Selling" },
     { name: "Winter Collection" }
   ];
-  const categories = demohcategories.filter((category) =>
+  const categories = FilteredProducts.length > 0 ?
+  demohcategories.filter((category) =>
     ShowFIlteredproducts.some((product) =>
       product.category.some(cat => cat.toLowerCase().includes(category.name.toLowerCase())) ||
       product.for.some(f => f.toLowerCase().includes(category.name.toLowerCase())) ||
       product.showcases.some(showcase => showcase.toLowerCase().includes(category.name.toLowerCase())) ||
       product.name.toLowerCase().includes(category.name.toLowerCase())
     )
-  );
+  ):demohcategories
   
   
   const demoproducts = [
@@ -79,7 +80,7 @@ export default function Filterlist({className,setSelectedFilters,selectedFilters
       })
       .filter(Boolean); // Remove null values
   }
-  const products = filterCategories(demoproducts, ShowFIlteredproducts);
+  const products = FilteredProducts.length > 0? filterCategories(demoproducts, ShowFIlteredproducts):demoproducts
 
 
   return (

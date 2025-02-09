@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function Mobilesearch({ className, type, inputclass, filtermenuclass,location,Autocomplete, SearchTerm, setsearchterm, handlesearch, handleKeyDown,setSelectedFilters,setAutocomplete,setfilteredProducts,filteredProducts,FilteredProducts}) {
   const [filterSearch,setfiltervalue] = useState(SearchTerm)
   const handleSearch=(e)=>{
-console.log(FilteredProducts)
+
     const searchvalue = e.target.value.toLowerCase().trim()
     setfilteredProducts && setfilteredProducts(
       filteredProducts &&
