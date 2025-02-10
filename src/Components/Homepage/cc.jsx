@@ -8,7 +8,7 @@ import Filterlist from "../Search_shop/Filterlist";
 import Context from "../../contexts/Context";
 import { Button } from "@nextui-org/react";
 export default function All({
-  setproduct,
+  
   filteredProducts,
   page,
   className,

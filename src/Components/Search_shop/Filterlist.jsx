@@ -2,6 +2,7 @@
 import { Checkbox, Chip } from "@heroui/react";
 import React, { useState } from "react";
 import { GoDotFill } from "react-icons/go";
+import { AiFillThunderbolt  } from "react-icons/ai";
 export default function Filterlist({className,setSelectedFilters,selectedFilters,getPropertyCount,ShowFIlteredproducts,FilteredProducts}) {
 
 
@@ -96,7 +97,7 @@ export default function Filterlist({className,setSelectedFilters,selectedFilters
     
       </Checkbox>
           <span className="flex justify-between w-full mt-0.5 lg:mt-0">
-            <span>{category.name}<font className='lg:ms-1'>⚡</font></span>
+            <span className=" flex">{category.name}<font className='lg:ms-2'><AiFillThunderbolt   size={20} className=" mt-0.5 text-orange-500 bg-white"/></font></span>
             <Chip radius="full"  className="text-xs lg:text-sm  w-5 p-0 " size="sm">{getPropertyCount(category.name.toLocaleLowerCase())}</Chip>
        
           </span>
@@ -126,7 +127,9 @@ export default function Filterlist({className,setSelectedFilters,selectedFilters
       </Checkbox>
           
                 <span className="flex justify-between w-full mt-0.5 lg:mt-0">
-                  <span>{sub.name}<font className='lg:ms-1'>⚡</font></span>
+                  <span>{sub.name}
+                    {/* <font className='lg:ms-1'>⚡</font> */}
+                    </span>
                   <Chip radius="full"  className="text-xs lg:text-sm  w-5 p-0 " size="sm">{getPropertyCount(sub.name.toLocaleLowerCase())}</Chip>
              
                 </span>
@@ -143,7 +146,9 @@ export default function Filterlist({className,setSelectedFilters,selectedFilters
       </Checkbox>
                       
                       <span className="flex justify-between w-full  mt-0.5 pt-0.5 h-fit">
-                        <span>{child.name}<font className='lg:ms-1'>⚡</font></span>
+                        <span>{child.name}
+                          {/* <font className='lg:ms-1'>⚡</font> */}
+                          </span>
                         <Chip radius="full"  className="text-xs lg:text-sm  w-5 p-0 " size="sm">{getPropertyCount(child.name.toLocaleLowerCase())}</Chip>
                     
                       </span>
