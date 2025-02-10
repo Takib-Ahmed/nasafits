@@ -324,7 +324,11 @@ to={item.id ? `/details/${item.id}`:'/shop'}
                   size="sm"
            
                   icon={<CgProfile className=" w-full  text-3xl"/>}
-                 /></DropdownTrigger>  : <Link to={storedUser? screenSize>768? '/profile/Dashboard':'/profile':'/account'}  > 
+                 /></DropdownTrigger>  : <Link to={!storedUser || Object.keys(storedUser).length === 0
+                  ? '/account'
+                  : screenSize > 768
+                    ? '/profile/Dashboard'
+                    : '/profile'}  > 
                  <Avatar
                                  isBordered 
                                  as="button"
