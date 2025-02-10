@@ -13,8 +13,8 @@ export default function Cartpage({cartedProduct,setcartedproduct,setselectedcart
    
 
 
-const totalMainPrice = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.mainPrice, 0);
-const totalDiscountprice = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.discountPrice, 0);
+const totalMainPrice = SelectedCarts.reduce((total, selectedcarts) => total + (selectedcarts.mainPrice*selectedcarts.quantity) , 0);
+const totalDiscountprice = SelectedCarts.reduce((total, selectedcarts) => total + (selectedcarts.discountPrice*selectedcarts.quantity), 0);
 const totalQuantity = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.quantity, 0);
 const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
 const {setItem} = useLocalStorage('cartedProduct')
