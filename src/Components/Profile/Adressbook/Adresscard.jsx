@@ -1,7 +1,7 @@
 import { Checkbox } from "@heroui/react";
 import { Link } from "react-router-dom";
 
-const Addresscard = ({ name, address, phone,className,id ,Goto,setprofilelocation,city,setAdressbook,defaultaddress}) => {
+const Addresscard = ({ name, address, phone,className,id ,Goto,city,setAdressbook,defaultaddress}) => {
     return (
       <label className={`bg-white p-4 rounded-lg relative cursor-pointer  ${className} w-full`}>
      
@@ -12,9 +12,7 @@ const Addresscard = ({ name, address, phone,className,id ,Goto,setprofilelocatio
        <font className=' text-base'> Defualt Delivery Address</font>
       </Checkbox>
     
-      <Link to={`/profile/${Goto}/${id}`} onClick={()=>{
-            setprofilelocation(Goto)
-          }} className="text-blue-500 hover:underline">EDIT</Link>
+      <Link to={`/profile/${Goto}/${id}`}  className="text-blue-500 hover:underline">EDIT</Link>
 
      
         </div>

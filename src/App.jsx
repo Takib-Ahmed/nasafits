@@ -239,7 +239,7 @@ function App() {
 
 
 
-const [profilelocation,setprofilelocation] = useState('Dashboard')
+
 
   const menuSections = [
     {
@@ -300,12 +300,13 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
         <Context.Provider value={{ setSelectedFilters, selectedFilters ,getPropertyCount,FilteredProducts,setfilteredProducts,ShowFIlteredproducts}}>
           <HeroUIProvider>
             <Header
+            cartedProduct={cartedProduct}
             productDetails={productDetails}
               showmbsearhbar={showmbsearhbar}
               setshowsearchbar={setshowsearchbar}
               setSelectedFilters={setSelectedFilters}
               menuSections={menuSections}
-              setprofilelocation={setprofilelocation}
+             
             />
             <Sidecart
    SelectedCarts={SelectedCarts}
@@ -321,11 +322,11 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
                 element={<Homepage setSelectedFilters={setSelectedFilters} productDetails={productDetails} />}
               />
 
-<Route  path={`/profile`} element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation}  menuSections={menuSections} Orderhistory={Orderhistory}  />} />
+<Route  path={`/profile`} element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory}   menuSections={menuSections} Orderhistory={Orderhistory}  />} />
 {
   menuSections.map((section)=>(
     section.items.map((goto,key)=>(
-      <Route key={key} path={`/profile/${goto}`} element={<AccountPage  userAddresses={userAddresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={goto} menuSections={menuSections} Orderhistory={Orderhistory}  />} />
+      <Route key={key} path={`/profile/${goto}`} element={<AccountPage  userAddresses={userAddresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  Goto={goto} menuSections={menuSections} Orderhistory={Orderhistory}  />} />
       
    
       
@@ -333,15 +334,44 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
   ))
 }
 <Route  path={`/profile/Address Book/address`} element={<AccountPage
-            setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
+            setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
 {  userAddresses.map((Adresses)=>(
 <>
 <Route key={Adresses.id} path={`/profile/Address Book/${Adresses.id}`} element={<AccountPage
-            userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
-        <Route key={Adresses.id} path={`/profile/${profilelocation}/${Adresses.id}`} element={<AccountPage
-           userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} /></>
+            userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
+        <Route key={Adresses.id} path={`/profile/Dashboard/${Adresses.id}`} element={<AccountPage
+           userAddress={Adresses} setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} /></>
        ))}
-       <Route  path={`/profile/${profilelocation}/address`} element={<AccountPage  setAdressbook={setAdressbook}  setOrderhistory={setOrderhistory}  setprofilelocation={setprofilelocation} Goto={'Editingadress'} menuSections={menuSections} Orderhistory={Orderhistory}   />} />
+
+{
+        Orderhistory.map((placedOrdered)=>(
+
+["My Orders", "My Returns", "My Cancellations", "Dashboard"].map((type) => (
+      <Route
+        key={`${type}-${placedOrdered.Id}`}
+        path={`/profile/${type}-${placedOrdered.Id}`}
+        element={
+          <AccountPage
+            userAddresses={userAddresses}
+            setAdressbook={setAdressbook}
+            setOrderhistory={setOrderhistory}
+            orderData={placedOrdered}
+          
+            Goto={'OrderDetails'}
+            menuSections={menuSections}
+            Orderhistory={Orderhistory}
+          />
+        }
+      />
+    )
+
+        )
+
+         
+        ))
+       }
+
+       
            <Route path="/checkout" element={<Checkout setAdressbook={setAdressbook} setplacedOrder={setplacedOrder} setselectedcarts={setselectedcarts}     setcartedproduct={setcartedproduct}
               SelectedCarts={SelectedCarts} setOrderhistory={setOrderhistory}  Orderhistory={Orderhistory} />} />
               <Route
@@ -383,19 +413,7 @@ const [profilelocation,setprofilelocation] = useState('Dashboard')
          
         )
        }
-           {
-        Orderhistory.map((placedOrdered)=>(
-<>
-<Route  key={placedOrdered.Id} path={`/profile/My Orders-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
-<Route  key={placedOrdered.Id} path={`/profile/My Returns-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
-<Route  key={placedOrdered.Id} path={`/profile/My Cancellations-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} />
-<Route  key={placedOrdered.Id} path={`/profile/${profilelocation}-${placedOrdered.Id}`}  element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory} orderData={placedOrdered} setprofilelocation={setprofilelocation} Goto={'OrderDetails'} menuSections={menuSections} Orderhistory={Orderhistory} />} /></>
-
-        )
-
-         
-        )
-       }
+ 
               
             </Routes>
           

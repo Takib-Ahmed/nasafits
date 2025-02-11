@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {useState } from "react";
 import Orders from "./Order/Order";
 import Profile from "./Profiledetails";
@@ -9,7 +10,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import OrderSummary from "./Order/Orderdetails";
 import EditAddressForm from "./Adressbook/Adressbookform";
 
-const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderData,setOrderhistory,userAddresses,setAdressbook,userAddress}) => {
+const AccountPage = ({Orderhistory,menuSections,Goto,orderData,setOrderhistory,userAddresses,setAdressbook,userAddress}) => {
  
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};
     const { setItem } = useLocalStorage("userdata");
@@ -37,14 +38,14 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
           <h2 className="text-xl font-semibold w-full p-4 pb-0">Address Book</h2>
           <div className={`flex flex-col ${Adresses && Adresses.length>1?'md:flex-row-reverse':'md:flex-row'}    gap-4 p-0.5`}>
             {Adresses && Adresses.map((address, key) => (
-              <Addresscard setAdressbook={setAdressbook} setprofilelocation={setprofilelocation} key={key} {...address} className="pt-0 pe-10 sm:pe-4" Goto={Goto} />
+              <Addresscard setAdressbook={setAdressbook}  key={key} {...address} className="pt-0 pe-10 sm:pe-4" Goto={Goto} />
             ))}
           </div>
         </div>
         <Orders Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid} />
       </>
     ),
-    "Address Book": <Addressbooks  setprofilelocation={setprofilelocation} userAddresses={userAddresses} setAdressbook={setAdressbook} Goto={Goto} />,
+    "Address Book": <Addressbooks   userAddresses={userAddresses} setAdressbook={setAdressbook} Goto={Goto} />,
     "My Orders":<Orders   Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  />,
     "Account Details": <AccountDetails storedUser={storedUser}  setItem={setItem}/>,
     "My Cancellations": <Orders  Orderhistory={Orderhistory} orderData={orderData?orderData:selectedItem} Goto={Goto} setorderid={setorderid}  show={'canceled'}  />,
@@ -55,7 +56,7 @@ const AccountPage = ({Orderhistory,menuSections,Goto,setprofilelocation,orderDat
 
   return (
     <div className={`flex bg-gray-100 md:p-10 lg:p-20  mt-12 text-sm lg:text-medium ${Goto?'py-20':'py-10'}`}>
-      <Sidebar Goto={Goto} menuSections={menuSections} setprofilelocation={setprofilelocation}  />
+      <Sidebar Goto={Goto} menuSections={menuSections}   />
       {
         Goto && <div className={`flex-1 md:ml-4 space-y-4 `}> 
         {pages[Goto] || <div className="text-center text-gray-500">Page not found</div>}
