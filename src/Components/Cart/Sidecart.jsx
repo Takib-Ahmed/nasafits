@@ -7,10 +7,10 @@ import { MdOpenInFull } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import Cartcard from "./Cartcard";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { Checkbox } from "@nextui-org/react";
+import { Badge, Checkbox } from "@nextui-org/react";
 export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,setselectedcarts}){
   const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
-
+  const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};   
     const [showcart,setshowcart] = useState(false)
     const location = useLocation();
     const {setItem} = useLocalStorage('cartedProduct')
@@ -35,12 +35,15 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
     return (
         <>
       {
-        !location.pathname.includes('/cart') && 
+        !location.pathname.includes('/cart')  && 
         
         <div className={` fixed  right-0 top-[0rem] z-50 w-80 lg:w-[500px] h-[100%]   bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
-        <PiShoppingCartSimple className=" absolute  right-80 lg:right-[32rem] top-[30rem] z-50 text-4xl text-slate-700 bg-cyan-200 p-2 rounded-full cursor-pointer"  onClick={()=>{
+          <div className="absolute  w-fit right-80 lg:right-[32rem] top-[30rem] z-50  badgewrapper  hover:text-cyan-200 text-white  ">   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className=" transition-all duration-300 badge outline-none border-none  me-0.5 bg-slate-700   ">
+     
+     
+        <PiShoppingCartSimple className="text-slate-700 bg-cyan-200  rounded-full cursor-pointer p-2  cart transition-all duration-300 " size={40}  onClick={()=>{
           setshowcart((prev)=>!prev)
-          }}/>
+          }}/></Badge></div> 
 
   {/* Floating Cart Icon */}
 
@@ -87,7 +90,12 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
   <div className="grid  text-center absolute bottom-0 w-full text-lg ">
 
   <div  className=" border-t-1 border-gray-400 py-1 bg-white">Total {totalSubtotal}</div>
-  <Link to={SelectedCarts.length > 0 && '/account'} className={`bg-green-600 w-full p-2   flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
+  <Link to={SelectedCarts.length > 0 ? (Object.keys(storedUser).length === 0 ? '/account' : '/checkout') : ''}
+  
+  onClick={()=>{
+    showcart(false)
+  }}
+  className={`bg-green-600 w-full p-2   flex gap-2 justify-center text-white items-center  text-nowrap  text-lg ${SelectedCarts.length>0 ?'cursor-pointer':'cursor-not-allowed'}`}>
   
     
   <BsFillCartCheckFill className=" text-xl  mb-1"/>Checkout

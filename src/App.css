@@ -94,6 +94,27 @@ background: inherit !important;
 .Sidebar{
   width: 16rem;
 }
+
+.maincartwrapper:hover{
+
+  .badge{
+    background-color: #7828C8;
+  }
+  .maincart{
+color: #7828C8;
+  }
+}
+.badgewrapper:hover{
+  .badge{
+background: #a5f3fc;
+color: #000;
+/* color: #334155; */
+  }
+  .cart{
+    color: #a5f3fc;
+background: #334155;
+  }
+}
 @media only screen and (max-width: 1500px){
 
   .shopcard{
