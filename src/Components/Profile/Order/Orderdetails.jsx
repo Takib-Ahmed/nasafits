@@ -44,7 +44,7 @@ const OrderSummary = ({ orderData ,setOrderhistory}) => {
             <p className="text-gray-500 text-xs">Qty: {product.quantity}</p>
             <p className="text-gray-500 text-xs">Size: {product.selectedsize}</p>
             
-            <p className="text-red-500 text-xs font-semibold">{orderData.status}</p>
+            <p className={`text-xs font-semibold ${orderData.status === 'canceled' ? 'text-red-500': orderData.status === 'pending'  ? 'text-primary':'text-green-500'}`}>{orderData.status}</p>
           </div>
           <div className="font-semibold grid"><p className=' w-full text-end'>৳{product.discountPrice}</p>
 <div className="flex gap-2">        {orderData.status === 'pending' &&   <button  className='  flex justify-end items-center bg-green-500 text-white  text-sm h-fit p-1 mt-2 gap-1' onClick={handlePay} ><TbCoinTakaFilled size={16} className=' '/><font className='btntext '>Pay Now</font></button>}

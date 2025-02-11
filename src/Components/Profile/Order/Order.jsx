@@ -40,7 +40,7 @@ const Orders = ({ Orderhistory ,show,orderData,Goto,setorderid}) => {
        </div>
        <div className="text-green-600 font-semibold">৳{Product.discountPrice*Product.quantity}</div>
        <div className="">
-         <button className={` font-medium  ${order.status === 'canceled' ? 'text-red-500':'text-green-500'} `}>{order.status}</button>
+         <button className={` font-medium  ${order.status === 'canceled' ? 'text-red-500': order.status === 'pending'  ? 'text-primary':'text-green-500'} `}>{order.status}</button>
        </div>
        <div className="">
          <button className="text-blue-500 hover:text-blue-600 font-medium  " onClick={()=>{
