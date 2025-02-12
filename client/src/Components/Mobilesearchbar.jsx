@@ -3,11 +3,12 @@ import {Input} from "@nextui-org/react";
 import { IoIosSearch } from "react-icons/io";
 import { FaFilter } from "react-icons/fa";
 import Sidedrawer from "./drawer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineClear } from "react-icons/md";
 import { useState } from "react";
 export default function Mobilesearch({ className, type, inputclass, filtermenuclass,location,Autocomplete, SearchTerm, setsearchterm, handlesearch, handleKeyDown,setSelectedFilters,setAutocomplete,setfilteredProducts,filteredProducts,FilteredProducts}) {
   const [filterSearch,setfiltervalue] = useState('')
+  const navigate = useNavigate()
   const handleSearch=(e)=>{
 
     const searchvalue = e.target.value.toLowerCase().trim()
@@ -83,7 +84,7 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
             type="search"
             className=" relative bg-default-400/20  focus:bg-default-400/20  rounded-none  "
           />
-          <ul className={` top-14 absolute left-0  w-full  overflow-hidden   ${ Autocomplete?.length>0 ? 'flex flex-col bg-default-100':'hidden'}  gap-2    text-sm    border-[0.01px] border-default border-opacity-10 border-t-0`}>
+          <ul className={` top-12 absolute left-0  w-full  overflow-hidden   ${ Autocomplete?.length>0 ? 'flex flex-col bg-default-100':'hidden'}  gap-2    text-sm    border-[0.01px] border-default border-opacity-10 border-t-0`}>
           
              
            

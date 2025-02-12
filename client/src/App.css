@@ -488,7 +488,9 @@ transform: translateY(0) !important;
   .mbsearchbar{
     width: 78vw !important;
    }
-
+.footercontainer{
+  gap: 4rem !important;
+}
 }
 @media only screen and (max-width: 325px){
   .mbsearchbar{

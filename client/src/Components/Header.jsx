@@ -22,39 +22,6 @@ import { CgProfile } from "react-icons/cg";
 import { Link, useLocation, useNavigate} from "react-router-dom";
 import Mobilesearch from "./Mobilesearchbar";
 import Sidedrawer from "./drawer";
-
-
-
-  export const SearchIcon = ({size = 24, strokeWidth = 1.5, width, height, ...props}) => {
-  
-    return (
-      <svg
-        aria-hidden="true"
-        fill="none"
-        focusable="false"
-        height={height || size}
-        role="presentation"
-        viewBox="0 0 24 24"
-        width={width || size}
-        {...props}
-      >
-        <path
-          d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={strokeWidth}
-        />
-        <path
-          d="M22 22L20 20"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={strokeWidth}
-        />
-      </svg>
-    );
-  };
   
   export default function Header({showmbsearhbar,setshowsearchbar,setSelectedFilters,menuSections,productDetails,cartedProduct
     
@@ -264,7 +231,7 @@ const filteredProducts = productDetails.filter((product) =>
             screenSize>768 &&  navigate('/shop')
             screenSize>768 && setSelectedFilters({[SearchTerm.toLowerCase()]:true})
           }}  className=" cursor-pointer Searchicn bg-black h-full    w-10 p-2 text-white z-50" /> 
-          <ul className={` top-10 absolute ${ screenSize>768 && Autocomplete.length>0 ? 'flex flex-col bg-white':'hidden'}  gap-2     w-full  border-[0.01px] border-gray-400 border-opacity-10 border-t-0`}>
+          <ul className={` top-10 absolute ${ screenSize>768 && Autocomplete.length>0 ? 'flex flex-col bg-[whitesmoke]':'hidden'}  gap-2     w-full  border-[0.01px] border-gray-400 border-opacity-10 border-t-0`}>
 
    
  
@@ -276,7 +243,7 @@ const filteredProducts = productDetails.filter((product) =>
       <Link
         key={index}
         className={`px-3 py-1.5 hover:text-secondary cursor-pointer ${
-          index !== Autocomplete.length - 1 ? 'border-b border-gray-400 border-opacity-10' : ''
+          index !== Autocomplete.length - 1 ? 'border-b border-gray-400 border-opacity-10 ' : ''
         }`}
 
 to={item.id ? `/details/${item.id}`:'/shop'}

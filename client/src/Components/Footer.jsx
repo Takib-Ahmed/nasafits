@@ -65,8 +65,8 @@ const Footer = ({setSelectedFilters}) => {
   return (
     <>
      
-      <footer className="bg-black text-white p-20">
-        <div className="container mx-auto flex justify-around flex-wrap gap-24 text-sm">
+      <footer className="bg-black text-white p-10 sm:p-20 py-10 sm:py-20">
+        <div className="footercontainer container mx-auto w-full flex sm:justify-around flex-wrap gap-20 sm:gap-24 text-sm">
           {footerSections.map((section, index) => (
             <div key={index}>
               <h4 className="font-bold mb-4 w-fit border-gray-500 border-b-2 py-2">
