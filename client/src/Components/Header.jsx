@@ -311,9 +311,9 @@ to={item.id ? `/details/${item.id}`:'/shop'}
           setAutocomplete={setAutocomplete}
           setSelectedFilters={setSelectedFilters}
        className='mobilesearch fixed top-[3.5rem] w-[100%]  left-0' type='mbsearchbar' location={location} />}
-         <Link to='/cart'  className="maincartwrapper w-fit" >
+         <Link to='/cart'  className="maincartwrapper w-fit mt-1" >
          <Badge color="white" content={cartedProduct.length} size='sm'  isInvisible={false} shape="circle"    className=" badge  outline-none border-none me-2.5 sm:me-[0.9rem]  md:me-[0.9rem] lg:me-[1.1rem] mt-1.5  text-white bg-black   ">
-         <PiShoppingCartSimple     className=" text-3xl sm:w-10 lg:w-12 text-black hover:text-secondary  maincart" />
+         <PiShoppingCartSimple   size={35}   className=" text-3xl sm:w-10 lg:w-12 text-black hover:text-secondary  maincart" />
         </Badge>
          
           </Link>
