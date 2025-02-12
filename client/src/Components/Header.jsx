@@ -248,7 +248,7 @@ const filteredProducts = productDetails.filter((product) =>
               mainWrapper: "h-full",
               input: "text-small bg-default-400/20",
               inputWrapper:
-                "  h-full font-normal text-default-500 bg-default-400/20 focus:bg-default-400/20 rounded-none inputwrapper",
+                "  h-full  font-normal text-default-500 bg-default-400/20 focus:bg-default-400/20 rounded-none inputwrapper",
               
             }}
             onKeyDown={handleKeyDown}
