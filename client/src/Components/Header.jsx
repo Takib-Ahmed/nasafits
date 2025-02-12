@@ -324,7 +324,7 @@ to={item.id ? `/details/${item.id}`:'/shop'}
   <Avatar  
                   isBordered
                   as="button"
-                  className="transition-transform    rounded-full  text-white   "
+                  className={`transition-transform   avatar rounded-full  text-white  ${screenSize<540 && 'ring-0'} hover:ring-secondary hover:text-secondary   `}
                   color="white"
                   name ={storedUser && storedUser.name}
                   size="sm"
@@ -336,9 +336,9 @@ to={item.id ? `/details/${item.id}`:'/shop'}
                     ? '/profile/Dashboard'
                     : '/profile'}  > 
                  <Avatar
-                                 isBordered ={screenSize>540 ? true:false} 
+                                 isBordered 
                                  as="button"
-                                 className="transition-transform    rounded-full  text-white  hover:ring-secondary hover:text-secondary "
+                                 className={`transition-transform   avatar rounded-full  text-white  ${screenSize<540 && 'ring-0'} hover:ring-secondary hover:text-secondary   `}
                                  color="white"
                                  name ={storedUser && storedUser.name}
                                  size="sm"

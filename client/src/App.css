@@ -415,6 +415,8 @@ transform: translateY(0) !important;
        padding-top: 0.2rem;
     transform: translateX(4px);
          }
+
+      
    }
 
    @media only screen and (max-width: 500px){
