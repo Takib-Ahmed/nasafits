@@ -26,18 +26,18 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
   return (
     <>
       <div
-        className={`flex    text-xl    p-1 px-2  ${className} ${
+        className={`flex    text-xl    p-1 px-[0.6rem]  ${className} ${
           type === "mbsearchbar" && "justify-between gap-1 "
         }`}
       >
         <div
-          className={` bg-default-200   items-center flex justify-center p-2  ${filtermenuclass}`}
+          className={` bg-default-200   items-center flex justify-center p-1.5  ${filtermenuclass}`}
         >
     {
       location && !location.pathname.includes('/shop') ?<Link to={ '/shop'} className=" bg-black hover:bg-white hover:text-black transition-all duration-200 text-white  p-3 w-10 h-8 flex justify-center items-center  cursor-pointer ">
       <FaFilter/>
    { location && location.pathname.includes('/shop') ?    <Sidedrawer />:<></>}
-           </Link>:<li className=" bg-black hover:bg-white hover:text-black transition-all duration-200 text-white  p-3 w-10 h-8 flex justify-center items-center  cursor-pointer ">
+           </Link>:<li className=" bg-black hover:bg-white hover:text-black transition-all duration-200 text-white  p-[0.8rem] w-10 h-8 flex justify-center items-center  cursor-pointer ">
      <FaFilter/>
   { location && location.pathname.includes('/shop') ?    <Sidedrawer />:<></>}
           </li>
@@ -51,7 +51,7 @@ export default function Mobilesearch({ className, type, inputclass, filtermenucl
             classNames={{
               base: `   bg-white    ${
                 type === "mbsearchbar"
-                  ? `md:h-8 lg:h-10  p-2 mbsearchbar`
+                  ? `md:h-8 lg:h-10  p-1.5 mbsearchbar`
                   : inputclass
               }`,
               mainWrapper: "h-full",
