@@ -116,6 +116,26 @@ color: #000;
 background: #334155;
   }
 }
+.hidecart {
+
+  animation: Hidecart 1s linear forwards;
+  animation-timeline: scroll(y); /* This is experimental and may not work in all browsers */
+}
+
+@keyframes Hidecart {
+  0%, 95.99% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  96%,100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+
+
+
 @media only screen and (max-width: 1500px){
 
   .shopcard{

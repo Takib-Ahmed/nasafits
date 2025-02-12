@@ -62,6 +62,9 @@ const Footer = ({setSelectedFilters}) => {
     },
   ];
 
+
+  
+
   return (
     <>
      

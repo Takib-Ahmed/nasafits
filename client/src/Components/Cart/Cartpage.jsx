@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cartcard from "./Cartcard";
 import { Link, useNavigate } from "react-router-dom";
 import { BsBagCheckFill } from "react-icons/bs";
@@ -8,7 +8,7 @@ import { useLocalStorage as useSelectedCartsStorage } from "../hooks/useLocalSto
 import { Button } from "@heroui/react";
 import { Checkbox } from "@nextui-org/react";
 
-export default function Cartpage({cartedProduct,setcartedproduct,setselectedcarts,SelectedCarts}){
+export default function Cartpage({cartedProduct,setcartedproduct,setselectedcarts,SelectedCarts,isFooterVisible}){
 
    
 
@@ -44,6 +44,28 @@ const handleAllCheckboxChange=(e)=>{
 setcartedproduct((prev)=>
 prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
 }
+
+const [hideFixedElement, setHideFixedElement] = useState(true);
+
+useEffect(() => {
+  const handleScroll = () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+
+    // Check if user has scrolled to the bottom
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
+      setHideFixedElement(true);
+    } else {
+      setHideFixedElement(false);
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  
+  // Cleanup event listener on unmount
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
 
 
     return (
@@ -165,7 +187,7 @@ prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
 </Button>
     
    </div>
-   <div className="flex flex-col md:hidden w-full gap-2 fixed  bottom-0 p-2 z-50 bg-white left-0">
+   {!hideFixedElement &&   <div className="flex flex-col md:hidden w-full gap-2 fixed  bottom-0 p-2 z-50 bg-white left-0 hidecart">
    <label className=" flex flex-row-reverse  md:hidden w-full justify-between  overflow-hidden  p-1   border-gray-500 border-b-1"><Checkbox 
     
     size="sm" 
@@ -200,7 +222,8 @@ prev.map((carted)=>({...carted,Ischecked:e.target.checked})))
      
    </div>
 </div>
-   </div>
+   </div>}
+ 
  </div>
 }
 
