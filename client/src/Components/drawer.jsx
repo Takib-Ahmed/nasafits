@@ -39,7 +39,7 @@ export default function Sidedrawer({ menuItems, location,setSelectedFilters }) {
   return (
     <>
       <Button
-        className="bg-transparent hover:text-black text-white p-0   absolute  left-0  w-[5%]  -translate-x-2 h-full  "
+        className="bg-transparent rounded-none hover:text-black text-white p-0   absolute  left-0  w-[5%]  -translate-x-2 h-full  drawer "
         onPress={onOpen}
       ></Button>
 

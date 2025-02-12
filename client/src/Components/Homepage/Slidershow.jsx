@@ -24,7 +24,7 @@ export default function Slidershow({setSelectedFilters}){
     return (
         <div className=" flex flex-col gap-0">
   
-<Slider {...settings} className="   relative Slider w-full mt-16 md:mt-14 lg:mt-[1.1rem]   lg:h-[51rem]  overflow-hidden">
+<Slider {...settings} className="   relative Slider w-full mt-10 md:mt-14 lg:mt-[1.1rem]   lg:h-[51rem]  overflow-hidden">
 <Link to='/shop' className=" " onClick={()=>{
     setSelectedFilters({'winter collection':true})
 }}>

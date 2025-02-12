@@ -168,12 +168,12 @@ const filteredProducts = productDetails.filter((product) =>
   
 
     return (
-      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0  fixed  " isBordered   id="/" >
+      <Navbar className=" bg-[#F5F5F5]  lg:py-1.5  lg:px-5 ps-0  border-none flex gap-0  fixed   " isBordered   id="/" >
         <NavbarContent justify="start">
         <div
 
-    className="navmenu  hidden     p-0 m-0 text-3xl sm:text-4xl  w-8 sm:w-10  h-full" 
-  ><IoMenuOutline className="  absolute top-4  sm:top-3"/><Sidedrawer setSelectedFilters={setSelectedFilters} location={location} menuItems={menuItems}/></div>
+    className="navmenu  hidden     p-0 m-0 text-3xl sm:text-4xl  w-8 sm:w-10   h-full" 
+  ><IoMenuOutline className=" menuicon  absolute top-4  sm:top-3"/><Sidedrawer setSelectedFilters={setSelectedFilters} location={location} menuItems={menuItems}/></div>
   <NavbarBrand className=" left-shadow h-full ps-2 " >
  <Link  to="/"
   >        <img
