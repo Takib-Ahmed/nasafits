@@ -8,6 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import Cartcard from "./Cartcard";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Badge, Checkbox } from "@nextui-org/react";
+import axios from 'axios'
 export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,setselectedcarts}){
   const totalSubtotal = SelectedCarts.reduce((total, selectedcarts) => total + selectedcarts.subtotal, 0);
   const storedUser = JSON.parse(localStorage.getItem("userdata")) || {};   
@@ -15,7 +16,10 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
     const location = useLocation();
     const {setItem} = useLocalStorage('cartedProduct')
 
-  
+  const fetchAPI = async()=>{
+    const response = await axios.get("http://localhost:3000/api")
+    console.log(response.data.numbers)
+  }
     
     useEffect(() => {
       const savedCartedProduct = JSON.parse(localStorage.getItem("cartedProduct") || "[]");
@@ -40,8 +44,9 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
         <div className={` fixed  right-0 top-[0rem] z-50 w-80 lg:w-[500px] h-[100%]   bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
           <div className="absolute  w-fit right-80 lg:right-[32rem] top-[30rem] z-50  badgewrapper  hover:text-cyan-200 text-white  "
           
-          >   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className=" transition-all duration-300 badge outline-none border-none me-[1.02rem] mt-2.5 bg-slate-700   w-0.5 " onClick={()=>{
+          >   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className={` transition-all duration-300 badge outline-none border-none mt-2.5 bg-slate-700   w-0.5  me-[1.02rem]  ${cartedProduct.length>9 ? 'p-0.5 px-2.5 ':' '}`} onClick={()=>{
             setshowcart((prev)=>!prev)
+            fetchAPI()
             }}>
      
      
