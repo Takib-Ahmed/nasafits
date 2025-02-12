@@ -38,10 +38,10 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
         !location.pathname.includes('/cart')  && 
         
         <div className={` fixed  right-0 top-[0rem] z-50 w-80 lg:w-[500px] h-[100%]   bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
-          <div className="absolute  w-fit right-80 lg:right-[32rem] top-[30rem] z-50  badgewrapper  hover:text-cyan-200 text-white  ">   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className=" transition-all duration-300 badge outline-none border-none  me-0.5 bg-slate-700   ">
+          <div className="absolute  w-fit right-80 lg:right-[32rem] top-[30rem] z-50  badgewrapper  hover:text-cyan-200 text-white  ">   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className=" transition-all duration-300 badge outline-none border-none me-[1.02rem] mt-2.5 bg-slate-700   w-0.5 ">
      
      
-        <PiShoppingCartSimple className="text-slate-700 bg-cyan-200  rounded-full cursor-pointer p-2  cart transition-all duration-300 " size={40}  onClick={()=>{
+        <PiShoppingCartSimple className="text-slate-700 bg-cyan-200  rounded-full cursor-pointer p-2  cart transition-all duration-300 " size={45}  onClick={()=>{
           setshowcart((prev)=>!prev)
           }}/></Badge></div> 
 
