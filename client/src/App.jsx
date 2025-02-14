@@ -18,6 +18,7 @@ import ScrollToTop from "./Components/ScrollToTop";
 import Paymentpage from "./Components/Checkout/Paymentpage";
 import { useLocalStorage } from "./Components/hooks/useLocalStorage";
 import { useLocalStorage as userAddressbook } from "./Components/hooks/useLocalStorage";
+import ProductForm from "./Components/Dashboard/Dashboard";
 function App() {
   const productDetails = [
     {
@@ -321,7 +322,7 @@ function App() {
                 path="/"
                 element={<Homepage setSelectedFilters={setSelectedFilters} productDetails={productDetails} />}
               />
-
+<Route path="/dashboard" element={<ProductForm/>}/>
 <Route  path={`/profile`} element={<AccountPage userAddresses={userAddresses} setAdressbook={setAdressbook} setOrderhistory={setOrderhistory}   menuSections={menuSections} Orderhistory={Orderhistory}  />} />
 {
   menuSections.map((section)=>(

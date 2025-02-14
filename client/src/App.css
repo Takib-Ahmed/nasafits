@@ -79,6 +79,7 @@ background: inherit !important;
   }
 }
 
+
 .mobilesearch{
  display: none !important;
  }
@@ -96,14 +97,24 @@ background: inherit !important;
   width: 16rem;
 }
 
-.maincartwrapper:hover{
+.badge{
+  width: 16px;
+  height: 16px;
+  font-size: 9px;
+}
 
+.maincartwrapper{
+
+
+ 
+ &:hover{
   .badge{
     background-color: #7828C8;
   }
   .maincart{
 color: #7828C8;
   }
+ } 
 }
 .badgewrapper:hover{
   .badge{
@@ -404,9 +415,41 @@ transform: translateY(0) !important;
         left: 0;
       }
      }
+
+
+     .badgewrapper{
+     .badge{
+      background: transparent;
+      color: #000;
+     }
+     
+     
+     &:hover{
+
+      .badge{
+        background: #a5f3fc;
+        color: #334155;
+        /* color: #334155; */
+          }
+          .cart{
+            color: #a5f3fc;
+        background: #334155;
+          }
+     } 
+    }
    }
  
    @media only screen and (max-width: 540px){
+    .maincartwrapper{
+      .badge{
+        margin-right: .63rem;
+        height: 13.5px;
+        width: 14px;
+        margin-top: .7rem;
+        
+
+      }
+     }
     .Orderhistory{
    overflow-x: scroll;
   width:100vw;

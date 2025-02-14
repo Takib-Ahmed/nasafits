@@ -44,13 +44,13 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
         <div className={` fixed  right-0 top-[0rem] z-50 w-80 lg:w-[500px] h-[100%]   bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
           <div className="absolute  w-fit right-80 lg:right-[32rem] top-[30rem] z-50  badgewrapper  hover:text-cyan-200 text-white  "
           
-          >   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className={` transition-all duration-300 badge outline-none border-none mt-2.5 bg-slate-700   w-0.5  me-[1.02rem]  ${cartedProduct.length>9 ? 'p-0.5 px-2.5 ':' '}`} onClick={()=>{
+          >   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className={` ${cartedProduct.length <1000 && 'badge'} transition-all duration-300  outline-none border-none mt-4 sm:mt-[1.1rem] lg:mt-[1.2rem] bg-slate-700   w-0.5 me-[1rem] sm:me-[1.1rem]  lg:me-[1.2rem]   text-xs`} onClick={()=>{
             setshowcart((prev)=>!prev)
             fetchAPI()
             }}>
      
      
-        <PiShoppingCartSimple className="text-slate-700 bg-cyan-200  rounded-full cursor-pointer p-2  cart transition-all duration-300 " size={45}  /></Badge></div> 
+        <PiShoppingCartSimple className="text-slate-700 bg-cyan-200  rounded-full cursor-pointer p-2  cart transition-all duration-300  text-[2.6rem] sm:text-5xl lg:text-[3.2rem]"   /></Badge></div> 
 
   {/* Floating Cart Icon */}
 
