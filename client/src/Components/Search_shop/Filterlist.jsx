@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Checkbox, Chip } from "@heroui/react";
-import React, { useState } from "react";
 import { GoDotFill } from "react-icons/go";
 import { AiFillThunderbolt  } from "react-icons/ai";
+import { useLocation, useNavigate } from "react-router-dom";
 export default function Filterlist({className,setSelectedFilters,selectedFilters,getPropertyCount,ShowFIlteredproducts,FilteredProducts}) {
-
-
+const location = useLocation()
+const navigate = useNavigate()
   const demohcategories = [
     { name: "New Arrival" },
     { name: "Flash Sale" },
@@ -93,7 +93,14 @@ export default function Filterlist({className,setSelectedFilters,selectedFilters
   
                <Checkbox  color='primary'     size="sm"  type="checkbox"
             isSelected={!!selectedFilters[category.name.toLocaleLowerCase()]}
-            onChange={() =>             toggleFilter(category.name.toLocaleLowerCase())} icon={<GoDotFill className="text-white  w-full text-5xl "/>} >
+            onChange={() => 
+            
+      
+           { toggleFilter(category.name.toLocaleLowerCase())
+
+            !location.pathname.includes('/shop') && navigate('/shop')
+           }
+            } icon={<GoDotFill className="text-white  w-full text-5xl "/>} >
     
       </Checkbox>
           <span className="flex justify-between w-full mt-0.5 lg:mt-0">

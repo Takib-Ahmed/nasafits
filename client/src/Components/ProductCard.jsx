@@ -9,7 +9,7 @@ export default function ProductCard({className,product,showSave,type,setproduct}
       <Link
       key={product.id}
       to={`/details/${product.id}`}
-      className={type==='collection'?`Productcard pt-0.5 sm:pb-1 grid  lg:w-auto gap-0.5 saleproduct bg-white border-1 rounded-lg overflow-hidden ${className}  `:` ${className} ` }
+      className={type==='collection'?`Productcard pt-0.5 sm:pb-1 grid  lg:w-auto gap-0.5 saleproduct bg-white border-1 rounded-lg overflow-hidden text-center ${className}  `:` ${className} ` }
     
     >
       <div    onClick={()=>{
@@ -22,7 +22,7 @@ export default function ProductCard({className,product,showSave,type,setproduct}
             className="w-full rounded-lg overflow-hidden"
           />
         </div>
-        <div className="title font-semibold sm:font-bold ">
+        <div className="title font-semibold sm:font-bold  ">
           <h3>{product.name}</h3>
         </div>
         {/* Conditional Save Section */}

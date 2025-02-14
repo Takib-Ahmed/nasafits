@@ -1,5 +1,6 @@
 import { Button, Input } from "@nextui-org/react";
 import { useState } from "react";
+import ProductCard from "../ProductCard";
 
 const initialState = {
   id: "",
@@ -25,14 +26,14 @@ const fields = [
   { name: "mainPrice", type: "number", placeholder: "Main Price" },
   { name: "discountPrice", type: "number", placeholder: "Discount Price" },
   { name: "showcases", type: "text", placeholder: "Showcases (comma separated)" },
-  { name: "images", type: "text", placeholder: "Images URLs (comma separated)" },
+
   { name: "sizes", type: "text", placeholder: "Sizes (comma separated)" },
 ];
 
 const ProductForm = () => {
   const [product, setProduct] = useState(initialState);
   const [previewImage, setPreviewImage] = useState(null); // ✅ Store image preview separately
-
+  const [productList,setproductlist] = useState([])
   const handleChange = (e) => {
     const { name, type, value, files } = e.target;
 
@@ -40,7 +41,7 @@ const ProductForm = () => {
       const file = files[0];
       setProduct((prev) => ({
         ...prev,
-        [name]: file, // ✅ Store actual file in state
+        [name]: URL.createObjectURL(file), // ✅ Store actual file in state
       }));
       setPreviewImage(URL.createObjectURL(file)); // ✅ Generate preview
     } else {
@@ -51,13 +52,17 @@ const ProductForm = () => {
     }
   };
 
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Product Data: ", product);
+    setproductlist((prev)=>[...prev,product])
+    console.log("Product Data: ", {...product,coverImage:previewImage});
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 max-w-lg mx-auto bg-white shadow-lg rounded-lg space-y-3 py-20">
+<div className="flex ">
+<form onSubmit={handleSubmit} className="p-4   bg-white shadow-lg rounded-lg space-y-3 py-20">
       {fields.map((field) => (
         <div key={field.name} className="w-full">
           {field.type === "file" ? (
@@ -96,6 +101,21 @@ const ProductForm = () => {
         Submit
       </Button>
     </form>
+     
+     <div className=" flex  justify-center items-center flex-wrap ">
+     {productList.map((product) => (
+              <ProductCard 
+            setProduct={setProduct}
+              product={product}
+              key={product.id}
+           
+              discountPrice={product.discountPrice}
+            type='collection'
+          />
+              ))}
+     </div>
+     
+     </div>
   );
 };
 
