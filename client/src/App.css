@@ -419,16 +419,16 @@ transform: translateY(0) !important;
 
      .badgewrapper{
      .badge{
-
-
+      background: transparent;
+      color: #334155;
      }
      
      
      &:hover{
 
       .badge{
-        background: #a5f3fc;
-        color: #334155;
+      background-color: transparent;
+        color:#a5f3fc ;
         /* color: #334155; */
           }
           .cart{
