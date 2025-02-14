@@ -43,8 +43,11 @@ export default function Sidecart({cartedProduct,setcartedproduct,SelectedCarts,s
         
         <div className={` fixed  right-0 top-[0rem] z-50 w-80 lg:w-[500px] h-[100%]   bg-white shadow-lg rounded-lg transition-all duration-300 ${showcart ?'translate-x-0':'translate-x-[100%]'}`}>
           <div className="absolute  w-fit right-80 lg:right-[32rem] top-[30rem] z-50  badgewrapper  hover:text-cyan-200 text-white  "
-          
-          >   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className={` ${cartedProduct.length <1000 && 'badge'} transition-all duration-300  outline-none border-none mt-4 sm:mt-[1.1rem] lg:mt-[1.2rem] bg-slate-700   w-0.5 me-[1rem] sm:me-[1.1rem]  lg:me-[1.2rem]   text-xs`} onClick={()=>{
+          onClick={()=>{
+            setshowcart((prev)=>!prev)
+            fetchAPI()
+            }}
+          >   <Badge color="white" content={cartedProduct.length}  isInvisible={false} shape="circle"  size='sm'  className={` ${cartedProduct.length <1000 && 'badge'} transition-all duration-300  outline-none border-none mt-[1.04rem] sm:mt-[1.1rem] lg:mt-[1.2rem] bg-slate-700   w-0.5 me-[1rem] sm:me-[1.1rem]  lg:me-[1.2rem]   text-xs`} onClick={()=>{
             setshowcart((prev)=>!prev)
             fetchAPI()
             }}>

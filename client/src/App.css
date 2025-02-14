@@ -108,7 +108,7 @@ background: inherit !important;
 
  
  &:hover{
-  .badge{
+  .mainbadge{
     background-color: #7828C8;
   }
   .maincart{
@@ -419,8 +419,8 @@ transform: translateY(0) !important;
 
      .badgewrapper{
      .badge{
-      background: transparent;
-      color: #000;
+
+
      }
      
      
